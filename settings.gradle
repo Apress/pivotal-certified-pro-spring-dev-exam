@@ -1,0 +1,12 @@
+rootProject.name = 'pet-sitter'
+
+//we check if the modules have gradle configuration files
+println(' This project is a collection of simple code samples. It is meant to be used together with the ' +
+        '"SpringSource Certified Spring Core  Developer Exam" ' +
+        ' published by Apress in order to learn and practice with all Spring Core libraries. ')
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}
