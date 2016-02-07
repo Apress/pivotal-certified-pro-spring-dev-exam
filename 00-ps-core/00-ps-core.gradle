@@ -1,0 +1,11 @@
+dependencies {
+    compile misc.joda, misc.jacksonCore, misc.jacksonDatabind, misc.jacksonAnnotations,
+            spring.jdbc, spring.data, spring.contextSupport, misc.h2,
+            hibernate.core, hibernate.validator
+
+}
+
+task allCompileDeps(type: DependencyReportTask){
+    description 'Task used to print dependencies'
+    configurations = [this.configurations.compile] as Set
+}
