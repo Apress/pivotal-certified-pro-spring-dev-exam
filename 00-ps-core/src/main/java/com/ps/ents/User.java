@@ -55,13 +55,6 @@ public class User extends AbstractEntity {
     private Set<Pet> pets = new HashSet<>();
 
     @JsonIgnore
-    @OneToMany(mappedBy = "author", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<Review> authoredReviews = new HashSet<>();
-    @JsonIgnore
-    @OneToMany(mappedBy = "receiver", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Set<Review> receivedReviews = new HashSet<>();
-
-    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade =  {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Request> requests = new HashSet<>();
 
@@ -125,32 +118,6 @@ public class User extends AbstractEntity {
 
     protected void setPets(Set<Pet> pets) {
         this.pets = pets;
-    }
-
-    public Set<Review> getAuthoredReviews() {
-        return authoredReviews;
-    }
-
-    protected void setAuthoredReviews(Set<Review> reviews) {
-        this.authoredReviews = reviews;
-    }
-
-    public boolean addAuthoredReview(Review review) {
-        review.setAuthor(this);
-        return authoredReviews.add(review);
-    }
-
-    public Set<Review> getReceivedReviews() {
-        return receivedReviews;
-    }
-
-    public boolean addReceivedReview(Review review) {
-        review.setReceiver(this);
-        return receivedReviews.add(review);
-    }
-
-    public void setReceivedReviews(Set<Review> receivedReviews) {
-        this.receivedReviews = receivedReviews;
     }
 
     public Set<Request> getRequests() {

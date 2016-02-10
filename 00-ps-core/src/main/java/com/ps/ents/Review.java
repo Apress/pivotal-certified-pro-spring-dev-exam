@@ -4,20 +4,25 @@ import com.ps.base.AbstractEntity;
 import com.ps.base.ReviewGrade;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
+import java.text.SimpleDateFormat;
 
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
 public class Review extends AbstractEntity {
-    @ManyToOne
-    @JoinColumn(name = "AUTHOR_ID", nullable = false)
-    private User author;
 
-    @ManyToOne
-    @JoinColumn(name = "RECEIVER_ID", nullable = false)
-    private User receiver;
+    @OneToOne
+    @Column(name = "REQUEST_ID")
+    private Request request;
+
+    @OneToOne
+    @Column(name = "RESPONSE_ID")
+    private Response response;
 
     @NotEmpty
     @Column
@@ -32,22 +37,6 @@ public class Review extends AbstractEntity {
     //required by JPA
     public Review() {
         super();
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
     }
 
     public ReviewGrade getGrade() {
@@ -66,5 +55,49 @@ public class Review extends AbstractEntity {
         this.details = details;
     }
 
-    //TODO add  equals, hashcode & toString
+    public Request getRequest() {
+        return request;
+    }
+
+    public void setRequest(Request request) {
+        this.request = request;
+    }
+
+    public Response getResponse() {
+        return response;
+    }
+
+    public void setResponse(Response response) {
+        this.response = response;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Review review = (Review) o;
+
+        if (request != null ? !request.equals(review.request) : review.request != null) return false;
+        if (response != null ? !response.equals(review.response) : review.response != null) return false;
+        return grade == review.grade;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (request != null ? request.hashCode() : 0);
+        result = 31 * result + (response != null ? response.hashCode() : 0);
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return String.format("Review[request_id='%,.2f', response_id='%,.2f', grade='%s', details='%s']",
+                request.getId(), response.getId(), grade.toString(), details);
+    }
 }
