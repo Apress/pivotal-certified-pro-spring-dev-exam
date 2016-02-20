@@ -38,6 +38,14 @@ public class Pet extends AbstractEntity {
     @Column
     private String details;
 
+    /**
+     * The pet has a RFID microchip implant.
+     */
+    @NotEmpty
+    @Column
+    @Size(min = 10, max = 100)
+    private String rfid;
+
     //required by JPA
     public Pet() {
         super();
@@ -83,6 +91,14 @@ public class Pet extends AbstractEntity {
         this.age = age;
     }
 
+    public String getRfid() {
+        return rfid;
+    }
+
+    public void setRfid(String rfid) {
+        this.rfid = rfid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,7 +110,8 @@ public class Pet extends AbstractEntity {
         if (owner != null ? !owner.getId().equals(pet.owner.getId()) : pet.owner != null) return false;
         if (petType != pet.petType) return false;
         if (name != null ? !name.equals(pet.name) : pet.name != null) return false;
-        return age != null ? age.equals(pet.age) : pet.age == null;
+        if (age != null ? !age.equals(pet.age) : pet.age != null) return false;
+        return rfid != null ? rfid.equals(pet.rfid) : pet.rfid == null;
 
     }
 
@@ -105,12 +122,14 @@ public class Pet extends AbstractEntity {
         result = 31 * result + (petType != null ? petType.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
+        result = 31 * result + (rfid != null ? rfid.hashCode() : 0);
         return result;
     }
 
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return String.format("Pet[id='%,.2f', owner='%s', pet type='%s', pet name='%s', age='%,.2f']", id, owner == null ? "" : owner.getId(), petType.toString(), name, age);
+        return String.format("Pet[id='%,.2f', owner='%s', pet type='%s', pet name='%s', age='%,.2f']", id, owner == null ? ""
+                : owner.getId(), petType.toString(), name, age);
     }
 }
