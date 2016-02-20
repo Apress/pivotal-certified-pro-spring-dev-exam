@@ -7,7 +7,8 @@ package com.ps.base;
 public enum UserType {
     OWNER(1),
     SITTER(2),
-    BOTH(3);
+    BOTH(3),
+    ADMIN(4);
 
     private int code;
 

@@ -62,6 +62,9 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", cascade =  {CascadeType.PERSIST, CascadeType.REMOVE})
     private Set<Response> responses = new HashSet<>();
 
+    @Column
+    private boolean active;
+
     //required by JPA
     public User() {
         super();
@@ -144,6 +147,14 @@ public class User extends AbstractEntity {
     public boolean addResponse(Response response) {
         response.setUser(this);
         return responses.add(response);
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getAddress() {

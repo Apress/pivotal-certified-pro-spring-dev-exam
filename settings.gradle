@@ -2,6 +2,30 @@ rootProject.name = 'pet-sitter'
 
 include '00-ps-core'
 include '01-ps-start-practice'
+include '01-ps-start-solution'
+include '02-ps-container-01-practice'
+include '02-ps-container-01-solution'
+include '02-ps-container-02-practice'
+include '02-ps-container-02-solution'
+include '02-ps-container-03-practice'
+include '02-ps-container-03-solution'
+include '03-ps-test-practice'
+include '03-ps-test-solution'
+include '04-ps-aop-practice'
+include '04-ps-aop-solution'
+include '04-ps-aop-sample'
+include '05-ps-jdbc-practice'
+include '05-ps-jdbc-solution'
+include '06-ps-tx-practice'
+include '06-ps-tx-solution'
+include '07-ps-hibernate-practice'
+include '07-ps-hibernate-solution'
+include '08-ps-jpa-practice'
+include '08-ps-jpa-solution'
+include '09-ps-mvc-practice'
+include '09-ps-mvc-solution'
+include '10-ps-security-practice'
+include '10-ps-security-solution'
 
 //we check if the modules have gradle configuration files
 println(' This project is an asset management POC application')
@@ -11,5 +35,16 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
-
+include '11-ps-remoting-practice'
+include '11-ps-remoting-solution'
+include '11-ps-remoting-sample'
+include '12-ps-jms-practice'
+include '12-ps-jms-solution'
+include '13-ps-ws-practice'
+include '13-ps-ws-solution'
+include '14-ps-ws-rest-practice'
+include '14-ps-ws-rest-solution'
+include '15-ps-jmx-practice'
+include '15-ps-jmx-solution'
+include '16-ps-micro-sample'
 

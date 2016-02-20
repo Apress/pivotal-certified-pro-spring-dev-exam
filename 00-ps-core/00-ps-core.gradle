@@ -1,8 +1,9 @@
 dependencies {
-    compile misc.joda, misc.jacksonCore, misc.jacksonDatabind, misc.jacksonAnnotations,
-            spring.jdbc, spring.data, spring.contextSupport, misc.h2,
-            hibernate.core, hibernate.validator
-
+    compile log.slf4jApi, log.slf4jJcl, log.logback, log.slf4jLog4j,
+            hibernate.ehcache, hibernate.em, hibernate.core, hibernate.validator,
+            spring.jdbc, spring.orm, spring.contextSupport, spring.data,
+            misc.dbcp, misc.h2, misc.joda,
+            misc.jacksonCore, misc.jacksonDatabind, misc.jacksonAnnotations
 }
 
 task allCompileDeps(type: DependencyReportTask){
