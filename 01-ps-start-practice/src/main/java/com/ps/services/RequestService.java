@@ -1,4 +1,4 @@
-package com.ps.service;
+package com.ps.services;
 
 import com.ps.ents.Pet;
 import com.ps.ents.Request;
@@ -17,5 +17,9 @@ public interface RequestService {
     User closeRequest(Request request, Review review);
 
     User rateOwner(Request request, Review review);
+
+    Request findById(Long requestId);
+
+    Request save(Request request);
 
 }

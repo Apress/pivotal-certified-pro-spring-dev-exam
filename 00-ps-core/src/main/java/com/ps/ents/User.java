@@ -32,6 +32,7 @@ public class User extends AbstractEntity {
     public String lastName;
 
     @Column(name="password")
+    @NotEmpty
     public String password;
 
     @NotNull
@@ -40,8 +41,11 @@ public class User extends AbstractEntity {
     private UserType userType;
 
     @Column
-    @NotEmpty
     private String address;
+
+    @Column
+    @NotEmpty
+    private String email;
 
     /***
      * Rating for a used is computed from reviews for a user
@@ -173,6 +177,14 @@ public class User extends AbstractEntity {
         this.rating = rating;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -197,8 +209,8 @@ public class User extends AbstractEntity {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return String.format("User[username='%s', firstName='%s', lastName='%s', userType='%s', hospital='%s', activeSince='%s', rating=id='%,.2f']", getUsername(),
-                getFirstName(), getLastName(), getUserType().toString(),sdf.format(createdAt), rating);
+        return String.format("User[username='%s', firstName='%s', lastName='%s', email='%s' userType='%s', hospital='%s', activeSince='%s', rating=id='%,.2f']", getUsername(),
+                getFirstName(), getLastName(), getEmail(), getUserType().toString(),sdf.format(createdAt), rating);
 
     }
 }
