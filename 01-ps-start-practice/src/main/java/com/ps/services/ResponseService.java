@@ -1,4 +1,4 @@
-package com.ps.service;
+package com.ps.services;
 
 import com.ps.ents.Request;
 import com.ps.ents.Response;
@@ -11,4 +11,6 @@ public interface ResponseService {
     Response createResponse(User user, Request request, String details);
 
     void acceptResponse(Request request, Response response);
+
+    Response save(Response response);
 }
