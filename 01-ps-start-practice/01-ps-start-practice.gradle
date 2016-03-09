@@ -4,5 +4,5 @@ dependencies {
 }
 
 test {
-    exclude '**/*TestCase*'
+    exclude '**/*TestBase*'
 }
