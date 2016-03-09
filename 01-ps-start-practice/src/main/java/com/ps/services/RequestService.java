@@ -14,12 +14,4 @@ public interface RequestService {
 
     Request createRequest(User user, Pet pet, Pair<DateTime, DateTime> interval, String details);
 
-    User closeRequest(Request request, Review review);
-
-    User rateOwner(Request request, Review review);
-
-    Request findById(Long requestId);
-
-    Request save(Request request);
-
 }

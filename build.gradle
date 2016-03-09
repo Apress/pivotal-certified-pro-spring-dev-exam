@@ -6,6 +6,8 @@ buildReceiptLicense {
     agree = 'yes'
 }
 
+//gradle build -Dreceipt
+
 allprojects {
     version = '1.0'
     group = 'com.ps'
@@ -75,7 +77,8 @@ allprojects {
                 portlet           : "javax.portlet:portlet-api:2.0",
                 standard          : "taglibs:standard:1.1.2",
                 servlet           : "javax.servlet:javax.servlet-api:3.1.0",
-                liferayService    : "com.liferay.portal:portal-services:6.2.2"
+                liferayService    : "com.liferay.portal:portal-services:6.2.2",
+                commons           : "org.apache.commons:commons-lang3:3.4"
         ]
 
         hibernate = [
@@ -117,7 +120,7 @@ subprojects {
         mavenLocal()
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "http://repo.spring.io/snapshot/"}
+        maven { url "http://repo.spring.io/snapshot/" }
     }
 
     dependencies {

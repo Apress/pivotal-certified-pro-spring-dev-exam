@@ -2,36 +2,25 @@ package com.ps.repo.stub;
 
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/23/16.
  */
-public class StubUserRepo implements UserRepo {
-
-    private Map<Long, User> userMap = new HashMap<>();
+public class StubUserRepo extends  StubAbstractRepo<User> implements UserRepo {
 
     @Override
-    public void save(User user) {
-        if (user.getId() != null) {
-            userMap.put(user.getId(), user);
-        }
+    public Set<User> findAllByUserName(String username, boolean exactMatch) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 
     @Override
-    public void delete(User user) {
-        userMap.remove(user.getId());
-    }
-
-    @Override
-    public void deleteById(Long userId) {
-        userMap.remove(userId);
-    }
-
-    @Override
-    public User findById(Long userId) {
-        return userMap.get(userId);
+    public Set<User> findByRating(double startRating, double endRating) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 }
+

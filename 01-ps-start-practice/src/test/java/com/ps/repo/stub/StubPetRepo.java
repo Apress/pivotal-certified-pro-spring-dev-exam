@@ -1,37 +1,32 @@
 package com.ps.repo.stub;
 
+import com.ps.base.PetType;
 import com.ps.ents.Pet;
+import com.ps.ents.User;
 import com.ps.repos.PetRepo;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 3/4/16.
  */
-public class StubPetRepo implements PetRepo {
-    private Map<Long, Pet> petHolder = new HashMap<>();
+public class StubPetRepo extends StubAbstractRepo<Pet> implements PetRepo {
 
     @Override
-    public void save(Pet pet) {
-        if (pet.getId() != null) {
-            petHolder.put(pet.getId(), pet);
-        }
+    public Pet findByOwner(User owner) {
+      throw new NotImplementedException("Not needed for this stub.");
     }
 
     @Override
-    public void delete(Pet pet) {
-        petHolder.remove(pet.getId());
+    public Set<Pet> findAllByOwner(User owner) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 
     @Override
-    public void deleteById(Long petId) {
-        petHolder.remove(petId);
-    }
-
-
-    @Override
-    public Pet findById(Long petId) {
-        return petHolder.get(petId);
+    public Set<Pet> finAllByType(PetType type) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 }
