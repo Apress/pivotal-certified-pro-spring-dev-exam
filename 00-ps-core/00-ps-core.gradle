@@ -3,7 +3,7 @@ dependencies {
             hibernate.ehcache, hibernate.em, hibernate.core, hibernate.validator,
             spring.jdbc, spring.orm, spring.contextSupport, spring.data,
             misc.dbcp, misc.h2, misc.joda,
-            misc.jacksonCore, misc.jacksonDatabind, misc.jacksonAnnotations
+            misc.jacksonCore, misc.jacksonDatabind, misc.jacksonAnnotations, misc.commons
 }
 
 task allCompileDeps(type: DependencyReportTask){

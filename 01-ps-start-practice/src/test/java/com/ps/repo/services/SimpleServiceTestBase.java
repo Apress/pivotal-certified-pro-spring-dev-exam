@@ -2,18 +2,20 @@ package com.ps.repo.services;
 
 import com.ps.repo.stub.*;
 import com.ps.repos.*;
-import com.ps.services.*;
+import com.ps.services.OperationsService;
+import com.ps.services.impl.*;
 
 /**
  * Created by iuliana.cosmina on 3/4/16.
  */
-public class SimpleRequestServiceTestBase {
+public class SimpleServiceTestBase {
 
     protected SimpleRequestService requestService;
     protected SimpleResponseService responseService;
     protected SimpleUserService userService;
     protected SimplePetService petService;
     protected SimpleReviewService reviewService;
+    protected OperationsService operationsService;
 
     protected void init(){
         UserRepo userRepo = new StubUserRepo();
@@ -23,19 +25,24 @@ public class SimpleRequestServiceTestBase {
         ReviewRepo reviewRepo = new StubReviewRepo();
 
         userService = new SimpleUserService();
-        userService.setUserRepo(userRepo);
+        userService.setRepo(userRepo);
 
         petService = new SimplePetService();
-        petService.setPetRepo(petRepo);
+        petService.setRepo(petRepo);
 
         requestService = new SimpleRequestService();
-        requestService.setUserRepo(userRepo);
-        requestService.setRequestRepo(requestRepo);
+        requestService.setRepo(requestRepo);
 
         responseService = new SimpleResponseService();
-        responseService.setResponseRepo(responseRepo);
+        responseService.setRepo(responseRepo);
 
         reviewService = new SimpleReviewService();
-        reviewService.setReviewRepo(reviewRepo);
+        reviewService.setRepo(reviewRepo);
+
+        operationsService = new SimpleOperationsService();
+        operationsService.setUserRepo(userRepo);
+        operationsService.setResponseRepo(responseRepo);
+        operationsService.setRequestRepo(requestRepo);
+        operationsService.setReviewRepo(reviewRepo);
     }
 }

@@ -1,37 +1,33 @@
 package com.ps.repo.stub;
 
+import com.ps.ents.Request;
+import com.ps.ents.Response;
 import com.ps.ents.Review;
+import com.ps.ents.User;
 import com.ps.repos.ReviewRepo;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/22/16.
  */
-public class StubReviewRepo implements ReviewRepo {
-
-    private Map<Long, Review> reviewMap = new HashMap<>();
+public class StubReviewRepo extends StubAbstractRepo<Review> implements ReviewRepo {
 
     @Override
-    public void save(Review review) {
-        if (review.getId() != null) {
-            reviewMap.put(review.getId(), review);
-        }
+    public Set<Review> findAllForUser(User user) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 
     @Override
-    public void delete(Review review) {
-        reviewMap.remove(review.getId());
+    public Set<Review> findAllForRequest(Request request) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 
     @Override
-    public void deleteById(Long reviewId) {
-        reviewMap.remove(reviewId);
-    }
-
-    @Override
-    public Review findById(Long reviewId) {
-        return reviewMap.get(reviewId);
+    public Set<Review> findAllForResponse(Response response) {
+        throw new NotImplementedException("Not needed for this stub.");
     }
 }

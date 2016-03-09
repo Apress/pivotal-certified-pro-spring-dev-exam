@@ -10,7 +10,4 @@ public interface UserService {
 
     User createUser(String email, String password, UserType userType);
 
-    User findById(Long userId);
-
-    User save(User user);
 }

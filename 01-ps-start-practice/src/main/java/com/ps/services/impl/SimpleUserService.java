@@ -1,39 +1,34 @@
-package com.ps.services;
+package com.ps.services.impl;
 
 import com.ps.base.UserType;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
+import com.ps.services.UserService;
 import com.ps.util.RecordBuilder;
 
 /**
  * Created by iuliana.cosmina on 2/23/16.
  */
-public class SimpleUserService implements UserService {
+public class SimpleUserService extends SimpleAbstractService<User>  implements UserService {
 
-    private UserRepo userRepo;
+    private UserRepo repo;
 
     @Override
     public User createUser(String email, String password, UserType userType) {
         User user = RecordBuilder.buildUser(email);
         user.setPassword(password);
         user.setUserType(userType);
-        userRepo.save(user);
+        repo.save(user);
         return user;
     }
 
-    @Override
-    public User findById(Long userId) {
-        return userRepo.findById(userId);
+    //                setters & getters
+    public void setRepo(UserRepo repo) {
+        this.repo = repo;
     }
 
     @Override
-    public User save(User user) {
-        userRepo.save(user);
-        return user;
-    }
-
-    //                setters
-    public void setUserRepo(UserRepo userRepo) {
-        this.userRepo = userRepo;
+    public UserRepo getRepo() {
+        return repo;
     }
 }

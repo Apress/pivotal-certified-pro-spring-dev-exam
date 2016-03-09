@@ -10,5 +10,4 @@ public interface ReviewService {
 
     Review createReview(ReviewGrade grade, String details);
 
-    Review save(Review review);
 }
