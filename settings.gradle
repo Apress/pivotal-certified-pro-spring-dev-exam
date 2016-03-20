@@ -26,15 +26,6 @@ include '09-ps-mvc-practice'
 include '09-ps-mvc-solution'
 include '10-ps-security-practice'
 include '10-ps-security-solution'
-
-//we check if the modules have gradle configuration files
-println(' This project is an asset management POC application')
-rootProject.children.each { project ->
-    project.buildFileName = "${project.name}.gradle"
-    assert project.projectDir.isDirectory()
-    assert project.buildFile.exists()
-    assert project.buildFile.isFile()
-}
 include '11-ps-remoting-practice'
 include '11-ps-remoting-solution'
 include '11-ps-remoting-sample'
@@ -47,4 +38,14 @@ include '14-ps-ws-rest-solution'
 include '15-ps-jmx-practice'
 include '15-ps-jmx-solution'
 include '16-ps-micro-sample'
+
+//we check if the modules have gradle configuration files
+println(' This project is an asset management POC application')
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
+    assert project.projectDir.isDirectory()
+    assert project.buildFile.exists()
+    assert project.buildFile.isFile()
+}
+
 
