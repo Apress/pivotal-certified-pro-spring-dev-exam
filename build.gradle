@@ -78,7 +78,8 @@ allprojects {
                 standard          : "taglibs:standard:1.1.2",
                 servlet           : "javax.servlet:javax.servlet-api:3.1.0",
                 liferayService    : "com.liferay.portal:portal-services:6.2.2",
-                commons           : "org.apache.commons:commons-lang3:3.4"
+                commons           : "org.apache.commons:commons-lang3:3.4",
+                ojdbc             : "com.oracle:ojdbc7:12.1.0.2"
         ]
 
         hibernate = [
