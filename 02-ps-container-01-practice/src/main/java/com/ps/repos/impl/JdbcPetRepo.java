@@ -12,6 +12,11 @@ import java.util.Set;
  * Created by iuliana.cosmina on 3/21/16.
  */
 public class JdbcPetRepo  extends  JdbcAbstractRepo<Pet> implements PetRepo {
+
+    public JdbcPetRepo(){
+        // required when using XML configuration ???
+    }
+
     public JdbcPetRepo(DataSource dataSource) {
         super(dataSource);
     }

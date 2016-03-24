@@ -1,10 +1,11 @@
 package com.ps;
 
-import com.ps.config.ApplicationConfig;
+import com.ps.services.UserService;
 import com.ps.services.impl.SimpleUserService;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -14,9 +15,9 @@ public class ApplicationContextTest {
 
     @Test
     public void testConfig() {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
         // everything wires up across configuration classes...
-        SimpleUserService simpleUserService = (SimpleUserService) ctx.getBean("simpleUserService");
+        UserService simpleUserService = (UserService) ctx.getBean("simpleUserService");
         assertNotNull(simpleUserService);
     }
 }

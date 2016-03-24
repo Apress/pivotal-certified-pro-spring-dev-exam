@@ -12,6 +12,11 @@ import java.util.Set;
  * Created by iuliana.cosmina on 3/21/16.
  */
 public class JdbcResponseRepo extends JdbcAbstractRepo<Response>  implements ResponseRepo{
+
+    public JdbcResponseRepo(){
+        // required when using XML configuration ???
+    }
+
     public JdbcResponseRepo(DataSource dataSource) {
         super(dataSource);
     }

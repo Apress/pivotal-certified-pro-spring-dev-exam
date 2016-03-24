@@ -13,6 +13,10 @@ public class SimpleUserService extends SimpleAbstractService<User> implements Us
 
     private UserRepo repo;
 
+    public SimpleUserService(){
+        // required when using XML configuration ???
+    }
+
     public SimpleUserService(UserRepo userRepo) {
         this.repo = userRepo;
     }
@@ -27,6 +31,10 @@ public class SimpleUserService extends SimpleAbstractService<User> implements Us
     }
 
     //                setters & getters
+    public void setRepo(UserRepo repo) {
+        this.repo = repo;
+    }
+
     @Override
     public UserRepo getRepo() {
         return repo;
