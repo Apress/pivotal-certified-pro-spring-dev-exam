@@ -12,6 +12,11 @@ import java.util.Set;
  * Created by iuliana.cosmina on 3/21/16.
  */
 public class JdbcRequestRepo  extends JdbcAbstractRepo<Request> implements RequestRepo{
+
+    public JdbcRequestRepo(){
+        // required when using XML configuration ???
+    }
+
     public JdbcRequestRepo(DataSource dataSource) {
         super(dataSource);
     }

@@ -11,7 +11,15 @@ import javax.sql.DataSource;
 public class JdbcAbstractRepo<T extends AbstractEntity> implements AbstractRepo<T> {
     protected DataSource dataSource;
 
+    public JdbcAbstractRepo(){
+        // required when using XML configuration ???
+    }
+
     public JdbcAbstractRepo(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
