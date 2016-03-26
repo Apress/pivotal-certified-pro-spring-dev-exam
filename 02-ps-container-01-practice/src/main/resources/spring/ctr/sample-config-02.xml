@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean id="simpleBean0" class="com.ps.beans.ctr.SimpleBeanImpl"/>
+    <bean id="simpleBean1" class="com.ps.beans.ctr.SimpleBeanImpl"/>
+
+    <bean id="complexBean0" class="com.ps.beans.ctr.ComplexBeanImpl"
+          c:simpleBean-ref="simpleBean0"/>
+
+    <bean id="complexBean1" class="com.ps.beans.ctr.ComplexBeanImpl"
+          c:simpleBean-ref="simpleBean0" c:isComplex="true"/>
+
+    <bean id="complexBean2" class="com.ps.beans.ctr.ComplexBean2Impl"
+          c:_0-ref="simpleBean0" c:_1-ref="simpleBean1"/>
+
+</beans>
