@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simpleSingleton" class="com.ps.beans.others.SimpleSingleton"
+          factory-method="getInstance" />
+
+    <bean id="simpleFm" class="com.ps.beans.others.SimpleFactoryMethod"
+          factory-method="getSimpleBean" />
+
+    <bean id="simpleBeanFactory" class="com.ps.beans.others.SimpleFactoryBean"/>
+    <bean id="simpleFB" factory-bean="simpleBeanFactory"
+          factory-method="getSimpleBean" />
+
+    <bean id="smartBean" class="com.ps.beans.others.SpringFactoryBean"/>
+
+</beans>

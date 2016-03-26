@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mtBean" class="com.ps.beans.others.MultipleTypesBean">
+        <property name="noOne" value="1"/>
+        <property name="noTwo" value="2"/>
+
+        <property name="longOne" value="3"/>
+        <property name="longTwo" value="4"/>
+
+        <property name="floatOne" value="5.0"/>
+        <property name="floatTwo" value="6.0"/>
+
+        <property name="doubleOne" value="7.0"/>
+        <property name="doubleTwo" value="8.0"/>
+
+        <property name="boolOne" value="true"/>
+        <property name="boolTwo" value="false"/>
+
+        <property name="charOne" value="1"/>
+        <property name="charTwo" value="A"/>
+
+        <property name="date" value="1977-10-16"/>
+    </bean>
+
+
+    <!-- Needed in order to support String To Date conversion automatically -->
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="propertyEditorRegistrars">
+            <list>
+                <bean class="com.ps.beans.others.DateConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="simpleBean" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <bean id="collectionHolder" class="com.ps.beans.others.CollectionHolder">
+        <property name="simpleBeanList">
+            <list>
+                <ref bean="simpleBean"/>
+                <bean class="com.ps.beans.SimpleBeanImpl"/>
+                <null/>
+            </list>
+        </property>
+
+        <property name="simpleBeanSet">
+            <set>
+                <null/>
+            </set>
+        </property>
+
+        <property name="simpleBeanMap">
+            <map>
+                <entry key="one" value-ref="simpleBean"/>
+            </map>
+        </property>
+    </bean>
+
+
+    <bean id="simpleSingleton" class="com.ps.beans.others.SimpleSingleton"
+          factory-method="getInstance" />
+
+    <bean id="simpleFm" class="com.ps.beans.others.SimpleFactoryMethod"
+          factory-method="getSimpleBean" />
+
+    <bean id="simpleBeanFactory" class="com.ps.beans.others.SimpleFactoryBean"/>
+    <bean id="simpleFB" factory-bean="simpleBeanFactory"
+          factory-method="getSimpleBean" />
+
+    <bean id="smartBean" class="com.ps.beans.others.SpringFactoryBean"/>
+
+</beans>

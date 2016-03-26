@@ -1,4 +1,4 @@
-package com.ps.beans.ctr;
+package com.ps.beans;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

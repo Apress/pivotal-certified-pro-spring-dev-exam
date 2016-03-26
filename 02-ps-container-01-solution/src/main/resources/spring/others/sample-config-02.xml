@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="simpleBean" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <util:list id="simpleList">
+        <ref bean="simpleBean"/>
+        <bean class="com.ps.beans.SimpleBeanImpl"/>
+        <null/>
+    </util:list>
+
+    <util:set id="simpleSet">
+        <ref bean="simpleBean"/>
+    </util:set>
+
+    <util:map id="simpleMap">
+        <entry key="one" value-ref="simpleBean"/>
+    </util:map>
+
+    <bean id="collectionHolder" class="com.ps.beans.others.CollectionHolder">
+        <property name="simpleBeanList" ref="simpleList"/>
+        <property name="simpleBeanSet" ref="simpleSet"/>
+        <property name="simpleBeanMap" ref="simpleMap"/>
+    </bean>
+
+    <bean id="collectionHolder2" class="com.ps.beans.others.CollectionHolder">
+        <property name="simpleBeanList" ref="simpleList"/>
+    </bean>
+
+
+</beans>

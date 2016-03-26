@@ -1,4 +1,4 @@
-package com.ps.beans.ctr;
+package com.ps.beans.set;
 
 import com.ps.beans.ComplexBean;
 import com.ps.beans.SimpleBean;
@@ -16,14 +16,12 @@ public class ComplexBeanImpl implements ComplexBean {
 
     private boolean complex;
 
-    public ComplexBeanImpl(SimpleBean simpleBean) {
+    /**
+     * Default no-argument constructor, not really necessary, just added here to  print a log entry,
+     * in order to see in the java console when objects of this type are instantiated
+     */
+    public ComplexBeanImpl() {
         logger.info("[ComplexBeanImpl instantiation]");
-        this.simpleBean = simpleBean;
-    }
-
-    public ComplexBeanImpl(SimpleBean simpleBean, boolean complex) {
-        this.simpleBean = simpleBean;
-        this.complex = complex;
     }
 
     public SimpleBean getSimpleBean() {
@@ -32,5 +30,15 @@ public class ComplexBeanImpl implements ComplexBean {
 
     public boolean isComplex() {
         return complex;
+    }
+
+    public void setSimpleBean(SimpleBean simpleBean) {
+        logger.info("[Injecting dependency simpleBean]");
+        this.simpleBean = simpleBean;
+    }
+
+    public void setComplex(boolean complex) {
+        logger.info("[Injecting dependency complex]");
+        this.complex = complex;
     }
 }

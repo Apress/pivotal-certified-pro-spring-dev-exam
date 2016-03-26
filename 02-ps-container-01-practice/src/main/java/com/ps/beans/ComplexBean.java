@@ -1,4 +1,4 @@
-package com.ps.beans.ctr;
+package com.ps.beans;
 
 /**
  * Created by iuliana.cosmina on 3/26/16.
