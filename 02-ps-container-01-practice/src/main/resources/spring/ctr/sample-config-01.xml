@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="simpleBean0" class="com.ps.beans.ctr.SimpleBeanImpl"/>
+    <bean id="simpleBean1" class="com.ps.beans.ctr.SimpleBeanImpl"/>
+
+    <bean id="complexBean0" class="com.ps.beans.ctr.ComplexBeanImpl">
+        <constructor-arg ref="simpleBean0"/>
+    </bean>
+
+    <bean id="complexBean1" class="com.ps.beans.ctr.ComplexBeanImpl">
+        <constructor-arg ref="simpleBean0"/>
+        <constructor-arg value="true"/>
+    </bean>
+
+    <bean id="complexBean2" class="com.ps.beans.ctr.ComplexBean2Impl">
+        <constructor-arg ref="simpleBean0" index="1"/>
+        <constructor-arg ref="simpleBean1" index="0"/>
+    </bean>
+
+</beans>

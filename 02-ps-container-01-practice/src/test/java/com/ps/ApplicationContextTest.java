@@ -16,7 +16,7 @@ public class ApplicationContextTest {
     @Test
     public void testConfig() {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
-        // everything wires up across configuration classes...
+
         UserService simpleUserService = (UserService) ctx.getBean("simpleUserService");
         assertNotNull(simpleUserService);
     }
