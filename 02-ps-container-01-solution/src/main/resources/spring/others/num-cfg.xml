@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="mtBean" class="com.ps.beans.others.MultipleTypesBean">
+        <property name="noOne" value="1"/>
+        <property name="noTwo" value="2"/>
+
+        <property name="longOne" value="3"/>
+        <property name="longTwo" value="4"/>
+
+        <property name="floatOne" value="5.0"/>
+        <property name="floatTwo" value="6.0"/>
+
+        <property name="doubleOne" value="7.0"/>
+        <property name="doubleTwo" value="8.0"/>
+
+        <property name="boolOne" value="true"/>
+        <property name="boolTwo" value="false"/>
+
+        <property name="charOne" value="1"/>
+        <property name="charTwo" value="A"/>
+
+        <property name="date" value="1977-10-16"/>
+    </bean>
+
+</beans>

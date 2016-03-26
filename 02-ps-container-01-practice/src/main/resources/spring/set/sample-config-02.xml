@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
        xmlns:c="http://www.springframework.org/schema/c"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -9,13 +10,10 @@
     <bean id="simpleBean0" class="com.ps.beans.SimpleBeanImpl"/>
     <bean id="simpleBean1" class="com.ps.beans.SimpleBeanImpl"/>
 
-    <bean id="complexBean0" class="com.ps.beans.ctr.ComplexBeanImpl"
-          c:simpleBean-ref="simpleBean0"/>
+    <bean id="complexBean0" class="com.ps.beans.set.ComplexBeanImpl"
+          p:simpleBean-ref="simpleBean0"/>
 
-    <bean id="complexBean1" class="com.ps.beans.ctr.ComplexBeanImpl"
-          c:simpleBean-ref="simpleBean0" c:complex="true"/>
-
-    <bean id="complexBean2" class="com.ps.beans.ctr.ComplexBean2Impl"
-          c:_0-ref="simpleBean0" c:_1-ref="simpleBean1"/>
+    <bean id="complexBean2" class="com.ps.beans.set.ComplexBean2Impl"
+          c:simpleBean-ref="simpleBean0" p:complex="true"/>
 
 </beans>

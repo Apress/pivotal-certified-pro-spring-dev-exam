@@ -7,18 +7,18 @@
     <bean id="simpleBean0" class="com.ps.beans.SimpleBeanImpl"/>
     <bean id="simpleBean1" class="com.ps.beans.SimpleBeanImpl"/>
 
-    <bean id="complexBean0" class="com.ps.beans.ctr.ComplexBeanImpl">
-        <constructor-arg ref="simpleBean0"/>
+    <bean id="complexBean0" class="com.ps.beans.set.ComplexBeanImpl">
+        <property name="simpleBean" ref="simpleBean0"/>
     </bean>
 
-    <bean id="complexBean1" class="com.ps.beans.ctr.ComplexBeanImpl">
-        <constructor-arg ref="simpleBean0"/>
-        <constructor-arg value="true"/>
+    <bean id="complexBean1" class="com.ps.beans.set.ComplexBeanImpl">
+        <property name="simpleBean" ref="simpleBean0"/>
+        <property name="complex" value="true"/>
     </bean>
 
-    <bean id="complexBean2" class="com.ps.beans.ctr.ComplexBean2Impl">
-        <constructor-arg ref="simpleBean0" index="1"/>
-        <constructor-arg ref="simpleBean1" index="0"/>
+    <bean id="complexBean2" class="com.ps.beans.set.ComplexBean2Impl">
+        <constructor-arg ref="simpleBean0"/>
+        <property name="complex" value="true"/>
     </bean>
 
 </beans>
