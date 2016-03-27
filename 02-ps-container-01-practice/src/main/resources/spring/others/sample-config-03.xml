@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="com.ps.beans.SimpleBeanImpl"/>
+    <bean class="com.ps.beans.SimpleBeanImpl"/>
+
+
+    <bean id="sb01" name="sb01" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <bean id="sb02/sb03" name="mumu" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <bean id="sb04; sb05" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <bean name="sb04; sb05, sb004 sb005" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <bean id="$" class="com.ps.beans.SimpleBeanImpl"/>
+
+    <alias name="$" alias="properName"/>
+
+</beans>
