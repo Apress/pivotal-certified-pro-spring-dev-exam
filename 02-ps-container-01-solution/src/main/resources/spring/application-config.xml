@@ -22,6 +22,7 @@
         <property name="URL" value="#{dbProp.url}"/>
         <property name="user" value="#{dbProp.username}"/>
         <property name="password" value="#{dbProp.password}"/>
+        <property name="loginTimeout" value="300"/>
     </bean>
 
     <bean id="petRepo" class="com.ps.repos.impl.JdbcPetRepo">
