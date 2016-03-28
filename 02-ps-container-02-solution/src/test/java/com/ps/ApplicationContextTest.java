@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -64,11 +65,12 @@ public class ApplicationContextTest {
 
     @Test
     public void testBeanCreation() {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/test-db04-config.xml");
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/test-db04-config.xml");
 
         ComplexBean complexBean = ctx.getBean(ComplexBean.class);
         assertNotNull(complexBean);
-        ctx.registerShutdownHook();
+        //ctx.registerShutdownHook();
+        ctx.close();
     }
 
 }
