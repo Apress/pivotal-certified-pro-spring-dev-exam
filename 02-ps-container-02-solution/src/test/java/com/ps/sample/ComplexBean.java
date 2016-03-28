@@ -4,15 +4,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by iuliana.cosmina on 3/28/16.
  * Sample class used to make bean creation staged understanding easy
  */
-public class ComplexBean implements InitializingBean{
+public class ComplexBean /*implements InitializingBean*/{
     private Logger logger = LoggerFactory.getLogger(ComplexBean.class);
 
     private SimpleBean simpleBean1;
-
     private SimpleBean simpleBean2;
 
     public ComplexBean(SimpleBean simpleBean1) {
@@ -25,10 +26,16 @@ public class ComplexBean implements InitializingBean{
         this.simpleBean2 = simpleBean2;
     }
 
+    /*@Override
+    public void afterPropertiesSet() throws Exception {
+        logger.info("Stage 4: Calling afterPropertiesSet.");
+    }*/
+
     /**
      * The initialization method.
      * Just for fun: it instantiates the simpleBean2 only if the current time is even.
      */
+    @PostConstruct
     private void initMethod() {
         logger.info("Stage 4: Calling the initMethod.");
         long ct = System.currentTimeMillis();
@@ -37,14 +44,10 @@ public class ComplexBean implements InitializingBean{
         }
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        logger.info(" --> Calling afterPropertiesSet.");
-    }
-
     /**
      * Destroy method
      */
+   // @PostConstruct
     private void destroyMethod(){
         logger.info(" --> Calling the destroyMethod.");
         simpleBean1 = null;
