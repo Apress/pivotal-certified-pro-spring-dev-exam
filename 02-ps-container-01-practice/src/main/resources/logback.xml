@@ -13,7 +13,7 @@
 
     <logger name="com.pr" level="debug"/>
 
-    <logger name="org.springframework" level="off"/>
+    <logger name="org.springframework" level="debug"/>
 
     <logger name="org.springframework.jdbc" level="warn"/>
 

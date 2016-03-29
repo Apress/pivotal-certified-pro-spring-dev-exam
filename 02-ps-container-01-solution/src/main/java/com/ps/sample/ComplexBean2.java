@@ -15,13 +15,13 @@ import javax.annotation.PreDestroy;
  * This class contains all the methods used to initialize and detroy a bean altogether, so you can the
  * order they are called in.
  */
-public class ComplexBean implements InitializingBean, DisposableBean {
-    private Logger logger = LoggerFactory.getLogger(ComplexBean.class);
+public class ComplexBean2 {
+    private Logger logger = LoggerFactory.getLogger(ComplexBean2.class);
 
     private SimpleBean simpleBean1;
     private SimpleBean simpleBean2;
 
-    public ComplexBean(SimpleBean simpleBean1) {
+    public ComplexBean2(SimpleBean simpleBean1) {
         logger.info(" --> Stage 1: Calling the constructor.");
         this.simpleBean1 = simpleBean1;
     }
@@ -30,11 +30,6 @@ public class ComplexBean implements InitializingBean, DisposableBean {
     public void setSimpleBean2(SimpleBean simpleBean2) {
         logger.info(" --> Stage 2: Calling the setter.");
         this.simpleBean2 = simpleBean2;
-    }
-
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        logger.info(" --> Stage 4: Calling afterPropertiesSet.");
     }
 
     /**
@@ -49,11 +44,6 @@ public class ComplexBean implements InitializingBean, DisposableBean {
             simpleBean2 = new SimpleBean();
         }
     }
-
-    private void initMethod2() {
-        logger.info(" --> Stage 4: Calling the initMethod2.");
-    }
-
     /**
      * Destroy method
      */
@@ -65,12 +55,4 @@ public class ComplexBean implements InitializingBean, DisposableBean {
         return true;
     }
 
-    private void destroyMethod2() {
-        logger.info(" --> Calling the destroyMethod2.");
-    }
-
-    @Override
-    public void destroy() throws Exception {
-        logger.info(" --> Calling the destroy() method.");
-    }
 }

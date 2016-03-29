@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+              http://www.springframework.org/schema/beans/spring-beans.xsd
+              http://www.springframework.org/schema/util
+              http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="simpleBean1" class="com.ps.sample.SimpleBean"/>
+    <bean id="simpleBean2" class="com.ps.sample.SimpleBean"/>
+
+    <!-- TODO 9. Add the necessary attributes to set init and destroy methods for this bean-->
+    <bean id="complexBean" class="com.ps.sample.ComplexBean"
+          c:_0-ref="simpleBean1"
+          p:simpleBean2-ref="simpleBean2"/>
+
+    <bean id="complexBean2" class="com.ps.sample.ComplexBean"
+          p:simpleBean2-ref="simpleBean2">
+        <constructor-arg>
+          <util:constant static-field="com.ps.sample.SimpleBean.DEFAULT_SIMPLE_BEAN"/>
+<!--            <bean id="com.ps.sample.SimpleBean.DEFAULT_SIMPLE_BEAN"
+                  class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" />-->
+
+        </constructor-arg>
+    </bean>
+
+
+
+</beans>

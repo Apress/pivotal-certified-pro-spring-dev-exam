@@ -9,7 +9,6 @@ import org.springframework.beans.factory.NoUniqueBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertNotNull;

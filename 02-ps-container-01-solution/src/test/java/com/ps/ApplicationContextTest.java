@@ -1,11 +1,16 @@
 package com.ps;
 
-import com.ps.services.UserService;
-import com.ps.services.impl.SimpleUserService;
+import com.ps.sample.ComplexBean;
+import com.ps.sample.SimpleBean;
 import org.junit.Test;
-import org.springframework.context.ApplicationContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import javax.sql.DataSource;
+
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -13,11 +18,35 @@ import static org.junit.Assert.assertNotNull;
  */
 public class ApplicationContextTest {
 
-    @Test
-    public void testConfig() {
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
+    private Logger logger = LoggerFactory.getLogger(ApplicationContextTest.class);
 
-        UserService simpleUserService = (UserService) ctx.getBean("simpleUserService");
-        assertNotNull(simpleUserService);
+    @Test
+    public void testDataSource1() {
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/application-config.xml");
+        logger.info(" >> init done.");
+        DataSource dataSource1 = ctx.getBean("dataSource1", DataSource.class);
+        assertNotNull(dataSource1);
+        logger.info(" >> usage done.");
+        ctx.close();
     }
+
+    @Test
+    public void testBeanCreation() {
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/test-config-01.xml");
+
+        ComplexBean complexBean = ctx.getBean(ComplexBean.class);
+        assertNotNull(complexBean);
+        ctx.close();
+    }
+
+    @Test
+    public void testBeanScope() {
+        ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:spring/test-config-02.xml");
+
+        SimpleBean sb01 = ctx.getBean("simpleBean3", SimpleBean.class);
+        SimpleBean sb02 = ctx.getBean("simpleBean3", SimpleBean.class);
+        assertNotEquals(sb01, sb02);
+        ctx.close();
+    }
+
 }
