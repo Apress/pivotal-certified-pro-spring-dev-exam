@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="dbProp" location="classpath:db/datasource.properties"/>
+
+    <bean id="simpleUserService" class="com.ps.services.impl.SimpleUserService">
+        <property name="repo" ref="userRepo"/>
+    </bean>
+
+    <!-- Loads users from the data source -->
+    <bean id="userRepo" class="com.ps.repos.impl.JdbcUserRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+        <property name="URL" value="#{dbProp.url}"/>
+        <property name="user" value="#{dbProp.username}"/>
+        <property name="password" value="#{dbProp.password}"/>
+        <property name="loginTimeout" value="300"/>
+    </bean>
+
+    <bean id="petRepo" class="com.ps.repos.impl.JdbcPetRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="requestRepo" class="com.ps.repos.impl.JdbcRequestRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="responseRepo" class="com.ps.repos.impl.JdbcResponseRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="reviewRepo" class="com.ps.repos.impl.JdbcReviewRepo">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+</beans>
