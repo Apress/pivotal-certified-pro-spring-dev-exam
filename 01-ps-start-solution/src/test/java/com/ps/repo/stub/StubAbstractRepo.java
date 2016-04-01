@@ -36,5 +36,4 @@ public abstract class StubAbstractRepo<T extends AbstractEntity> implements Abst
     public T findById(Long entityId) {
         return records.get(entityId);
     }
-
 }

@@ -13,6 +13,11 @@
     <bean id="complexBean0" class="com.ps.beans.set.ComplexBeanImpl"
           p:simpleBean-ref="simpleBean0"/>
 
+    <bean id="complexBean1" class="com.ps.beans.set.ComplexBeanImpl"
+          p:simpleBean-ref="simpleBean0"
+        p:complex="true"/>
+
+
     <bean id="complexBean2" class="com.ps.beans.set.ComplexBean2Impl"
           c:simpleBean-ref="simpleBean0" p:complex="true"/>
 

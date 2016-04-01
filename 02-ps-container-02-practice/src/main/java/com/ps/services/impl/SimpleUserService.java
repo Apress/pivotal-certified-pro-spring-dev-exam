@@ -14,7 +14,6 @@ public class SimpleUserService extends SimpleAbstractService<User> implements Us
     private UserRepo repo;
 
     public SimpleUserService(){
-        // required when using XML configuration ???
     }
 
     public SimpleUserService(UserRepo userRepo) {

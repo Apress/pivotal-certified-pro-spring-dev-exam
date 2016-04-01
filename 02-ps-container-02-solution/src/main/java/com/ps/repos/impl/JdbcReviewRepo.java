@@ -15,7 +15,6 @@ import java.util.Set;
 public class JdbcReviewRepo extends JdbcAbstractRepo<Review> implements ReviewRepo {
 
     public JdbcReviewRepo(){
-        // required when using XML configuration ???
     }
 
     public JdbcReviewRepo(DataSource dataSource) {

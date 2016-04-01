@@ -14,7 +14,6 @@ import java.util.Set;
 public class JdbcPetRepo  extends  JdbcAbstractRepo<Pet> implements PetRepo {
 
     public JdbcPetRepo(){
-        // required when using XML configuration ???
     }
 
     public JdbcPetRepo(DataSource dataSource) {
@@ -22,7 +21,7 @@ public class JdbcPetRepo  extends  JdbcAbstractRepo<Pet> implements PetRepo {
     }
 
     @Override
-    public Pet findByOwner(User owner) {
+    public Pet findByOwner(User owner, String name) {
         return null;
     }
 

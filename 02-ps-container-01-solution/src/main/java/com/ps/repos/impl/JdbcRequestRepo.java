@@ -14,7 +14,6 @@ import java.util.Set;
 public class JdbcRequestRepo  extends JdbcAbstractRepo<Request> implements RequestRepo{
 
     public JdbcRequestRepo(){
-        // required when using XML configuration ???
     }
 
     public JdbcRequestRepo(DataSource dataSource) {

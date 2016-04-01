@@ -12,7 +12,6 @@ import java.util.Set;
 public class JdbcUserRepo extends JdbcAbstractRepo<User> implements UserRepo {
 
     public JdbcUserRepo(){
-        // required when using XML configuration ???
     }
 
     public JdbcUserRepo(DataSource dataSource) {

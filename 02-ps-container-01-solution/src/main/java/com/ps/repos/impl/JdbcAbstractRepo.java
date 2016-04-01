@@ -12,7 +12,6 @@ public class JdbcAbstractRepo<T extends AbstractEntity> implements AbstractRepo<
     protected DataSource dataSource;
 
     public JdbcAbstractRepo(){
-        // required when using XML configuration ???
     }
 
     public JdbcAbstractRepo(DataSource dataSource) {

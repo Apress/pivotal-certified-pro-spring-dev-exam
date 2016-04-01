@@ -16,7 +16,7 @@ import java.util.Set;
 public class StubPetRepo extends StubAbstractRepo<Pet> implements PetRepo {
 
     @Override
-    public Pet findByOwner(User owner) {
+    public Pet findByOwner(User owner, String name) {
       throw new NotImplementedException("Not needed for this stub.");
     }
 
