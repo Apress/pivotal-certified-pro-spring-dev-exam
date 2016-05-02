@@ -1,0 +1,25 @@
+<!-- with jdbc namespace -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+    <!--
+    <jdbc:embedded-database id="dataSource">
+        <jdbc:script location="classpath:db/schema.sql"/>
+        <jdbc:script location="classpath:db/test-data.sql"/>
+    </jdbc:embedded-database>
+    -->
+
+
+    <jdbc:embedded-database id="dataSource" type="HSQL"/>
+
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:db/schema.sql"/>
+        <jdbc:script location="classpath:db/test-data.sql"/>
+    </jdbc:initialize-database>
+
+</beans>

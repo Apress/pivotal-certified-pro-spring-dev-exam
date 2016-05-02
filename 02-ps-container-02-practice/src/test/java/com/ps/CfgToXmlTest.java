@@ -16,7 +16,7 @@ import static org.junit.Assert.assertNotNull;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {DataSourceConfig.class})
-public class BootStrapInjectionTest {
+public class CfgToXmlTest {
 
     @Autowired
     DataSource dataSource;

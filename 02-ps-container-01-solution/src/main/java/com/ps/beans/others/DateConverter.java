@@ -11,6 +11,7 @@ import java.util.Date;
  * Created by iuliana.cosmina on 3/26/16.
  */
 public class DateConverter implements PropertyEditorRegistrar {
+    @Override
     public void registerCustomEditors(PropertyEditorRegistry registry) {
         registry.registerCustomEditor(Date.class,
                 new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"), false));

@@ -17,7 +17,7 @@ import java.util.Properties;
 @Configuration
 public class DataSourceConfig1 {
 
-    //TODO 13. Replace where possible all Sprign annotations with JSR
+    //TODO 13. Replace where possible all Spring annotations with JSR
 
     @Bean
     public Properties dbProps(){

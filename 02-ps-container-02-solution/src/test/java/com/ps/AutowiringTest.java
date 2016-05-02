@@ -23,7 +23,7 @@ public class AutowiringTest {
     RequestRepo reqRepo;
 
     @Test
-    public void testAutowireReq() {
+    public void testAutowiredReq() {
         assertNotNull(reqRepo);
     }
 }

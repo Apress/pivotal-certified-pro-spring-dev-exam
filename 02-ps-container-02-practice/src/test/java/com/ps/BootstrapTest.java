@@ -42,20 +42,6 @@ public class BootstrapTest {
     }
 
 
-    /**
-     * Bootstrap Configuration class using context class
-     */
-    @Test
-    public void testStart3() {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(UserRepoDSConfig.class);
-
-        DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
-        assertNotNull(dataSource);
-
-        UserRepo userRepo = ctx.getBean("userRepo", UserRepo.class);
-        assertNotNull(userRepo);
-    }
-
     @Test
     public void testStart4() {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(DataSourceConfig.class, PetRepoConfig.class);

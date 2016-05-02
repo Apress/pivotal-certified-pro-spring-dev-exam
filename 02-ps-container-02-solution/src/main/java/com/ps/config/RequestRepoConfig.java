@@ -9,7 +9,7 @@ import org.springframework.context.annotation.*;
  */
 @Configuration
 @Import(DataSourceConfig.class)
-@ComponentScan(basePackages = "com.ps")
+@ComponentScan(basePackages = {"com.ps"})
 public class RequestRepoConfig {
 
     @DependsOn("dataSource")
