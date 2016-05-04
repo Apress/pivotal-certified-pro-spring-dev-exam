@@ -8,12 +8,14 @@ import com.ps.repos.RequestRepo;
 import com.ps.services.RequestService;
 import com.ps.util.Pair;
 import org.joda.time.DateTime;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/22/16.
  */
+@Service
 public class SimpleRequestService extends SimpleAbstractService<Request> implements RequestService {
 
     private RequestRepo repo;

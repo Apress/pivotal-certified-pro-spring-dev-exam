@@ -5,12 +5,14 @@ import com.ps.ents.Review;
 import com.ps.ents.User;
 import com.ps.repos.ReviewRepo;
 import com.ps.services.ReviewService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/22/16.
  */
+@Service
 public class SimpleReviewService extends SimpleAbstractService<Review> implements ReviewService {
 
     private ReviewRepo repo;

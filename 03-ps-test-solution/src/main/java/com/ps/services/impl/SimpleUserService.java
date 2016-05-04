@@ -5,12 +5,14 @@ import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import com.ps.services.UserService;
 import com.ps.util.RecordBuilder;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/23/16.
  */
+@Service
 public class SimpleUserService extends SimpleAbstractService<User>  implements UserService {
 
     private UserRepo repo;

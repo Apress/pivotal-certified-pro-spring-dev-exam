@@ -7,13 +7,14 @@ import com.ps.repos.PetRepo;
 import com.ps.services.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 2/23/16.
  */
-@Component
+@Service
 public class SimplePetService extends SimpleAbstractService<Pet> implements PetService {
 
     private PetRepo repo;
