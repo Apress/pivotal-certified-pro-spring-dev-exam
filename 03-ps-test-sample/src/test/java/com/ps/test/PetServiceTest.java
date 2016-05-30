@@ -1,31 +1,29 @@
-package com.ps.integration;
+package com.ps.test;
 
 import com.ps.base.UserType;
+import com.ps.config.PetConfigClass;
 import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.services.PetService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Set;
-
-import static com.ps.util.TestObjectsBuilder.buildUser;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
- * Created by iuliana.cosmina on 4/17/16.
+ * Created by iuliana.cosmina on 5/6/16.
  */
+//Iuliana - complete this implementation at some point
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml",
-        "classpath:spring/pet-cfg.xml"})
-public class SpringPetServiceTest {
+@ContextConfiguration(classes = {PetConfigClass.class})
+@ActiveProfiles("dev")
+public class PetServiceTest {
 
     public static final Long PET_ID = 1L;
-    public static final User owner = buildUser("test@gmail.com", "a!2#tre", UserType.OWNER);
 
     @Autowired
     PetService simplePetService;
@@ -35,13 +33,6 @@ public class SpringPetServiceTest {
     public void findByIdPositive() {
         Pet pet = simplePetService.findById(PET_ID);
         assertNotNull(pet);
-    }
-
-    //positive test, we know that pets for this owner exist and how many
-    @Test
-    public void findByOwnerPositive() {
-        Set<Pet> result = simplePetService.findAllByOwner(owner);
-        assertEquals(result.size(), 2);
     }
 
 }
