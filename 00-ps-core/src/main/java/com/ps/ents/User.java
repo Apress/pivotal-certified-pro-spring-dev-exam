@@ -22,7 +22,7 @@ public class User extends AbstractEntity {
      * username = email
      */
     @NotEmpty
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @Column(name="first_name")
@@ -43,8 +43,8 @@ public class User extends AbstractEntity {
     @Column
     private String address;
 
-    @Column
     @NotEmpty
+    @Column(unique = true)
     private String email;
 
     /***
