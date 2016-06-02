@@ -4,7 +4,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean name="simplePetService" class="com.ps.services.impl.SimplePetService">
+    <bean name="simplePetService" class="com.SimplePetService">
         <property name="repo" ref="petRepo" />
     </bean>
 
