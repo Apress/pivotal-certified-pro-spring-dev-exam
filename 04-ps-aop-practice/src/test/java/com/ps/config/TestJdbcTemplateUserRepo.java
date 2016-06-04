@@ -20,7 +20,9 @@ import static org.junit.Assert.assertNotNull;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
+@ContextConfiguration(locations = {"classpath:spring/test-cfg.xml",
+        "classpath:spring/app-cfg.xml",
+        "classpath:/spring/aop-cfg.xml"})
 @ActiveProfiles("dev")
 public class TestJdbcTemplateUserRepo {
 

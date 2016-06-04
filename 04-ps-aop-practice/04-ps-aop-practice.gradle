@@ -3,7 +3,8 @@ dependencies {
     compile misc.joda, spring.jdbc, spring.contextSupport, misc.h2, misc.commons,
             spring.aop, misc.aspectjweaver, misc.aspectjrt, spring.securityConfig, misc.cglib
 
-    testCompile tests.junit, tests.easymock, tests.jmock, tests.mockito, spring.test, tests.hamcrestCore, tests.hamcrestLib
+    testCompile tests.junit, tests.easymock, tests.jmock, tests.mockito, spring.test,
+            tests.hamcrestCore, tests.hamcrestLib
 }
 
 test {

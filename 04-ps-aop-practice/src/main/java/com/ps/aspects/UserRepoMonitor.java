@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by iuliana.cosmina on 6/2/16.
  */
-@Aspect
-@Component
+//@Aspect
 public class UserRepoMonitor {
 
     private static long findByIdCount =0;
@@ -35,11 +34,11 @@ public class UserRepoMonitor {
     private Long id;
     private String pass;
 
-    @Pointcut("execution(public * com.ps.repos.*.*Repo+.update*(..)) && args(id, pass)")
+   // @Pointcut("execution(public * com.ps.repos.*.*Repo+.update*(..)) && args(id, pass)")
     public void monitorUpdate(Long id, String pass){};
 
 
-    @Before("monitorUpdate(id, pass)")
+    //@Before("monitorUpdate(id, pass)")
     public void intercept(Long id, String pass) throws Throwable {
         logger.info(" ---> Intercepting Update Call");
         this.id = id;
@@ -48,13 +47,13 @@ public class UserRepoMonitor {
     }
 
 
-    @Before("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
+    //@Before("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
     public void beforeFindById(JoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Method " + methodName + " is about to be called");
     }
 
-    @After("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
+    //@After("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
     public void afterFindById(JoinPoint joinPoint) throws Throwable {
         ++findByIdCount;
         String methodName = joinPoint.getSignature().getName();
