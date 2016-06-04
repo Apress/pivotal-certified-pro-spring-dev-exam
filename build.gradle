@@ -89,7 +89,8 @@ allprojects {
                 ojdbc             : "com.oracle:ojdbc7:12.1.0.2",
                 javax_inject      : "javax.inject:javax.inject:1",
                 aspectjweaver     : "org.aspectj:aspectjweaver:$aspectjVersion",
-                aspectjrt         : "org.aspectj:aspectjrt:$aspectjVersion"
+                aspectjrt         : "org.aspectj:aspectjrt:$aspectjVersion",
+                cglib             : "cglib:cglib:3.2.2"
         ]
 
         hibernate = [
