@@ -1,4 +1,4 @@
-package com.ps.repos;
+package com.ps.exception;
 
 /**
  * Created by iuliana.cosmina on 4/17/16.

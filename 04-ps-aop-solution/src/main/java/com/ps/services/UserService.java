@@ -11,9 +11,9 @@ public interface UserService {
 
     Set<User> findAll();
 
-    int updateUsername(Long id,String username);
+    int updateUsername(Long id, String username);
 
-    int updatePassword(Long id,String password);
+    int updatePassword(Long id, String password);
 
     User findById(Long id);
 }
