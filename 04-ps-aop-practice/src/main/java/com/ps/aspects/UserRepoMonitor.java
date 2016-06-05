@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 /**
  * Created by iuliana.cosmina on 6/2/16.
  */
-@Aspect
-@Component
+//TODO 21. Declare this class as an aspect
 public class UserRepoMonitor {
 
     private static final Logger logger = Logger.getLogger(UserRepoMonitor.class);
 
-    @Before("com.ps.aspects.PointcutContainer.serviceUpdate(service, id, pass)")
+    /*TODO 26. Declare this method as a Before advice and use as pointcut expression the expression
+     associated with the "repoUpdate" from the "PointcutContainer" class */
     public void beforeServiceUpdate(UserService service, Long id, String pass) throws Throwable {
         logger.info(" ---> Target object " + service.getClass());
 
@@ -28,7 +28,8 @@ public class UserRepoMonitor {
         }
     }
 
-    @AfterReturning(value="execution (* com.ps.services.*Service+.update*(..))", returning = "result")
+    /*TODO 22. Declare this method as a AfterReturning advice and create a pointcut expression that matches any method
+     with the name starting with "update" that is defined in a class with the name containing "Service" */
     public void afterServiceUpdate(JoinPoint joinPoint, int result) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
@@ -37,8 +38,8 @@ public class UserRepoMonitor {
         }
     }
 
-
-    @AfterThrowing(value="execution ( * com.ps.services.*Service+.updateUsername(..))", throwing = "e")
+    /*TODO 23. Declare this method as a AfterThrowing advice and create a pointcut expression that matches any method
+     named updateUsername that is defined in a class with the name containing "Service" */
     public void afterBadUpdate(JoinPoint joinPoint, Exception e) throws Throwable {
         String className = joinPoint.getSignature().getDeclaringTypeName();
         String methodName = joinPoint.getSignature().getName();
@@ -56,15 +57,14 @@ public class UserRepoMonitor {
         logger.info(" ---> Method " + className + "." + methodName + " is about to be called");
     }
 
-    @Around("execution(public * com.ps.repos.*.*Repo+.find*(..))")
+    /*TODO 24. Declare this method as an Around advice and create a pointcut expression that matches any method
+     with the name starting with "find" that is defined in a class with the name containing "Repo" */
     public Object monitorFind(ProceedingJoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Intercepting call of: " + methodName);
         long t1 = System.currentTimeMillis();
         try {
-            //put a pause here so we can register an execution time
-            Thread.sleep(1000L);
-            return joinPoint.proceed();
+            return null; //TODO 25. Call the target method
         } finally {
             long t2 = System.currentTimeMillis();
             logger.info(" ---> Execution of " + methodName + " took: " + (t2 - t1) / 1000 + " ms.");

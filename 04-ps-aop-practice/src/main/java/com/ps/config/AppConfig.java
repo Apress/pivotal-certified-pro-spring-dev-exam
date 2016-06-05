@@ -9,6 +9,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @Configuration
 @ComponentScan(basePackages = {"com.ps.repos.impl", "com.ps.services" ,"com.ps.aspects"})
-@EnableAspectJAutoProxy(proxyTargetClass = true)
+//TODO 20. Enable automatic @Aspect detection
 public class AppConfig {
 }
