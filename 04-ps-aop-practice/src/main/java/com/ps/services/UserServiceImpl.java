@@ -3,38 +3,42 @@ package com.ps.services;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-/*
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import sun.plugin.liveconnect.SecurityContextHelper;
-*/
+import org.springframework.stereotype.Service;
+
 
 import java.security.Principal;
+import java.util.Set;
 
 /**
  * Created by iuliana.cosmina on 6/3/16.
  */
+@Service
 public class UserServiceImpl implements UserService {
 
-   /* @Autowired
-    UserRepo userRepo;
+    private UserRepo userRepo;
 
-    public User getUserForEditing(Long id){
-        Principal principal = (Principal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!hasPermission(p)) {
-            throw new AccessDeniedException("You do not have the right to edit an user!");
-        }
+    @Autowired
+    public void setUserRepo(UserRepo userRepo) {
+        this.userRepo = userRepo;
+    }
 
+    @Override
+    public Set<User> findAll() {
+        return userRepo.findAll();
+    }
+
+    @Override
+    public void updateUsername(Long id, String username) {
+        userRepo.updateUsername(id, username);
+    }
+
+    @Override
+    public void updatePassword(Long id, String password) {
+        userRepo.updatePassword(id, password);
+    }
+
+    @Override
+    public User findById(Long id) {
         return userRepo.findById(id);
     }
-
-    public User deleteUser(Long id){
-        Principal principal = (Principal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!hasDeletionRights(p)) {
-            throw new AccessDeniedException("You have to be ADMIN to perform this operation");
-        }
-
-        return userRepo.deletebyID(id);
-    }
-*/
 }

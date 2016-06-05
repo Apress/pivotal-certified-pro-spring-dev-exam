@@ -56,6 +56,12 @@ public class JdbcTemplateUserRepo implements UserRepo {
         jdbcTemplate.update(sql, newPass, userId);
     }
 
+    @Override
+    public void updateUsername(Long userId, String username) {
+        String sql = "update p_user set username=? where ID = ?";
+        jdbcTemplate.update(sql, username, userId);
+    }
+
     /**
      * Maps a row returned from a query executed on the P_USER table to a User object.
      */

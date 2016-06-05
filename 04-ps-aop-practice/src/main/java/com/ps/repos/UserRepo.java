@@ -17,4 +17,6 @@ public interface UserRepo  {
 
     void updatePassword(Long userId, String newPass);
 
+    void updateUsername(Long userId, String username);
+
 }

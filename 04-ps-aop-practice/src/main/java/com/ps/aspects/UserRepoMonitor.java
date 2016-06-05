@@ -3,7 +3,9 @@ package com.ps.aspects;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,9 +15,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserRepoMonitor {
 
-    private static long findByIdCount =0;
+    private static long findByIdCount = 0;
 
     private static final Logger logger = Logger.getLogger(UserRepoMonitor.class);
+
+    @Before("com.ps.aspects.PointcutContainer.repoUpdate() || com.ps.aspects.PointcutContainer.serviceUpdate()")
+    public void beforeUpdate(JoinPoint joinPoint) throws Throwable {
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        String methodName = joinPoint.getSignature().getName();
+        logger.info(" ---> Method " + className + "." + methodName + " is about to be called");
+    }
 
     //@Around("execution(public * com.ps.repos.*.*Repo+.find*(..))")
     public Object monitorFind(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -28,37 +37,38 @@ public class UserRepoMonitor {
             return joinPoint.proceed();
         } finally {
             long t2 = System.currentTimeMillis();
-            logger.info(" ---> Execution of " + methodName + " took: "+ (t2-t1)/1000 + " ms.");
+            logger.info(" ---> Execution of " + methodName + " took: " + (t2 - t1) / 1000 + " ms.");
         }
     }
 
     private Long id;
     private String pass;
 
-    @Pointcut("execution(public * com.ps.repos.*.*Repo+.update*(..)) && args(id, pass)")
-    public void monitorUpdate(Long id, String pass){};
+    //@Pointcut("execution(public * com.ps.repos.*.*Repo+.update*(..)) && args(id, pass)")
+    public void monitorUpdate(Long id, String pass) {
+    }
 
 
-    @Before("monitorUpdate(id, pass)")
+    //@Before("monitorUpdate(id, pass)")
     public void intercept(Long id, String pass) throws Throwable {
         logger.info(" ---> Intercepting Update Call");
         this.id = id;
         this.pass = pass;
-        logger.info(" ---> Intercepted values: " + id + ", "+ pass);
+        logger.info(" ---> Intercepted values: " + id + ", " + pass);
     }
 
 
-    @Before("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
+    //@Before("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.findById(..))")
     public void beforeFindById(JoinPoint joinPoint) throws Throwable {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Method " + methodName + " is about to be called");
     }
 
     //this is a very precise breakpoint
-    @After("execution(@org.springframework.stereotype.Repository * com.ps.repos.*.*Repo.findById))")
+    //@After("execution(@org.springframework.stereotype.Repository * com.ps.repos.*.*Repo.findById))")
     public void afterFindById(JoinPoint joinPoint) throws Throwable {
         ++findByIdCount;
         String methodName = joinPoint.getSignature().getName();
-        logger.info(" ---> Method " + methodName + " was called "+ findByIdCount + " times.");
+        logger.info(" ---> Method " + methodName + " was called " + findByIdCount + " times.");
     }
 }
