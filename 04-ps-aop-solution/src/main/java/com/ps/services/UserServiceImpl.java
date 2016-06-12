@@ -41,4 +41,9 @@ public class UserServiceImpl implements UserService {
     public User findById(Long id) {
         return userRepo.findById(id);
     }
+
+    @Override
+    public int updateDependencies(Long id) {
+        return userRepo.updateDependencies(id);
+    }
 }

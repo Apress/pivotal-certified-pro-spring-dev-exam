@@ -59,7 +59,14 @@ public class JdbcTemplateUserRepo implements UserRepo {
     @Override
     public int updateUsername(Long userId, String username) {
         String sql = "update p_user set username=? where ID = ?";
+        updateDependencies(userId);
         return jdbcTemplate.update(sql, username, userId);
+    }
+
+    @Override
+    public int updateDependencies(Long userId) {
+        //mock method to test the proxy nature
+        return 0;
     }
 
     /**

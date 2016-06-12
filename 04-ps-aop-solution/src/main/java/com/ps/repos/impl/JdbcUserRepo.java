@@ -193,6 +193,13 @@ public class JdbcUserRepo implements UserRepo {
         return 0;
     }
 
+
+    @Override
+    public int updateDependencies(Long userId) {
+    //not needed yet
+        return 0;
+    }
+
     private Set<User> mapUsers(ResultSet rs) throws SQLException {
         Set<User> userSet = new HashSet<>();
         User user = null;

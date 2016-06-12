@@ -19,4 +19,6 @@ public interface UserRepo  {
 
     int updateUsername(Long userId, String username);
 
+    int updateDependencies(Long userId);
+
 }

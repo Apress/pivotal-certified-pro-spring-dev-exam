@@ -15,5 +15,7 @@ public interface UserService {
 
     int updatePassword(Long id, String password);
 
+    int updateDependencies(Long id);
+
     User findById(Long id);
 }

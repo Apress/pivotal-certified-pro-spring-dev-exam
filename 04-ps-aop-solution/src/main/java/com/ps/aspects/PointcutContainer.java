@@ -15,4 +15,8 @@ public class PointcutContainer {
     @Pointcut("execution (* com.ps.services.*Service+.update*(..)) && args(id,pass) && target (service)")
     public void serviceUpdate(UserService service, Long id, String pass) {
     }
+
+    @Pointcut("execution( * com.ps.repos.*.*UserRepo+.update*(..))")
+    public void proxyBubu() {
+    }
 }

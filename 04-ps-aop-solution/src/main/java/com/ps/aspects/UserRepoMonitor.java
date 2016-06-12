@@ -79,4 +79,11 @@ public class UserRepoMonitor {
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Method " + methodName + " was called " + findByIdCount + " times.");
     }
+
+    @Before("com.ps.aspects.PointcutContainer.proxyBubu()")
+    public void bubuHappens(JoinPoint joinPoint) throws Throwable {
+        String methodName = joinPoint.getSignature().getName();
+        String className = joinPoint.getSignature().getDeclaringTypeName();
+        logger.info(" ---> BUBU when calling: " + className + "." + methodName);
+    }
 }

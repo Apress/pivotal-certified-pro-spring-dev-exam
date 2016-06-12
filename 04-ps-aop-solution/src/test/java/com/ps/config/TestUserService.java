@@ -68,4 +68,17 @@ public class TestUserService {
         Set<User> result = userService.findAll();
         assertEquals(4, result.size());
     }
+
+
+    @Test
+    public void testProxyBubu() {
+        int result = userService.updateUsername(3L, "Iuliana");
+        assertEquals(1, result);
+    }
+
+    @Test
+    public void testProxyBubuDeps() {
+        int result = userService.updateDependencies(3L);
+        assertEquals(0, result);
+    }
 }
