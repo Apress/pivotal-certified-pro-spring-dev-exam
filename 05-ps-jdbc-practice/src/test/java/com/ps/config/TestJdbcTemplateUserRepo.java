@@ -11,8 +11,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Set;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -34,12 +32,6 @@ public class TestJdbcTemplateUserRepo {
     }
 
     @Test
-    public void testOne() {
-        Set<User> result = userRepo.findAllByUserName("John", true);
-        assertEquals(1, result.size());
-    }
-
-    @Test
     public void testFindById() {
         User user = userRepo.findById(1L);
         assertEquals("John", user.getUsername());
@@ -51,22 +43,4 @@ public class TestJdbcTemplateUserRepo {
         assertEquals("John", user.getUsername());
     }
 
-    @Test
-    public void testUpdatePass() {
-        userRepo.updatePassword(1L, "new_pass");
-        User user = userRepo.findById(1L);
-        assertEquals("new_pass", user.getPassword());
-    }
-
-    @Test
-    public void testMore() {
-        Set<User> result = userRepo.findAllByUserName("John", false);
-        assertEquals(2, result.size());
-    }
-
-    @Test
-    public void testAll() {
-        Set<User> result = userRepo.findAll();
-        assertEquals(4, result.size());
-    }
 }
