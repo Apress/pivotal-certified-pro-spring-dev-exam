@@ -1,8 +1,7 @@
 package com.ps.config;
 
-import com.ps.repos.UserRepo;
 import com.ps.ents.User;
-import com.ps.util.Pair;
+import com.ps.repos.UserRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,15 +15,12 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/app-config1.xml",
-        "classpath:spring/common-cfg.xml",
-        "classpath:spring/template-cfg.xml"})
+@ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
 public class TestJdbcTemplateUserRepo {
 
@@ -35,6 +31,12 @@ public class TestJdbcTemplateUserRepo {
     @Before
     public void setUp() {
         assertNotNull(userRepo);
+    }
+
+    @Test
+    public void testOne() {
+        Set<User> result = userRepo.findAllByUserName("John", true);
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -50,30 +52,21 @@ public class TestJdbcTemplateUserRepo {
     }
 
     @Test
-    public void testSpecial(){
-        //System.out.println(userRepo.findByIdAsMap(1L).toString());
-        //System.out.println(userRepo.findAllAsMaps().toString());
-        userRepo.htmlAllByName("John");
+    public void testUpdatePass() {
+        userRepo.updatePassword(1L, "new_pass");
+        User user = userRepo.findById(1L);
+        assertEquals("new_pass", user.getPassword());
     }
 
     @Test
-    public void testCreate(){
-        int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com");
-        assertEquals(1, result);
-        Set<User> dianas = userRepo.findAllByUserName("Diana", true);
-        assertTrue(dianas.size() == 1);
+    public void testMore() {
+        Set<User> result = userRepo.findAllByUserName("John", false);
+        assertEquals(2, result.size());
     }
 
     @Test
-    public void testUpdate(){
-        int result  = userRepo.updatePassword(1L, "newpass");
-        assertEquals(1, result);
+    public void testAll() {
+        Set<User> result = userRepo.findAll();
+        assertEquals(4, result.size());
     }
-
-    @Test
-    public void testDelete(){
-        int result  = userRepo.deleteById(4L);
-        assertEquals(1, result);
-    }
-
 }
