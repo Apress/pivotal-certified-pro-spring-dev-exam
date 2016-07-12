@@ -1,5 +1,7 @@
-package com.ps.config;
+package com.ps.repo;
 
+import com.ps.config.AppConfig;
+import com.ps.config.TestDataConfig;
 import com.ps.repos.UserRepo;
 import com.ps.ents.User;
 import com.ps.util.Pair;
@@ -8,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -22,9 +25,7 @@ import static org.junit.Assert.assertTrue;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:spring/app-config1.xml",
-        "classpath:spring/common-cfg.xml",
-        "classpath:spring/template-cfg.xml"})
+@ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
 public class TestJdbcTemplateUserRepo {
 
@@ -45,15 +46,16 @@ public class TestJdbcTemplateUserRepo {
 
     @Test
     public void testNoFindById() {
-        User user = userRepo.findById(99L);
-        assertEquals("John", user.getUsername());
+        // TODO 27: Use the JdbcTemplate instance to query for a user that does not exist and make this test pass
+        User user = null;
+        assertEquals("Darius", user.getUsername());
     }
 
     @Test
-    public void testSpecial(){
-        //System.out.println(userRepo.findByIdAsMap(1L).toString());
-        //System.out.println(userRepo.findAllAsMaps().toString());
-        userRepo.htmlAllByName("John");
+    public void testCount(){
+        int result = 0;
+        // TODO 28: Use the JdbcTemplate instance to query for the number of rows in the P_USER table
+        assertEquals(4, result);
     }
 
     @Test
@@ -76,4 +78,10 @@ public class TestJdbcTemplateUserRepo {
         assertEquals(1, result);
     }
 
+    @Test
+    public void testCreateTable(){
+        int result  = userRepo.createTable("new_p_user");
+        // table exists but is empty
+        assertEquals(0, result);
+    }
 }
