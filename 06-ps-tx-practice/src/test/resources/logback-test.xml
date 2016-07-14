@@ -15,13 +15,7 @@
 
     <logger name="org.springframework" level="debug"/>
 
-    <logger name="org.springframework.jdbc" level="warn"/>
-
-    <logger name="org.hibernate.SQL" additivity="false" level="off" />
-
-    <logger name="org.hibernate.type" additivity="false" level="off" />
-
-    <logger name="org.hibernate.tool.hbm2ddl" level="off"/>
+    <logger name="org.h2" level="debug"/>
 
     <root level="info">
         <appender-ref ref="console" />
