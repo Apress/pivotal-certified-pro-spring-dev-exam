@@ -130,7 +130,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public int createTable(String name) {
-        jdbcTemplate.execute("create table " + name+ " (id integer, name varchar2)" );
+        jdbcTemplate.execute("create table " + name+ " (id integer, name varchar2(50))" );
         String sql = "select count(*) from " + name;
         return jdbcTemplate.queryForObject(sql, Integer.class);
 

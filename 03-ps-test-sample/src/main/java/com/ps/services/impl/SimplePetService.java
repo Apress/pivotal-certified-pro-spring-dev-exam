@@ -16,6 +16,7 @@ import java.util.Set;
 @Service
 public class SimplePetService extends SimpleAbstractService<Pet> implements PetService {
 
+    @Autowired
     private PetRepo repo;
 
     @Override

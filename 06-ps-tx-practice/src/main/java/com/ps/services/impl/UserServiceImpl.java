@@ -40,7 +40,6 @@ public class UserServiceImpl implements UserService {
         return userRepo.countUsers();
     }
 
-    @Transactional(readOnly = false, rollbackFor = MailSendingException.class)
     // TODO 34. Make this method execute in a read-write transaction and declare the
     // transaction to rollback in case a MailSendingException exception is used
     @Override

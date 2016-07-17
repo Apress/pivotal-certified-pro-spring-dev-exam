@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
+@Entity
+@Table(name="P_RESPONSE")
 public class Response extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)

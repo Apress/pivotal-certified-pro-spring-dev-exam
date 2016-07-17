@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Set;
@@ -78,6 +79,7 @@ public class TestJdbcTemplateUserRepo {
     }
 
     @Test
+    @Sql(statements = {"drop table NEW_P_USER if exists;"})
     public void testCreateTable(){
         int result  = userRepo.createTable("new_p_user");
         // table exists but is empty

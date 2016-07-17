@@ -13,7 +13,12 @@ gradle build
 ----
 will fail.
 
-In order to build the full project and skipping tests, build from the root  (`pet-sitter`) directory:
+To build the full project and skipping tests, build from the root (`pet-sitter`) directory:
 ----
 gradle build -x test
+----
+
+To build the project and ignore failed tests so you can get your full build status with Gradle Receipt, build from the root (`pet-sitter`) directory, using the following command:
+----
+gradle build -Dreceipt --continue
 ----

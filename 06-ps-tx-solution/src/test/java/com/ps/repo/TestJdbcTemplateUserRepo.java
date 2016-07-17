@@ -74,11 +74,4 @@ public class TestJdbcTemplateUserRepo {
         int result  = userRepo.deleteById(4L);
         assertEquals(1, result);
     }
-
-    @Test
-    public void testCreateTable(){
-        int result  = userRepo.createTable("new_p_user");
-        // table exists but is empty
-        assertEquals(0, result);
-    }
 }
