@@ -15,6 +15,7 @@
 
     <logger name="org.springframework" level="debug"/>
 
+
     <logger name="org.h2" level="debug"/>
 
     <root level="info">

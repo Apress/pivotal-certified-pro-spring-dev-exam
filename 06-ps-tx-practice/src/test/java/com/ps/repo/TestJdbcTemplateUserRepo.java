@@ -1,5 +1,6 @@
 package com.ps.repo;
 
+import com.ps.base.UserType;
 import com.ps.config.AppConfig;
 import com.ps.config.TestDataConfig;
 import com.ps.ents.User;
@@ -56,7 +57,7 @@ public class TestJdbcTemplateUserRepo {
 
     @Test
     public void testCreate(){
-        int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com");
+        int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com", UserType.BOTH);
         assertEquals(1, result);
         Set<User> dianas = userRepo.findAllByUserName("Diana", true);
         assertTrue(dianas.size() == 1);

@@ -8,4 +8,6 @@ import com.ps.ents.User;
 public interface UserService {
 
     User findById(Long id);
+
+    void htmlAllByNameAll(String name);
 }

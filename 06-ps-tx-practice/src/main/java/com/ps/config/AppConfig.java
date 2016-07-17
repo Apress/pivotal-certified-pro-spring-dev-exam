@@ -11,4 +11,5 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"com.ps.repos.impl", "com.ps.services.impl"})
 public class AppConfig {
+
 }

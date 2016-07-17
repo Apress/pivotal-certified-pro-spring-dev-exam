@@ -1,5 +1,6 @@
 package com.ps.repos.impl;
 
+import com.ps.base.UserType;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import com.ps.repos.util.UserRowMapper;
@@ -34,12 +35,12 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public Set<User> findAll() {
-        String sql = "select id, username, email, password from p_user";
+        String sql = "select id, username, email, password, user_type from p_user";
         return new HashSet<>(jdbcTemplate.query(sql, rowMapper));
     }
 
     public void htmlAllByName(String name) {
-        String sql = "select id, username, email from p_user where username= ?";
+        String sql = "select id, username, email, user_type from p_user where username= ?";
         jdbcTemplate.query(sql, new HTMLUserRowCallbackHandler(System.out), name);
     }
 
@@ -55,7 +56,8 @@ public class JdbcTemplateUserRepo implements UserRepo {
         public void processRow(ResultSet rs) throws SQLException {
             StringBuilder htmlSb = new StringBuilder("<p>user ID: " + rs.getLong("ID") + "</p></br>\n")
                     .append("<p>username: " + rs.getString("USERNAME") + "</p></br>\n")
-                    .append("<p>email: " + rs.getString("EMAIL") + "</p></br>");
+                    .append("<p>email: " + rs.getString("EMAIL") + "</p></br>\n")
+                    .append("<p>type: " + rs.getString("USER_TYPE") + "</p></br>");
             out.print(htmlSb.toString());
         }
     }
@@ -68,13 +70,13 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public User findById(Long id) {
-        String sql = "select id, email, username,password from p_user where id= ?";
+        String sql = "select id, email, username, password, user_type from p_user where id= ?";
         return jdbcTemplate.queryForObject(sql, rowMapper, id);
     }
 
     @Override
     public Set<User> findAllByUserName(String username, boolean exactMatch) {
-        String sql = "select id, username, email, password from p_user where ";
+        String sql = "select id, username, email, password, user_type from p_user where ";
         if (exactMatch) {
             sql += "username= ?";
         } else {
@@ -114,10 +116,10 @@ public class JdbcTemplateUserRepo implements UserRepo {
     }
 
     @Override
-    public int createUser(Long userId, String username, String password, String email) {
+    public int createUser(Long userId, String username, String password, String email, UserType userType) {
         return jdbcTemplate.update(
-                "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(?,?,?,?)",
-          userId, username, password, email
+                "insert into p_user(ID, USERNAME, PASSWORD, EMAIL, USER_TYPE) values(?,?,?,?,?)",
+          userId, username, password, email, userType.toString()
         );
     }
 

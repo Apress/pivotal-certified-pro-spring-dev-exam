@@ -1,5 +1,6 @@
 package com.ps.repos;
 
+import com.ps.base.UserType;
 import com.ps.ents.User;
 import com.ps.util.Pair;
 
@@ -30,7 +31,7 @@ public interface UserRepo  {
 
     Pair extractPair();
 
-    int createUser(Long userId, String username, String password, String email);
+    int createUser(Long userId, String username, String password, String email, UserType userType);
 
     int updatePassword(Long userId, String newPass);
 
