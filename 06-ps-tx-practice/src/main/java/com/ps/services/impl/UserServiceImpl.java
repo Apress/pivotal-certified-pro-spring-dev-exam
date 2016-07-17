@@ -33,4 +33,9 @@ public class UserServiceImpl implements UserService {
     public void htmlAllByNameAll(String name){
         userRepo.htmlAllByName(name);
     }
+
+    @Override
+    public int countUsers() {
+        return userRepo.countUsers();
+    }
 }

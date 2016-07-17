@@ -10,4 +10,6 @@ public interface UserService {
     User findById(Long id);
 
     void htmlAllByNameAll(String name);
+
+    int countUsers();
 }

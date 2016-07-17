@@ -3,16 +3,17 @@ package com.ps.services;
 import com.ps.config.AppConfig;
 import com.ps.config.TestDataConfig;
 import com.ps.ents.User;
-import com.ps.services.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -41,4 +42,18 @@ public class UserServiceTest {
     public void testHtml(){
         userService.htmlAllByNameAll("John");
     }
+
+    @Test
+    @Sql(value ="classpath:db/extra-data.sql", config = @SqlConfig(encoding = "utf-8", separator = ";", commentPrefix = "--"))
+    @Sql(
+            scripts = "classpath:db/delete-test-data.sql",
+            config = @SqlConfig(transactionMode = SqlConfig.TransactionMode.ISOLATED),
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
+    )
+    public void testCount(){
+        int count = userService.countUsers();
+        assertEquals(8, count);
+    }
+
+
 }
