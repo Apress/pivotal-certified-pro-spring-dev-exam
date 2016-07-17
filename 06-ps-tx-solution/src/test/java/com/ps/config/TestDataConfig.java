@@ -82,5 +82,8 @@ public class TestDataConfig {
         return new JdbcTemplate(dataSource());
     }
 
-   //TODO 31. Define a transaction manager bean of the appropriate type
+    @Bean
+    public DataSourceTransactionManager transactionManager(){
+        return new DataSourceTransactionManager(dataSource());
+    }
 }
