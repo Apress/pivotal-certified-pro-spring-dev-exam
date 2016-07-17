@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
+@Entity
+@Table(name="P_PET")
 public class Pet extends AbstractEntity {
 
     @ManyToOne

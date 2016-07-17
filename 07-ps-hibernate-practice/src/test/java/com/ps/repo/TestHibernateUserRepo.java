@@ -1,10 +1,10 @@
 package com.ps.repo;
 
+import com.ps.base.UserType;
 import com.ps.config.AppConfig;
 import com.ps.config.TestDataConfig;
-import com.ps.repos.UserRepo;
 import com.ps.ents.User;
-import com.ps.util.Pair;
+import com.ps.repos.UserRepo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,13 +14,12 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by iuliana.cosmina on 6/4/16.
@@ -28,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
-public class TestJdbcTemplateUserRepo {
+public class TestHibernateUserRepo {
 
     @Autowired
     @Qualifier("userTemplateRepo")
@@ -45,45 +44,30 @@ public class TestJdbcTemplateUserRepo {
         assertEquals("John", user.getUsername());
     }
 
-    @Test
+    @Test(expected = EmptyResultDataAccessException.class)
     public void testNoFindById() {
-        // TODO 27: Use the JdbcTemplate instance to query for a user that does not exist and make this test pass
-        User user = null;
+        User user = userRepo.findById(99L);
         assertEquals("Darius", user.getUsername());
     }
 
     @Test
-    public void testCount(){
-        int result = 0;
-        // TODO 28: Use the JdbcTemplate instance to query for the number of rows in the P_USER table
-        assertEquals(4, result);
-    }
-
-    @Test
-    public void testCreate(){
-        int result  = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com");
+    public void testCreate() {
+        /*int result = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com", UserType.BOTH);
         assertEquals(1, result);
         Set<User> dianas = userRepo.findAllByUserName("Diana", true);
-        assertTrue(dianas.size() == 1);
+        assertTrue(dianas.size() == 1);*/
     }
 
     @Test
-    public void testUpdate(){
-        int result  = userRepo.updatePassword(1L, "newpass");
-        assertEquals(1, result);
+    public void testUpdate() {
+        userRepo.updatePassword(1L, "newpass");
+
+        //TODO
     }
 
     @Test
-    public void testDelete(){
-        int result  = userRepo.deleteById(4L);
-        assertEquals(1, result);
-    }
-
-    @Test
-    @Sql(statements = {"drop table NEW_P_USER if exists;"})
-    public void testCreateTable(){
-        int result  = userRepo.createTable("new_p_user");
-        // table exists but is empty
-        assertEquals(0, result);
+    public void testDelete() {
+        userRepo.deleteById(4L);
+        //TODO
     }
 }

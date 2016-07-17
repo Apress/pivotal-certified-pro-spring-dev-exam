@@ -4,24 +4,21 @@ import com.ps.base.AbstractEntity;
 import com.ps.base.ReviewGrade;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.text.SimpleDateFormat;
 
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
+@Entity
+@Table(name="P_REVIEW")
 public class Review extends AbstractEntity {
 
-    @OneToOne
-    @Column(name = "REQUEST_ID")
+    @ManyToOne
     private Request request;
 
-    @OneToOne
-    @Column(name = "RESPONSE_ID")
+    @ManyToOne
     private Response response;
 
     @NotEmpty

@@ -15,6 +15,7 @@ import java.util.Set;
  * Created by iuliana.cosmina on 2/7/16.
  */
 @Entity
+@Table(name="P_USER")
 @SequenceGenerator(name = "seqGen", allocationSize = 1)
 public class User extends AbstractEntity {
 

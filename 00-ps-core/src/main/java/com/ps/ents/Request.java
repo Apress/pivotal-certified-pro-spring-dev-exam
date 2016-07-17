@@ -17,6 +17,8 @@ import java.util.Set;
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
+@Entity
+@Table(name="P_REQUEST")
 public class Request extends AbstractEntity {
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
