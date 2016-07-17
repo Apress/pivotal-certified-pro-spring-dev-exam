@@ -17,6 +17,7 @@ import java.util.Set;
  * Created by iuliana.cosmina on 7/16/16.
  */
 @Service
+@Transactional
 public class PetServiceImpl implements PetService {
 
     private PetRepo petRepo;
@@ -27,7 +28,6 @@ public class PetServiceImpl implements PetService {
     }
 
     @Override
-    @Transactional(propagation = Propagation.NESTED, readOnly = true)
     public String getPetsAsHtml(User owner) {
         List<Pet> pets = petRepo.findByOwner(owner);
         if(pets.isEmpty()) {

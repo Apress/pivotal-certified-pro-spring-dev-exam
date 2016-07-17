@@ -1,8 +1,5 @@
-package com.ps.repo;
+package com.ps.config;
 
-import com.ps.base.UserType;
-import com.ps.config.AppConfig;
-import com.ps.config.TestDataConfig;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import org.junit.Before;
@@ -13,21 +10,20 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.jdbc.Sql;
-import org.springframework.test.context.jdbc.SqlConfig;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "")
+@ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
-public class TestHibernateUserRepo {
+public class TestJdbcTemplateUserRepo {
 
     @Autowired
     @Qualifier("userTemplateRepo")
@@ -39,35 +35,39 @@ public class TestHibernateUserRepo {
     }
 
     @Test
+    public void testOne() {
+        Set<User> result = userRepo.findAllByUserName("John", true);
+        assertEquals(1, result.size());
+    }
+
+    @Test
     public void testFindById() {
         User user = userRepo.findById(1L);
         assertEquals("John", user.getUsername());
     }
 
-    @Test(expected = EmptyResultDataAccessException.class)
+    @Test (expected = EmptyResultDataAccessException.class)
     public void testNoFindById() {
         User user = userRepo.findById(99L);
-        assertEquals("Darius", user.getUsername());
+        assertEquals("John", user.getUsername());
     }
 
     @Test
-    public void testCreate() {
-        /*int result = userRepo.createUser(5L, "Diana", "mypass", "diana@opympus.com", UserType.BOTH);
-        assertEquals(1, result);
-        Set<User> dianas = userRepo.findAllByUserName("Diana", true);
-        assertTrue(dianas.size() == 1);*/
+    public void testUpdatePass() {
+        userRepo.updatePassword(1L, "new_pass");
+        User user = userRepo.findById(1L);
+        assertEquals("new_pass", user.getPassword());
     }
 
     @Test
-    public void testUpdate() {
-        userRepo.updatePassword(1L, "newpass");
-
-        //TODO
+    public void testMore() {
+        Set<User> result = userRepo.findAllByUserName("John", false);
+        assertEquals(2, result.size());
     }
 
     @Test
-    public void testDelete() {
-        userRepo.deleteById(4L);
-        //TODO
+    public void testAll() {
+        Set<User> result = userRepo.findAll();
+        assertEquals(4, result.size());
     }
 }
