@@ -36,7 +36,6 @@ public class Pet extends AbstractEntity {
 
 
     @Size(max = 500)
-    @NotEmpty
     @Column
     private String details;
 

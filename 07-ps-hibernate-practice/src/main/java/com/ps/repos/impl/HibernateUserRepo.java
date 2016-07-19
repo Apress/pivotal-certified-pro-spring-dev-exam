@@ -2,9 +2,10 @@ package com.ps.repos.impl;
 
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
-import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +17,15 @@ import java.util.Set;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @Repository("userTemplateRepo")
+@Transactional
 public class HibernateUserRepo implements UserRepo {
 
-    @Resource(name = "sessionFactory")
+    @Autowired
     private SessionFactory sessionFactory;
+
+    public HibernateUserRepo(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     /**
      * Returns the session associated with the ongoing reward transaction.
@@ -32,13 +38,12 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public List<User> findAll() {
-        return session().createQuery("select u from User u").list();
+        return session().createQuery("from User u").list();
     }
 
     @Override
     public User findById(Long id) {
-        return (User) session().createQuery("select u from User u where u.id= :id").
-                setParameter("id", id).uniqueResult();
+        return session().get(User.class, id);
     }
 
     @Override
@@ -49,11 +54,11 @@ public class HibernateUserRepo implements UserRepo {
     @Override
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
-            return session().createQuery("select u from User u where username= ?")
-                    .setParameter(1, username).list();
+            return session().createQuery("from User u where username= ?")
+                    .setParameter(0, username).list();
         } else {
-            return session().createQuery("select u from User u where username like ?")
-                    .setParameter(1, "%" + username + "%").list();
+            return session().createQuery("from User u where username like ?")
+                    .setParameter(0, "%" + username + "%").list();
         }
     }
 
@@ -70,7 +75,7 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public void updatePassword(Long userId, String newPass) {
-        User user = (User) session().createQuery("select u from User u where u.id= :id").
+        User user = (User) session().createQuery("from User u where u.id= :id").
                 setParameter("id", userId).uniqueResult();
         user.setPassword(newPass);
         session().update(user);
@@ -78,7 +83,7 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public void updateUsername(Long userId, String username) {
-        User user = (User) session().createQuery("select u from User u where u.id= :id").
+        User user = (User) session().createQuery("from User u where u.id= :id").
                 setParameter("id", userId).uniqueResult();
         user.setUsername(username);
         session().update(user);
@@ -86,15 +91,17 @@ public class HibernateUserRepo implements UserRepo {
 
     @Override
     public void deleteById(Long userId) {
-        User user = (User) session().createQuery("select u from User u where u.id= :id").
+        User user = (User) session().createQuery("from User u where u.id= :id").
                 setParameter("id", userId).uniqueResult();
         session().delete(user);
     }
 
     @Override
     public void save(Set<User> users) {
+        Transaction tr = session().getTransaction();
         for (User user : users) {
             session().persist(user);
         }
+        tr.commit();
     }
 }

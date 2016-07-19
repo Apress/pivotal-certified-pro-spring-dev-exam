@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Created by iuliana.cosmina on 4/17/16.
  */
 @Configuration
-@EnableTransactionManagement(mode = AdviceMode.PROXY, proxyTargetClass = true)
+@EnableTransactionManagement
 @ComponentScan(basePackages = {"com.ps.repos.impl", "com.ps.services.impl", "com.ps.init"})
 public class AppConfig {
 

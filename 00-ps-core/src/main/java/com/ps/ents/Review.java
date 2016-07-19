@@ -22,13 +22,11 @@ public class Review extends AbstractEntity {
     private Response response;
 
     @NotEmpty
-    @Column
     @Enumerated(EnumType.ORDINAL)
     private ReviewGrade grade;
 
     @Size(max = 500)
     @NotEmpty
-    @Column
     private String details;
 
     //required by JPA

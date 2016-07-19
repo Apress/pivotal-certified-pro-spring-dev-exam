@@ -53,7 +53,6 @@ public class Request extends AbstractEntity {
 
     @Size(max = 500)
     @NotEmpty
-    @Column
     private String details;
 
     @JsonIgnore

@@ -30,7 +30,6 @@ public class Response extends AbstractEntity {
 
     @Size(max = 500)
     @NotEmpty
-    @Column
     private String details;
 
     //required by JPA

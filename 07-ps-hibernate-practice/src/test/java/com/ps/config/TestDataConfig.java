@@ -1,29 +1,30 @@
 package com.ps.config;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.sql.Driver;
 import java.util.Properties;
 
 /**
  * Created by iuliana.cosmina on 7/5/16.
  */
-@Configuration
 @Profile("dev")
 @PropertySource({"classpath:db/db.properties", "classpath:db/test-hibernate.properties"})
+@Configuration
 public class TestDataConfig {
 
     @Value("${driverClassName}")
@@ -40,35 +41,32 @@ public class TestDataConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Lazy
-    @Bean
+    @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         try {
-            SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
-            Class<? extends Driver> driver = (Class<? extends Driver>) Class.forName(driverClassName);
-            dataSource.setDriverClass(driver);
-            dataSource.setUrl(url);
-            dataSource.setUsername(username);
-            dataSource.setPassword(password);
+            HikariConfig hikariConfig = new HikariConfig();
+            hikariConfig.setDriverClassName(driverClassName);
+            hikariConfig.setJdbcUrl(url);
+            hikariConfig.setUsername(username);
+            hikariConfig.setPassword(password);
+
+            hikariConfig.setMaximumPoolSize(5);
+            hikariConfig.setConnectionTestQuery("SELECT 1");
+            hikariConfig.setPoolName("springHikariCP");
+
+            hikariConfig.addDataSourceProperty("dataSource.cachePrepStmts", "true");
+            hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSize", "250");
+            hikariConfig.addDataSourceProperty("dataSource.prepStmtCacheSqlLimit", "2048");
+            hikariConfig.addDataSourceProperty("dataSource.useServerPrepStmts", "true");
+
+            HikariDataSource dataSource = new HikariDataSource(hikariConfig);
+
             return dataSource;
+
         } catch (Exception e) {
             return null;
         }
     }
-
-    @Bean
-    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
-        final DataSourceInitializer initializer = new DataSourceInitializer();
-        initializer.setDataSource(dataSource);
-        return initializer;
-    }
-
-
-    @Bean
-    public JdbcTemplate userJdbcTemplate() {
-        return new JdbcTemplate(dataSource());
-    }
-
 
     @Bean
     public Properties hibernateProperties(
@@ -78,7 +76,9 @@ public class TestDataConfig {
             @Value("${hibernate.use_sql_comments}") Boolean sqlComments,
             @Value("${hibernate.show_sql}") Boolean showSql,
             @Value("${hibernate.transaction.factory_class}") String factoryClass,
-            @Value("${hibernate.connection.autocommit}") Boolean autocommit
+            @Value("${hibernate.transaction.jta.platform}") String jtaPlatform,
+            @Value("${hibernate.current_session_context_class}") String ctxClass
+
 
     ) {
         Properties hibernateProp = new Properties();
@@ -87,8 +87,9 @@ public class TestDataConfig {
         hibernateProp.put("hibernate.format_sql", formatSql);
         hibernateProp.put("hibernate.use_sql_comments", sqlComments);
         hibernateProp.put("hibernate.show_sql", showSql);
-        hibernateProp.put("hibernate.transaction.factory_class", factoryClass);
-        hibernateProp.put("hibernate.connection.autocommit", autocommit);
+        //hibernateProp.put("hibernate.transaction.factory_class", factoryClass);
+        //hibernateProp.put("hibernate.current_session_context_class", ctxClass);
+        //hibernateProp.put("hibernate.transaction.jta.platform", jtaPlatform);
         return hibernateProp;
     }
 
@@ -97,17 +98,15 @@ public class TestDataConfig {
     Properties hibernateProperties;
 
     @Bean
-    public SessionFactory sessionFactory() throws IOException{
-        LocalSessionFactoryBean factBean = new LocalSessionFactoryBean();
-        factBean.setDataSource(dataSource());
-        factBean.setPackagesToScan("com.ps.ents");
-        factBean.setHibernateProperties(hibernateProperties);
-        factBean.afterPropertiesSet();
-        return factBean.getObject();
+    public SessionFactory sessionFactory() throws IOException {
+        return new LocalSessionFactoryBuilder(dataSource())
+                .scanPackages("com.ps.ents")
+                .addProperties(hibernateProperties)
+                .buildSessionFactory();
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager()  throws IOException{
+    public PlatformTransactionManager transactionManager() throws IOException {
         return new HibernateTransactionManager(sessionFactory());
     }
 }

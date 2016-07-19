@@ -17,6 +17,7 @@ import java.util.Set;
 @Entity
 @Table(name="P_USER")
 @SequenceGenerator(name = "seqGen", allocationSize = 1)
+@Access(AccessType.FIELD)
 public class User extends AbstractEntity {
 
     /**
@@ -32,7 +33,6 @@ public class User extends AbstractEntity {
     @Column(name="last_name")
     public String lastName;
 
-    @Column(name="password")
     @NotEmpty
     public String password;
 
@@ -41,7 +41,6 @@ public class User extends AbstractEntity {
     @Column(name = "user_type")
     private UserType userType;
 
-    @Column
     private String address;
 
     @NotEmpty
@@ -51,7 +50,7 @@ public class User extends AbstractEntity {
     /***
      * Rating for a used is computed from reviews for a user
      */
-    @NotEmpty
+    @NotNull
     @Column
     private Double rating;
 
