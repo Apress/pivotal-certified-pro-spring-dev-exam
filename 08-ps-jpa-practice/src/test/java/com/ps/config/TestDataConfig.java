@@ -12,8 +12,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
@@ -76,19 +81,24 @@ public class TestDataConfig {
         return hibernateProp;
     }
 
-
     @Bean
-    public SessionFactory sessionFactory() throws IOException {
-        return null; // TODO 39. Add appropriate declaration of SessionFactory bean
+    public EntityManagerFactory entityManagerFactory(){
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setPackagesToScan("com.ps.ents");
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factoryBean.setJpaProperties(hibernateProperties());
+        factoryBean.afterPropertiesSet();
+        return factoryBean.getNativeEntityManagerFactory();
     }
 
     @Bean
     public PlatformTransactionManager transactionManager() throws IOException {
-        return new HibernateTransactionManager(sessionFactory());
+        return new JpaTransactionManager(entityManagerFactory());
     }
 
     @Bean
-    public PersistenceExceptionTranslationPostProcessor petpp() {
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
         return new PersistenceExceptionTranslationPostProcessor();
     }
 }

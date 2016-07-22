@@ -6,6 +6,7 @@ import com.ps.config.AppConfig;
 import com.ps.config.TestDataConfig;
 import com.ps.ents.Pet;
 import com.ps.ents.User;
+import com.ps.init.DBInitializer;
 import com.ps.repos.UserRepo;
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,15 +30,20 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
-public class TestHibernateUserRepo {
+@Transactional
+public class TestJpaUserRepo {
 
     @Autowired
+    @Qualifier("userJpaRepo")
     UserRepo userRepo;
+
+    @Autowired
+    DBInitializer initializer;
 
     @Before
     public void setUp() {
         assertNotNull(userRepo);
-        create();
+        initializer.initDb();
     }
 
     @Test

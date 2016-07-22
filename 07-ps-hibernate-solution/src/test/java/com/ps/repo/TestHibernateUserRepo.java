@@ -31,6 +31,7 @@ import static org.junit.Assert.*;
 public class TestHibernateUserRepo {
 
     @Autowired
+    @Qualifier("userTemplateRepo")
     UserRepo userRepo;
 
     @Before
