@@ -109,7 +109,7 @@ public abstract class AbstractEntity implements Serializable {
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        return String.format("AbstractEntity[id='%,.2f', createdAt='%s', modifiedAt='%s', version='%s']",
+        return String.format("AbstractEntity[id='%d%n', createdAt='%s', modifiedAt='%s', version='%d%n']",
                 id, sdf.format(createdAt), sdf.format(modifiedAt), version);
 
     }
