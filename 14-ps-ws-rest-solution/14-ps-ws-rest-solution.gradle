@@ -1,4 +1,0 @@
-dependencies {
-    compile (':00-ps-core')
-    compile misc.joda, spring.jdbc, spring.contextSupport, misc.h2
-}

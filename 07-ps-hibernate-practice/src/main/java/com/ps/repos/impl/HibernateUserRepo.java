@@ -16,7 +16,10 @@ import java.util.Set;
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
+
 @Repository("userTemplateRepo")
+@Transactional
+@SuppressWarnings("unchecked")
 public class HibernateUserRepo implements UserRepo {
 
     @Autowired
