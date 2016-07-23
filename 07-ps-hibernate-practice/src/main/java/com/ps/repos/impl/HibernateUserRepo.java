@@ -17,6 +17,7 @@ import java.util.Set;
  */
 @Repository
 @Transactional
+@SuppressWarnings("unchecked")
 public class HibernateUserRepo implements UserRepo {
 
     @Autowired
