@@ -83,14 +83,18 @@ public class TestDataConfig {
 
     @Bean
     public EntityManagerFactory entityManagerFactory(){
-        LocalContainerEntityManagerFactoryBean factoryBean = null;
-        //TODO 40. Set all the properties necessary to successfully create an entityManagerFactory bean
+        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+        factoryBean.setPackagesToScan("com.ps.ents");
+        factoryBean.setDataSource(dataSource());
+        factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        factoryBean.setJpaProperties(hibernateProperties());
+        factoryBean.afterPropertiesSet();
         return factoryBean.getNativeEntityManagerFactory();
     }
 
     @Bean
     public PlatformTransactionManager transactionManager() throws IOException {
-        return null; //TODO 41. Create an appropriate transaction manager bean
+        return new JpaTransactionManager(entityManagerFactory());
     }
 
     @Bean

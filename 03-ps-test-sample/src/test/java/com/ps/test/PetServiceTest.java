@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by iuliana.cosmina on 5/6/16.
  */
-// TODO Iuliana - complete this implementation at some point
+//complete this implementation at some point
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {PetConfigClass.class})
 @ActiveProfiles("dev")
