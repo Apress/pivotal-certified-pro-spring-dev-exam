@@ -1,7 +1,8 @@
 package com.ps.services;
 
 import com.ps.config.AppConfig;
-import com.ps.config.TestDataConfig;
+import com.ps.config.PersistenceConfig;
+import com.ps.config.db.TestDataConfig;
 import com.ps.ents.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertNotNull;
  * Created by iuliana.cosmina on 7/15/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestDataConfig.class, AppConfig.class})
+@ContextConfiguration(classes = {PersistenceConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
 public class UserServiceTest {
 

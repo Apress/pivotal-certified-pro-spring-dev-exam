@@ -1,12 +1,13 @@
-package com.ps.config;
+package com.ps.config.db;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -14,9 +15,10 @@ import java.util.Properties;
 /**
  * Created by iuliana.cosmina on 7/23/16.
  */
-@Configuration
+@Profile("prod")
+@Component
 @PropertySource({"classpath:prod/db.properties"})
-public class DataSourceConfig {
+public class DataSourceConfig implements DataConfig {
 
     @Value("${driverClassName}")
     private String driverClassName;

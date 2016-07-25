@@ -2,8 +2,9 @@ package com.ps.repo;
 
 import com.ps.base.UserType;
 import com.ps.config.AppConfig;
+import com.ps.config.db.DataSourceConfig;
 import com.ps.config.PersistenceConfig;
-import com.ps.config.TestDataConfig;
+import com.ps.config.db.TestDataConfig;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import org.junit.Before;
@@ -13,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
@@ -25,9 +25,8 @@ import static org.junit.Assert.*;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {TestDataConfig.class, PersistenceConfig.class, AppConfig.class})
+@ContextConfiguration(classes = {PersistenceConfig.class, AppConfig.class})
 @ActiveProfiles("dev")
-@Transactional
 public class TestUserRepo {
 
     @Autowired
