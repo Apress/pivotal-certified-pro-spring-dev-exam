@@ -4,15 +4,15 @@ import com.ps.config.AppConfig;
 import com.ps.ents.User;
 import com.ps.init.DBInitializer;
 import com.ps.repos.UserRepo;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -23,6 +23,8 @@ import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class})
 public class TestUserRepo {
+
+    private Logger logger = LoggerFactory.getLogger(TestUserRepo.class);
 
     @Autowired
     UserRepo userRepo;
@@ -41,12 +43,13 @@ public class TestUserRepo {
     public void testFindById() {
         List<User> johns = userRepo.findAllByUserName("john");
         assertTrue(johns.size() == 2);
+        logger.info(johns.toString());
     }
 
     @Test
     public void testFindAll() {
-        List<User> johns = userRepo.findAll();
-        assertTrue(johns.size() == 5);
+        List<User> users = userRepo.findAll();
+        assertTrue(users.size() == 5);
     }
 
     @Test

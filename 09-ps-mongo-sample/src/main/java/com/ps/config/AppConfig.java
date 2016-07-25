@@ -14,11 +14,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 @Configuration
 @EnableMongoRepositories(basePackages = "com.ps.repos")
-@ComponentScan(basePackages = {"com.ps.repos", "com.ps.init"})
+@ComponentScan(basePackages = { "com.ps.init"})
 public class AppConfig {
 
     public static final String DB_NAME = "test";
-    public static final String USER_COLLECTION = "user";
     public static final String MONGO_HOST = "127.0.0.1";
     public static final int MONGO_PORT = 27017;
 
@@ -32,5 +31,4 @@ public class AppConfig {
     public MongoTemplate mongoTemplate() throws  Exception {
         return new MongoTemplate(mongoDb());
     }
-
 }
