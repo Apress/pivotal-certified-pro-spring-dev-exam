@@ -19,8 +19,8 @@ public class RecordBuilder {
         if (namePieces[0].contains(".")) {
             // fn and ln can be inferred
             String[] names = namePieces[0].split("\\.");
-            user.setLastName(names[0]);
-            user.setFirstName(names[1]);
+            user.setLastName(names[1]);
+            user.setFirstName(names[0]);
         }
         user.setRating(0d);
         user.setActive(true);

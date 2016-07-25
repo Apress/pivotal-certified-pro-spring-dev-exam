@@ -17,8 +17,14 @@ import java.util.Set;
 @Entity
 @Table(name="P_USER")
 @SequenceGenerator(name = "seqGen", allocationSize = 1)
-@Access(AccessType.FIELD)
+@NamedQueries({
+        @NamedQuery(name=User.FIND_BY_USERNAME_EXACT, query = "from User u where username= ?"),
+        @NamedQuery(name=User.FIND_BY_USERNAME_LIKE, query = "from User u where username like ?")
+
+})
 public class User extends AbstractEntity {
+    public static final String FIND_BY_USERNAME_EXACT = "findByUsernameExact";
+    public static final String FIND_BY_USERNAME_LIKE = "findByUsernameLike";
 
     /**
      * username = email

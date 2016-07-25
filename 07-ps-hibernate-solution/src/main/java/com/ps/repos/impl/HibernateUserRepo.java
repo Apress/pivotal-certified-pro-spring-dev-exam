@@ -9,13 +9,16 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import java.util.List;
 import java.util.Set;
+import static com.ps.ents.User.*;
 
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
-@Repository
+@Repository("userTemplateRepo")
 @Transactional(propagation = Propagation.MANDATORY)
 @SuppressWarnings("unchecked")
 public class HibernateUserRepo implements UserRepo {
@@ -54,10 +57,10 @@ public class HibernateUserRepo implements UserRepo {
     @Override
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
-            return session().createQuery("from User u where username= ?")
+            return session().createNamedQuery(FIND_BY_USERNAME_EXACT)
                     .setParameter(0, username).list();
         } else {
-            return session().createQuery("from User u where username like ?")
+            return session().createQuery(FIND_BY_USERNAME_LIKE)
                     .setParameter(0, "%" + username + "%").list();
         }
     }

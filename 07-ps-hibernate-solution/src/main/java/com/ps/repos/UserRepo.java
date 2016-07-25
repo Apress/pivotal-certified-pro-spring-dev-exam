@@ -9,7 +9,6 @@ import java.util.Set;
  * Created by iuliana.cosmina on 2/23/16.
  */
 public interface UserRepo {
-
     List<User> findAll();
 
     User findById(Long id);

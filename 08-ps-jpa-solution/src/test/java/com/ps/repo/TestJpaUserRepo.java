@@ -83,37 +83,17 @@ public class TestJpaUserRepo {
         userRepo.deleteById(gigi.getId());
     }
 
+    @Test
+    public void testCriteriaBuilder(){
+        List<User>  cusacks = userRepo.findAllByLastName("cusack");
+        assertTrue(cusacks.size() == 1);
+    }
+
     @After
     public void cleanUp() {
         List<User> users = userRepo.findAll();
         for (User u : users) {
             userRepo.deleteById(u.getId());
         }
-    }
-
-    private void create() {
-        User john = buildUser("john.cusack@pet.com");
-        john.setPassword("test");
-        john.setUserType(UserType.OWNER);
-
-        Pet max = new Pet();
-        max.setName("Max");
-        max.setAge(10);
-        max.setPetType(PetType.DOG);
-        max.setRfid("1122334455");
-        john.addPet(max);
-
-        Pet mona = new Pet();
-        mona.setName("Mona");
-        mona.setAge(2);
-        mona.setPetType(PetType.CAT);
-        mona.setRfid("1100223344");
-        john.addPet(mona);
-        userRepo.save(john);
-
-        User gigi = buildUser("gigi.pedala@pet.com");
-        gigi.setPassword("test");
-        gigi.setUserType(UserType.SITTER);
-        userRepo.save(gigi);
     }
 }
