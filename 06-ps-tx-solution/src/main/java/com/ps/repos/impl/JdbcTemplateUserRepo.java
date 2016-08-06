@@ -5,6 +5,8 @@ import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import com.ps.repos.util.UserRowMapper;
 import com.ps.util.Pair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -12,6 +14,8 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.PrintStream;
 import java.sql.ResultSet;
@@ -22,7 +26,10 @@ import java.util.*;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @Repository("userTemplateRepo")
+//@Transactional
 public class JdbcTemplateUserRepo implements UserRepo {
+    private Logger logger = LoggerFactory.getLogger(JdbcTemplateUserRepo.class);
+
 
     private RowMapper<User> rowMapper = new UserRowMapper();
 
@@ -70,8 +77,11 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public User findById(Long id) {
+        logger.debug(">>> Preparing to execute REPO.findById");
         String sql = "select id, email, username, password, user_type from p_user where id= ?";
-        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+        User user = jdbcTemplate.queryForObject(sql, rowMapper, id);
+        logger.debug(">>> Done executing REPO.findById");
+        return user;
     }
 
     @Override
@@ -119,7 +129,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
     public int createUser(Long userId, String username, String password, String email, UserType userType) {
         return jdbcTemplate.update(
                 "insert into p_user(ID, USERNAME, PASSWORD, EMAIL, USER_TYPE) values(?,?,?,?,?)",
-          userId, username, password, email, userType.toString()
+                userId, username, password, email, userType.toString()
         );
     }
 
@@ -132,7 +142,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public int createTable(String name) {
-        jdbcTemplate.execute("create table " + name+ " (id integer, name varchar2)" );
+        jdbcTemplate.execute("create table " + name + " (id integer, name varchar2)");
         String sql = "select count(*) from " + name;
         return jdbcTemplate.queryForObject(sql, Integer.class);
 

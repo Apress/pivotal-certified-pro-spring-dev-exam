@@ -38,7 +38,6 @@ public class TestDataConfig {
         return new PropertySourcesPlaceholderConfigurer();
     }
 
-    @Lazy
     @Bean
     public DataSource dataSource() {
         try {
