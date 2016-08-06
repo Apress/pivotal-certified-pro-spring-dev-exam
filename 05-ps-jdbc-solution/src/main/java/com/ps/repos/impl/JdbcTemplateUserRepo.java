@@ -1,5 +1,7 @@
 package com.ps.repos.impl;
 
+import com.ps.base.PetType;
+import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import com.ps.repos.util.UserRowMapper;
@@ -42,6 +44,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
         String sql = "select id, username, email from p_user where username= ?";
         jdbcTemplate.query(sql, new HTMLUserRowCallbackHandler(System.out), name);
     }
+
 
     private class HTMLUserRowCallbackHandler implements RowCallbackHandler {
 
@@ -117,7 +120,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
     public int createUser(Long userId, String username, String password, String email) {
         return jdbcTemplate.update(
                 "insert into p_user(ID, USERNAME, PASSWORD, EMAIL) values(?,?,?,?)",
-          userId, username, password, email
+                userId, username, password, email
         );
     }
 
@@ -130,11 +133,48 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     @Override
     public int createTable(String name) {
-        jdbcTemplate.execute("create table " + name+ " (id integer, name varchar2(50))" );
+        jdbcTemplate.execute("create table " + name + " (id integer, name varchar2(50))");
         String sql = "select count(*) from " + name;
         return jdbcTemplate.queryForObject(sql, Integer.class);
 
     }
+
+    @Override
+    public User findByIdWithPets(Long id) {
+        String sql = "select u.id id," +
+                " u.username un," +
+                " u.email email, " +
+                "p.id pid, " +
+                "p.name pname," +
+                " p.age age," +
+                " p.pet_type pt" +
+                " from p_user u, p_pet p where u.id=p.owner and u.id=" + id;
+        return jdbcTemplate.query(sql, new UserWithPetsExtractor());
+    }
+
+    private class UserWithPetsExtractor implements ResultSetExtractor<User> {
+        @Override
+        public User extractData(ResultSet rs) throws SQLException, DataAccessException {
+            User user = null;
+            while (rs.next()) {
+                if (user == null) {
+                    user = new User();
+                    // set internal entity identifier (primary key)
+                    user.setId(rs.getLong("ID"));
+                    user.setUsername(rs.getString("UN"));
+                    user.setEmail(rs.getString("EMAIL"));
+                }
+                Pet p = new Pet();
+                p.setId(rs.getLong("PID"));
+                p.setName(rs.getString("PNAME"));
+                p.setAge(rs.getInt("AGE"));
+                p.setPetType(PetType.valueOf(rs.getString("PT")));
+                user.addPet(p);
+            }
+            return user;
+        }
+    }
+
 
     @Override
     public Pair extractPair() {
@@ -160,8 +200,6 @@ public class JdbcTemplateUserRepo implements UserRepo {
             }
             return null;
         }
-
-
     }
 
 }

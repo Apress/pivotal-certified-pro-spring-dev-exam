@@ -138,4 +138,8 @@ public class JdbcNamedTemplateUserRepo implements UserRepo {
         return jdbcNamedTemplate.queryForObject(sql, new HashMap<>(), Integer.class);
     }
 
+    @Override
+    public User findByIdWithPets(Long id) {
+        return null;
+    }
 }

@@ -18,6 +18,8 @@ public interface UserRepo  {
 
     User findById(Long id);
 
+    User findByIdWithPets(Long id);
+
     Set<User> findAllByUserName(String username, boolean exactMatch);
 
     String findUsernameById(Long id);

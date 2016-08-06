@@ -54,7 +54,7 @@ public class TestJdbcTemplateUserRepo {
     @Test
     public void testSpecial(){
         //System.out.println(userRepo.findByIdAsMap(1L).toString());
-        //System.out.println(userRepo.findAllAsMaps().toString());
+        System.out.println(userRepo.findAllAsMaps().toString());
         userRepo.htmlAllByName("John");
     }
 
@@ -77,6 +77,14 @@ public class TestJdbcTemplateUserRepo {
         int result  = userRepo.deleteById(4L);
         assertEquals(1, result);
     }
+
+
+    @Test
+    public void testExtractor(){
+        User user = userRepo.findByIdWithPets(1L);
+        assertEquals(2, user.getPets().size());
+    }
+
 
     @Test
     @Sql(statements = {"drop table NEW_P_USER if exists;"})
