@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.orm.hibernate5.HibernateExceptionTranslator;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -78,17 +79,22 @@ public class TestDataConfig {
 
 
     @Bean
-    public SessionFactory sessionFactory() throws IOException {
+    public SessionFactory sessionFactory() {
         return null; // TODO 39. Add appropriate declaration of SessionFactory bean
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() throws IOException {
+    public PlatformTransactionManager transactionManager() {
         return new HibernateTransactionManager(sessionFactory());
     }
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor petpp() {
         return new PersistenceExceptionTranslationPostProcessor();
+    }
+
+    @Bean
+    public HibernateExceptionTranslator hibernateExceptionTranslator() {
+        return new HibernateExceptionTranslator();
     }
 }

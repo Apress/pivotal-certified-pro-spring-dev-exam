@@ -62,6 +62,11 @@ public class TestHibernateUserRepo {
         userRepo.save(diana);
         List<User> dianas = userRepo.findAllByUserName("diana.ross", true);
         assertTrue(dianas.size() == 1);
+
+        diana = buildUser("diana.ross@pet.com");
+        diana.setPassword("test");
+        diana.setUserType(UserType.SITTER);
+        userRepo.save(diana);
     }
 
     @Test

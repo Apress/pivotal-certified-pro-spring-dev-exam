@@ -17,7 +17,6 @@ import java.util.Set;
  * Created by iuliana.cosmina on 6/4/16.
  */
 @Repository
-@Transactional(propagation = Propagation.MANDATORY)
 @SuppressWarnings("unchecked")
 public class HibernateUserRepo implements UserRepo {
 
@@ -97,7 +96,7 @@ public class HibernateUserRepo implements UserRepo {
     @Override
     public void save(Set<User> users) {
         for (User user : users) {
-            session().persist(user);
+            session().saveOrUpdate(user);
         }
     }
 }
