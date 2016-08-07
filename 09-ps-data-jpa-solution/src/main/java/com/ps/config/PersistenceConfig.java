@@ -41,7 +41,7 @@ public class PersistenceConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() throws IOException {
+    public PlatformTransactionManager transactionManager(){
         return new JpaTransactionManager(entityManagerFactory());
     }
 

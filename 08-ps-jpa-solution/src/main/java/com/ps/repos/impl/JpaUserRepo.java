@@ -45,10 +45,10 @@ public class JpaUserRepo implements UserRepo {
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
             return entityManager.createNamedQuery(FIND_BY_USERNAME_EXACT)
-                    .setParameter(0, username).getResultList();
+                    .setParameter("un", username).getResultList();
         } else {
             return entityManager.createNamedQuery(FIND_BY_USERNAME_LIKE)
-                    .setParameter(0, "%" + username + "%").getResultList();
+                    .setParameter("un", "%" + username + "%").getResultList();
         }
     }
 

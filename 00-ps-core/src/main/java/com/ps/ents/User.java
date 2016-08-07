@@ -18,8 +18,8 @@ import java.util.Set;
 @Table(name="P_USER")
 @SequenceGenerator(name = "seqGen", allocationSize = 1)
 @NamedQueries({
-        @NamedQuery(name=User.FIND_BY_USERNAME_EXACT, query = "from User u where username= ?"),
-        @NamedQuery(name=User.FIND_BY_USERNAME_LIKE, query = "from User u where username like ?")
+        @NamedQuery(name=User.FIND_BY_USERNAME_EXACT, query = "from User u where username= :un"),
+        @NamedQuery(name=User.FIND_BY_USERNAME_LIKE, query = "from User u where username like :un")
 
 })
 public class User extends AbstractEntity {
