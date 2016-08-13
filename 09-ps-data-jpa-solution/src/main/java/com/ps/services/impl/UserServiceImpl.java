@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 import static com.ps.util.RecordBuilder.buildUser;
 
 /**
@@ -26,10 +28,9 @@ public class UserServiceImpl implements UserService {
         this.userRepo = userRepo;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User findById(Long id) {
-        return userRepo.getOne(id);
+        return userRepo.findOne(id);
     }
 
     @Override
@@ -37,8 +38,12 @@ public class UserServiceImpl implements UserService {
         return userRepo.countUsers();
     }
 
+    @Override public List<User> findAll() {
+        return userRepo.findAll();
+    }
+
     @Override
-    @Transactional
+    @Transactional(readOnly = false)
     public void create(String email, String password, UserType userType) {
         User user = buildUser(email);
         user.setPassword(password);

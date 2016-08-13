@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     @Override
     public User findById(Long id) {
-        return userRepo.getOne(id);
+        return userRepo.findOne(id);
     }
 
     @Override

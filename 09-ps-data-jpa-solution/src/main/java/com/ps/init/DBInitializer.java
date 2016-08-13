@@ -8,10 +8,10 @@ import com.ps.repos.UserRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +29,8 @@ public class DBInitializer {
 
     @PostConstruct
     public void init() {
+        // always start with a clean database
+        userRepo.deleteAll();
         logger.info("Starting database initialization...");
         Set<User> users = new HashSet<>();
         User john = buildUser("john.cusack@pet.com");
@@ -81,4 +83,8 @@ public class DBInitializer {
         logger.info("Database initialization finished.");
     }
 
+    @PreDestroy
+    public void destroy() {
+        userRepo.deleteAll();
+    }
 }

@@ -22,7 +22,6 @@ import static com.ps.util.RecordBuilder.buildUser;
  * Created by iuliana.cosmina on 7/22/16.
  */
 @Service
-@Lazy
 public class DBInitializer {
     private Logger logger = LoggerFactory.getLogger(DBInitializer.class);
 
