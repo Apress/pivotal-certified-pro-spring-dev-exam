@@ -1,0 +1,13 @@
+dependencies {
+    compile project(':00-ps-core')
+    compile misc.joda, spring.jdbc, spring.contextSupport, misc.h2, misc.commons, misc.hikari,
+            hibernate.ehcache, hibernate.em, hibernate.core, hibernate.validator,
+            spring.aop, spring.orm, spring.data, misc.aspectjweaver, misc.aspectjrt, misc.cglib
+
+    testCompile tests.junit, tests.easymock, tests.jmock, tests.mockito, spring.test, tests.hamcrestCore,
+            tests.hamcrestLib
+}
+
+test {
+    exclude '**/*TestBase*'
+}

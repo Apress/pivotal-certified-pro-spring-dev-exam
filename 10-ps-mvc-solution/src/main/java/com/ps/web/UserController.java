@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class UserController {
 
 	private Logger logger = LoggerFactory.getLogger(UserController.class);
-
+	@Autowired
 	private UserService userService;
 
-    @Autowired
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}

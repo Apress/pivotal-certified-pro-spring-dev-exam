@@ -18,7 +18,7 @@ import java.util.Properties;
  * Created by iuliana.cosmina on 7/23/16.
  */
 @Profile("prod")
-@Component
+@Configuration
 @PropertySource({"classpath:prod/db.properties"})
 public class DataSourceConfig implements DataConfig {
 

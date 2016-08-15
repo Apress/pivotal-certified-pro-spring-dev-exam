@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -16,7 +17,7 @@ import java.util.Properties;
  * Created by iuliana.cosmina on 7/23/16.
  */
 @Profile("prod")
-@Component
+@Configuration
 @PropertySource({"classpath:prod/db.properties"})
 public class DataSourceConfig implements DataConfig {
 

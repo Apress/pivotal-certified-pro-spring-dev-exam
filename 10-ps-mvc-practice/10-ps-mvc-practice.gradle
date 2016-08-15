@@ -2,7 +2,7 @@ apply plugin: 'war'
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
 dependencies {
-	compile project(':09-ps-data-jpa-solution')
+	compile project(':09-ps-data-jpa')
 	compile misc.joda, spring.jdbc, spring.contextSupport, misc.h2, misc.commons, misc.hikari,
 			hibernate.ehcache, hibernate.em, hibernate.core, hibernate.validator,
 			spring.aop, spring.orm, spring.data, misc.aspectjweaver, misc.aspectjrt, misc.cglib, spring.webmvc,
@@ -18,5 +18,6 @@ test {
 
 gretty {
 	port = 8080
+	// application context
 	contextPath = '/mvc-basic'
 }

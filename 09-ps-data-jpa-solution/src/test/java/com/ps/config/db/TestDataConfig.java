@@ -16,7 +16,7 @@ import java.util.Properties;
  */
 @Profile("dev")
 @PropertySource({"classpath:db/db.properties"})
-@Component
+@Configuration
 public class TestDataConfig implements DataConfig {
 
     @Value("${driverClassName}")
