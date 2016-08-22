@@ -1,7 +1,7 @@
 <%@ page session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -9,7 +9,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>
-        <spring:message code="user.title"/>
+        <spring:message code="home.title"/>
     </title>
     <spring:theme var="cssStyle" code="css.style"/>
     <link type="text/css" rel="stylesheet" href="<c:url value="${cssStyle}" />"/>
@@ -77,35 +77,60 @@
         </ul>
     </div>
     <div class="content">
-        <table>
-            <tr>
-                <th><spring:message code="label.User.firstname"/></th>
-                <td>${user.firstName}</td>
-            </tr>
-            <tr>
-                <th><spring:message code="label.User.lastname"/></th>
-                <td>${user.lastName}</td>
-            </tr>
-            <tr>
-                <th><spring:message code="label.User.username"/></th>
-                <td>${user.username}</td>
-            </tr>
-            <tr>
-                <th><spring:message code="label.User.type"/></th>
-                <td>${user.userType}</td>
-            </tr>
-            <tr>
-                <th><spring:message code="label.User.since"/></th>
-                <td><fmt:formatDate value="${user.createdAt}"/></td>
-            </tr>
+        <h2>
+            <spring:message code="users.list.title"/>
+        </h2>
 
-            <tr>
-                <th><spring:message code="label.User.rating"/></th>
-                <td>${user.rating}</td>
-            </tr>
-        </table>
+        <div class="users">
+            <table>
+                <thead>
+                <tr>
+                    <sec:authorize url='/users/show/*'>
+                        <td>
+                            <spring:message code="label.User.count"/>
+                        </td>
+                    </sec:authorize>
+                    <td>
+                        <spring:message code="label.User.username"/>
+                    </td>
+                    <td>
+                        <spring:message code="label.User.firstname"/>
+                    </td>
+                    <td>
+                        <spring:message code="label.User.lastname"/>
+                    </td>
+                    <td>
+                        <spring:message code="label.User.type"/>
+                    </td>
+                </tr>
+                </thead>
+                <c:forEach var="user" items="${users}">
+                    <tr>
+                        <sec:authorize url='/users/show/*'>
+                            <td>
+                                <spring:url var="showUrl" value="show/{id}">
+                                    <spring:param name="id" value="${user.id}"/>
+                                </spring:url>
+                                <a href="${showUrl}">${user.id}</a>
+                            </td>
+                        </sec:authorize>
+                        <td>
+                                ${user.username}
+                        </td>
+                        <td>
+                                ${user.firstName}
+                        </td>
+                        <td>
+                                ${user.lastName}
+                        </td>
+                        <td>
+                                ${user.userType}
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
     </div>
-
     <div class="footer">
         <sec:authorize access="isAuthenticated()">
             <p><spring:message code="user.loggedin"/>:

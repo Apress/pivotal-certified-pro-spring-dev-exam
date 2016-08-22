@@ -17,7 +17,7 @@ allprojects {
         springVersion = '4.3.2.RELEASE'
         springJpaVersion = '1.10.2.RELEASE'
         springSecurityVersion = '4.0.3.RELEASE'
-        springBootVersion = '1.3.1.RELEASE'
+        springBootVersion = '1.4.0.RELEASE'
         aspectjVersion = '1.8.4'
 
         //testing libs
@@ -97,7 +97,7 @@ allprojects {
                 validator: "org.hibernate:hibernate-validator:5.1.3.Final",
                 ehcache  : "org.hibernate:hibernate-ehcache:$hibernateVersion",
                 em       : "org.hibernate:hibernate-entitymanager:$hibernateVersion",
-                core     : "org.hibernate:hibernate-core:$hibernateVersion",
+                core     : "org.hibernate:hibernate-core:$hibernateVersion"
         ]
 
         spring = [
@@ -162,5 +162,5 @@ task allDeps << {
 
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    gradleVersion = '3.0-rc-2'
 }

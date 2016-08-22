@@ -22,3 +22,5 @@ To build the project and ignore failed tests so you can get your full build stat
 ----
 gradle build -Dreceipt --continue
 ----
+
+German unicode characters here: http://javawiki.sowas.com/doku.php?id=java:unicode

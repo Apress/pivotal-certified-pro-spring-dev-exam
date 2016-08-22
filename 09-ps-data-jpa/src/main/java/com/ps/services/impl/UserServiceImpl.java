@@ -6,10 +6,12 @@ import com.ps.exceptions.MailSendingException;
 import com.ps.repos.UserRepo;
 import com.ps.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 import static com.ps.util.RecordBuilder.buildUser;
@@ -29,6 +31,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    //@Secured("ROLE_ADMIN")
+    @RolesAllowed("ROLE_ADMIN")
     public User findById(Long id) {
         return userRepo.findOne(id);
     }

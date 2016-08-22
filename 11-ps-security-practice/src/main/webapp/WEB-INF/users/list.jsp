@@ -1,14 +1,15 @@
 <%@ page session="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>
-        <spring:message code="home.title" />
+        <spring:message code="home.title"/>
     </title>
     <spring:theme var="cssStyle" code="css.style"/>
     <link type="text/css" rel="stylesheet" href="<c:url value="${cssStyle}" />"/>
@@ -64,6 +65,15 @@
                     <a href="<c:url value="/users/list"/>"><spring:message code="menu.users"/></a>
                 </c:if>
             </li>
+            <sec:authorize access="isAuthenticated()">
+                <li>
+                    <spring:url value="/logout" var="logoutUrl"/>
+                    <form action="${logoutUrl}" id="logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    </form>
+                    <a href="#" onclick="document.getElementById('logout').submit();"><spring:message code="menu.logout"/></a>
+                </li>
+            </sec:authorize>
         </ul>
     </div>
     <div class="content">
@@ -75,9 +85,10 @@
             <table>
                 <thead>
                 <tr>
-                    <td>
-                        <spring:message code="label.User.count"/>
-                    </td>
+                    <!-- TODO 54. Hide the column with links, to allow only user with ADMIN to see it -->
+                        <td>
+                            <spring:message code="label.User.count"/>
+                        </td>
                     <td>
                         <spring:message code="label.User.username"/>
                     </td>
@@ -94,12 +105,14 @@
                 </thead>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <td>
-                            <spring:url var="showUrl" value="{id}">
-                                <spring:param name="id" value="${user.id}"/>
-                            </spring:url>
-                            <a href="${showUrl}">${user.id}</a>
-                        </td>
+                        <!-- TODO 54. Hide the column with links, to allow only user with ADMIN to see it -->
+                            <td>
+                                <spring:url var="showUrl" value="show/{id}">
+                                    <spring:param name="id" value="${user.id}"/>
+                                </spring:url>
+                                <a href="${showUrl}">${user.id}</a>
+                            </td>
+
                         <td>
                                 ${user.username}
                         </td>
@@ -118,6 +131,11 @@
         </div>
     </div>
     <div class="footer">
+        <sec:authorize access="isAuthenticated()">
+            <p><spring:message code="user.loggedin"/>:
+                <sec:authentication property="principal.username"/>
+            </p>
+        </sec:authorize>
         <p><spring:message code="footer.text"/></p>
     </div>
 </div>
