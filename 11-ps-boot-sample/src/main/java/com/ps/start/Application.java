@@ -34,22 +34,18 @@ public class Application extends SpringBootServletInitializer {
         System.out.println("Started ...");
     }
 
-
-    @Value("${app.port}")
-    private Integer value;
-
-    @Value("${app.context}")
-    private String contextPath;
-
+    @Autowired
+    private AppSettings appSettings;
 
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-        factory.setPort(value);
-        factory.setSessionTimeout(10, TimeUnit.MINUTES);
-        factory.setContextPath(contextPath);
+        factory.setPort(appSettings.getPort());
+        factory.setSessionTimeout(appSettings.getSessionTimeout(), TimeUnit.MINUTES);
+        factory.setContextPath(appSettings.getContext());
         return factory;
     }
+
 
     @Autowired
     ApplicationContext ctx;
