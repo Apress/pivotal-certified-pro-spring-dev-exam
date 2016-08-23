@@ -1,5 +1,5 @@
 apply plugin: 'spring-boot'
-//apply plugin: 'war'
+apply plugin: 'war'
 
 buildscript {
     dependencies {
@@ -17,14 +17,13 @@ buildscript {
 dependencies {
     compile boot.starterWeb
     testCompile boot.starterTest
+    providedRuntime boot.starterTomcat
 }
-
 
 jar {
     baseName = 'ps-boot'
 }
 
-/*
 war {
-    archiveName = 'psboot.war'
-}*/
+    archiveName = 'ps-boot.war'
+}
