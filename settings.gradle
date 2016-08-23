@@ -26,9 +26,9 @@ include '09-ps-mongo-sample'
 include '09-ps-data-jpa'
 include '10-ps-mvc-practice'
 include '10-ps-mvc-solution'
-include '10-ps-mvc-boot'
 include '11-ps-security-practice'
 include '11-ps-security-solution'
+include '11-ps-boot-sample'
 include '12-ps-remoting-practice'
 include '12-ps-remoting-solution'
 include '12-ps-remoting-sample'
@@ -50,5 +50,4 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
-
 
