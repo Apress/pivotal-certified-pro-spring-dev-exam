@@ -1,0 +1,24 @@
+apply plugin: 'spring-boot'
+
+buildscript {
+    dependencies {
+        classpath boot.springBootPlugin
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot/" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+}
+
+dependencies {
+    compile boot.starterWeb
+    testCompile boot.starterTest
+}
+
+
+jar {
+    baseName = 'ps-boot'
+}
