@@ -1,4 +1,5 @@
 apply plugin: 'spring-boot'
+//apply plugin: 'war'
 
 buildscript {
     dependencies {
@@ -22,3 +23,8 @@ dependencies {
 jar {
     baseName = 'ps-boot'
 }
+
+/*
+war {
+    archiveName = 'psboot.war'
+}*/
