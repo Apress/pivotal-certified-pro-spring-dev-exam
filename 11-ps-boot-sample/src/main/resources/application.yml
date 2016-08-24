@@ -1,4 +1,4 @@
 app:
-  port: 8084
+  port: 8080
   context: /ps-boot
-  sessionTimeout:10
+  sessionTimeout: 10

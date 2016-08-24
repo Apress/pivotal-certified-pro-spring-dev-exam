@@ -15,9 +15,9 @@ buildscript {
 }
 
 dependencies {
-    compile boot.starterWeb
+    compile boot.starterWeb,  misc.jstl, misc.servlet
     testCompile boot.starterTest
-    providedRuntime boot.starterTomcat
+    //providedRuntime boot.starterTomcat
 }
 
 jar {
