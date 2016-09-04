@@ -17,7 +17,7 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
  */
 @Configuration
 // TODO 49. Enable support for Spring Security
-// TODO 50. Enable support for securing methods using JSR 250 annotations
+// TODO 50. Enable support for securing methods using annotations which expression attributes
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                //TODO 52. All URL matching /users/show/**  must be available only to users with role ADMIN
+                //TODO 52. All URL matching /users/show/** and /users/delete/**  must be available only to users with role ADMIN
                 .antMatchers("/**").hasAnyRole("ADMIN","USER")
                 .anyRequest()
                 .authenticated()

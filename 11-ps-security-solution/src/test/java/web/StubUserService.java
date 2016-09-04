@@ -45,4 +45,9 @@ public class StubUserService implements UserService {
     public List<User> findAll() {
         return users;
     }
+
+    @Override
+    public void deleteById(Long id) {
+        throw new NotImplementedException("[DELETE] Not to be used at the moment.");
+    }
 }

@@ -82,6 +82,9 @@
         </h2>
 
         <div class="users">
+            <c:if test="${not empty confirmationMessage}">
+                <h3><spring:message code="${confirmationMessage}"/></h3>
+            </c:if>
             <table>
                 <thead>
                 <tr>
@@ -102,6 +105,11 @@
                     <td>
                         <spring:message code="label.User.type"/>
                     </td>
+                    <sec:authorize url='/users/delete/*'>
+                        <td>
+                            <spring:message code="label.delete"/>
+                        </td>
+                    </sec:authorize>
                 </tr>
                 </thead>
                 <c:forEach var="user" items="${users}">
@@ -126,6 +134,14 @@
                         <td>
                                 ${user.userType}
                         </td>
+                        <sec:authorize url='/users/delete/*'>
+                            <td>
+                                <spring:url var="deleteUrl" value="delete/{id}">
+                                    <spring:param name="id" value="${user.id}"/>
+                                </spring:url>
+                                <a href="${deleteUrl}"><spring:message code="label.delete"/></a>
+                            </td>
+                        </sec:authorize>
                     </tr>
                 </c:forEach>
             </table>

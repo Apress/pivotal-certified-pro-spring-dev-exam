@@ -19,6 +19,7 @@ allprojects {
         springSecurityVersion = '4.0.3.RELEASE'
         springBootVersion = '1.4.1.BUILD-SNAPSHOT'
         aspectjVersion = '1.8.4'
+        yamlVersion='1.17'
 
         //testing libs
         mockitoVersion = '2.0.2-beta'
@@ -54,7 +55,7 @@ allprojects {
                 starterTest     : "org.springframework.boot:spring-boot-starter-test:$springBootVersion",
                 starterTomcat   : "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion",
                 actuator        : "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion",
-                yaml            : "org.yaml:snakeyaml:1.16"
+                yaml            : "org.yaml:snakeyaml:$yamlVersion"
         ]
 
         tests = [

@@ -82,13 +82,17 @@
         </h2>
 
         <div class="users">
+            <c:if test="${not empty confirmationMessage}">
+                <h3><spring:message code="${confirmationMessage}"/></h3>
+            </c:if>
             <table>
                 <thead>
                 <tr>
-                    <!-- TODO 54. Hide the column with links, to allow only user with ADMIN to see it -->
+                    <sec:authorize url='/users/show/*'>
                         <td>
                             <spring:message code="label.User.count"/>
                         </td>
+                    </sec:authorize>
                     <td>
                         <spring:message code="label.User.username"/>
                     </td>
@@ -101,18 +105,23 @@
                     <td>
                         <spring:message code="label.User.type"/>
                     </td>
+                    <sec:authorize url='/users/delete/*'>
+                        <td>
+                            <spring:message code="label.delete"/>
+                        </td>
+                    </sec:authorize>
                 </tr>
                 </thead>
                 <c:forEach var="user" items="${users}">
                     <tr>
-                        <!-- TODO 54. Hide the column with links, to allow only user with ADMIN to see it -->
+                        <sec:authorize url='/users/show/*'>
                             <td>
                                 <spring:url var="showUrl" value="show/{id}">
                                     <spring:param name="id" value="${user.id}"/>
                                 </spring:url>
                                 <a href="${showUrl}">${user.id}</a>
                             </td>
-
+                        </sec:authorize>
                         <td>
                                 ${user.username}
                         </td>
@@ -125,6 +134,14 @@
                         <td>
                                 ${user.userType}
                         </td>
+                        <sec:authorize url='/users/delete/*'>
+                            <td>
+                                <spring:url var="deleteUrl" value="delete/{id}">
+                                    <spring:param name="id" value="${user.id}"/>
+                                </spring:url>
+                                <a href="${deleteUrl}"><spring:message code="label.delete"/></a>
+                            </td>
+                        </sec:authorize>
                     </tr>
                 </c:forEach>
             </table>

@@ -49,4 +49,19 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "users/show";
 	}
+
+	/**
+	 * Handles requests to delete  a user
+	 */
+	@RequestMapping(value = "/delete/{id:[\\d]*}", method = RequestMethod.GET)
+	public String delete(@PathVariable Long id, Model model) throws NotFoundException {
+		User user = userService.findById(id);
+		if (user == null) {
+			throw new NotFoundException(User.class, id);
+		}
+		userService.deleteById(id);
+		model.addAttribute("confirmationMessage", "user.deleted");
+		model.addAttribute("users", userService.findAll());
+		return "users/list";
+	}
 }
