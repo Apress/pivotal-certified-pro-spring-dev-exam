@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
  * Created by iuliana.cosmina on 8/24/16.
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = {"app.port=9090"})
 public class CtxControllerTest {
 
     @Autowired
