@@ -30,6 +30,7 @@ public class DBInitializer {
 
     @Transactional
     public void initDb() {
+        userRepo.deleteAll();
         Set<User> users = new HashSet<>();
         User john = buildUser("john.cusack@pet.com");
         john.setPassword("test");

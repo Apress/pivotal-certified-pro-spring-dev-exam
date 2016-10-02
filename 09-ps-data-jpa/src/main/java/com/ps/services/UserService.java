@@ -2,7 +2,6 @@ package com.ps.services;
 
 import com.ps.base.UserType;
 import com.ps.ents.User;
-import com.ps.exceptions.MailSendingException;
 
 import java.util.List;
 
@@ -12,6 +11,8 @@ import java.util.List;
 public interface UserService {
 
     User findById(Long id);
+
+    User findByEmail(String email);
 
     long countUsers();
 

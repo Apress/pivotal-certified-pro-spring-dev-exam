@@ -88,4 +88,12 @@ public class JpaUserRepo implements UserRepo {
             entityManager.persist(user);
         }
     }
+
+    @Override
+    public void deleteAll() {
+        List<User> users = findAll();
+        for (User user : users) {
+            entityManager.remove(user);
+        }
+    }
 }

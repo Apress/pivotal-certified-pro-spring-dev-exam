@@ -22,6 +22,7 @@ public class DBInitializer {
     UserRepo userRepo;
 
     public void initDb() {
+        userRepo.deleteAll();
         logger.info("Starting database initialization...");
         Set<User> users = new HashSet<>();
         User john = buildUser("john.cusack@pet.com");

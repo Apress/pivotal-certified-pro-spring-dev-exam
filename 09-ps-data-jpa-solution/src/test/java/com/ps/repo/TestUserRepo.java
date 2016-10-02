@@ -2,9 +2,7 @@ package com.ps.repo;
 
 import com.ps.base.UserType;
 import com.ps.config.AppConfig;
-import com.ps.config.db.DataSourceConfig;
 import com.ps.config.PersistenceConfig;
-import com.ps.config.db.TestDataConfig;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import org.junit.Before;
@@ -15,7 +13,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static com.ps.util.RecordBuilder.buildUser;
@@ -43,9 +40,9 @@ public class TestUserRepo {
         assertTrue(johns.size() == 2);
     }
 
-    @Test(expected = EntityNotFoundException.class)
+    @Test//(expected = EntityNotFoundException.class)
     public void testNoFindById() {
-        User user = userRepo.getOne(99L);
+        User user = userRepo.findOne(99L);
         assertNull(user);
     }
 
