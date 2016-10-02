@@ -30,4 +30,6 @@ public interface UserRepo {
 
     void save(Set<User> users);
 
+    public void deleteAll();
+
 }

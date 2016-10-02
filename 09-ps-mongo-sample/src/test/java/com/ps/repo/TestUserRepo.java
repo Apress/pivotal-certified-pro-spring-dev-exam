@@ -5,6 +5,7 @@ import com.ps.ents.User;
 import com.ps.init.DBInitializer;
 import com.ps.repos.UserRepo;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;

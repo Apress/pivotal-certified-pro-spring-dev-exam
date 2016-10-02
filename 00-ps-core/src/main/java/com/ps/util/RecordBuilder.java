@@ -9,7 +9,8 @@ public class RecordBuilder {
 
     /**
      * Builder method used to create a simple User instance with all the main fields populated.
-     * @return
+     * @param email  some desc
+     * @return user some desc
      */
     public static User buildUser(String email){
         User user = new User();

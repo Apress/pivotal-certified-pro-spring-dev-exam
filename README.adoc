@@ -20,5 +20,8 @@ gradle build -x test
 
 To build the project and ignore failed tests so you can get your full build status with Gradle Receipt, build from the root (`pet-sitter`) directory, using the following command:
 ----
-gradle build -Dreceipt --continue
+gradle build -Dscan --continue
 ----
+
+German unicode characters here: http://javawiki.sowas.com/doku.php?id=java:unicode
+

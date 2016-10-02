@@ -2,14 +2,12 @@ package com.ps.repos.impl;
 
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
-import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Set;
 
@@ -99,6 +97,14 @@ public class HibernateUserRepo implements UserRepo {
     public void save(Set<User> users) {
         for (User user : users) {
             session().persist(user);
+        }
+    }
+
+    @Override
+    public void deleteAll() {
+        List<User> users = findAll();
+        for (User user : users) {
+            deleteById(user.getId());
         }
     }
 }

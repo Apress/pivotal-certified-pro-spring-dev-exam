@@ -33,7 +33,9 @@ public class DBInitializer {
 
     @PostConstruct
     @Transactional
-    public void init() {
+    public void initDb() {
+        // always start with a clean database
+        userRepo.deleteAll();
         Set<User> users = new HashSet<>();
         User john = buildUser("john.cusack@pet.com");
         john.setPassword("test");
