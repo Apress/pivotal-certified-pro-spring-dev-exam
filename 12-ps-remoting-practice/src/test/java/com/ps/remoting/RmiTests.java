@@ -1,6 +1,7 @@
 package com.ps.remoting;
 
 import com.ps.ents.User;
+import com.ps.remoting.config.RmiClientConfig;
 import com.ps.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,8 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Test for the RMI client spring.proxy
  */
-@ContextConfiguration(locations = {"classpath:spring/rmi-client-config.xml"})
+//@ContextConfiguration(locations = {"classpath:spring/rmi-client-config.xml"})
+@ContextConfiguration(classes = RmiClientConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RmiTests {
 
