@@ -1,4 +1,4 @@
-package com.ps.remoting;
+package com.ps.remoting.config;
 
 import com.ps.config.ServiceConfig;
 import com.ps.remoting.config.RmiServerConfig;
