@@ -1,4 +1,4 @@
-package com.ps.remoting;
+package com.ps.invoker;
 
 import com.ps.ents.User;
 import org.junit.Test;
@@ -13,9 +13,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-/**
- * Tests for an HttpInvoker client of the reward network
- */
 @ContextConfiguration(locations = {"classpath:spring/httpinvoker-client-config.xml"})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HttpInvokerTests {

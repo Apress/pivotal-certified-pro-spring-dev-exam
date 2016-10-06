@@ -7,5 +7,5 @@
     <bean id="userService"
           class="org.springframework.remoting.httpinvoker.HttpInvokerProxyFactoryBean"
           p:serviceInterface="com.ps.services.UserService"
-          p:serviceUrl="http://localhost:8080/remote/rewards/httpInvoker/userService"/>
+          p:serviceUrl="http://localhost:8080/invoker/httpInvoker/userService"/>
 </beans>
