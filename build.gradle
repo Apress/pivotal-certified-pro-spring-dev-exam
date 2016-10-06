@@ -22,6 +22,9 @@ allprojects {
         aspectjVersion = '1.8.4'
         yamlVersion='1.17'
 
+        hessianVersion = '4.0.38'
+        burlapVersion = '2.1.12'
+
         //testing libs
         mockitoVersion = '2.0.2-beta'
         junitVersion = '4.13-SNAPSHOT'
@@ -93,7 +96,9 @@ allprojects {
                 aspectjweaver     : "org.aspectj:aspectjweaver:$aspectjVersion",
                 aspectjrt         : "org.aspectj:aspectjrt:$aspectjVersion",
                 cglib             : "cglib:cglib:3.2.2",
-                hikari            : "com.zaxxer:HikariCP:2.4.7"
+                hikari            : "com.zaxxer:HikariCP:2.4.7",
+                hessian           : "com.caucho:hessian:$hessianVersion",
+                burlap            : "com.caucho:burlap:$burlapVersion"
         ]
 
         hibernate = [
