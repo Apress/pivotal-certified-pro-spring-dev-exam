@@ -1,3 +1,4 @@
+
 dependencies {
     compile project(':09-ps-data-jpa')
     compile misc.joda, spring.jdbc, spring.contextSupport, misc.h2, misc.commons, misc.hikari,

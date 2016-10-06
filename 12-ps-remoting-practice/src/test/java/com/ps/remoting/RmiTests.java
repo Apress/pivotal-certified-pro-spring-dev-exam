@@ -17,7 +17,6 @@ import static org.junit.Assert.assertNotNull;
 /**
  * Test for the RMI client spring.proxy
  */
-//@ContextConfiguration(locations = {"classpath:spring/rmi-client-config.xml"})
 @ContextConfiguration(classes = RmiClientConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RmiTests {
