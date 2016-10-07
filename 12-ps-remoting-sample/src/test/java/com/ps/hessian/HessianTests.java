@@ -1,6 +1,7 @@
 package com.ps.hessian;
 
 import com.ps.ents.User;
+import com.ps.hessian.config.HessianClientConfig;
 import com.ps.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@ContextConfiguration(locations = {"classpath:spring/hessian-client-config.xml"})
+@ContextConfiguration(classes = {HessianClientConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HessianTests {
 

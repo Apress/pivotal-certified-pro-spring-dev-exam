@@ -1,6 +1,8 @@
 package com.ps.invoker;
 
 import com.ps.ents.User;
+import com.ps.hessian.config.HessianClientConfig;
+import com.ps.invoker.config.HttpInvokerClientConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-@ContextConfiguration(locations = {"classpath:spring/httpinvoker-client-config.xml"})
+@ContextConfiguration(classes = {HttpInvokerClientConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
 public class HttpInvokerTests {
 
