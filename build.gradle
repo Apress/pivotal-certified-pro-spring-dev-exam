@@ -106,7 +106,7 @@ allprojects {
                 hikari            : "com.zaxxer:HikariCP:2.4.7",
                 hessian           : "com.caucho:hessian:$hessianVersion",
                 burlap            : "com.caucho:burlap:$burlapVersion",
-                mq                : "org.apache.activemq:activemq-all:$mqVersion"
+                mq                : "org.apache.activemq:activemq-spring:$mqVersion"
         ]
 
         hibernate = [
