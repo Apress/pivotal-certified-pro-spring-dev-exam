@@ -27,7 +27,8 @@ import java.io.IOException;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.ps", "com.ps.repos", "com.ps.services.impl", "com.ps.init", "com.ps.config.db"})
+@ComponentScan(basePackages = {"com.ps", "com.ps.repos", "com.ps.services.impl",
+        "com.ps.init", "com.ps.config.db"})
 @EnableJpaRepositories(basePackages = {"com.ps.repos"})
 public class ServiceConfig {
 

@@ -9,7 +9,7 @@
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n</pattern>
         </encoder>
-    </appender> n
+    </appender>
 
     <logger name="com.ps" level="debug"/>
 

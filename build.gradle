@@ -15,15 +15,16 @@ allprojects {
 
     ext {
         //spring libs
-        springVersion = '4.3.2.RELEASE'
+        springVersion = '4.3.3.RELEASE'
         springJpaVersion = '1.10.4.RELEASE'
         springSecurityVersion = '4.1.3.RELEASE'
         springBootVersion = '1.4.1.RELEASE'
         aspectjVersion = '1.8.4'
-        yamlVersion='1.17'
+        yamlVersion = '1.17'
 
         hessianVersion = '4.0.38'
         burlapVersion = '2.1.12'
+        mqVersion = '5.14.1'
 
         //testing libs
         mockitoVersion = '2.0.2-beta'
@@ -40,7 +41,7 @@ allprojects {
 
         //logging libs
         logbackVersion = '1.1.7'
-        slf4jVersion = '1.7.14'
+        slf4jVersion = '1.7.21'
 
         //report generating libs
         poiVersion = '3.13'
@@ -100,7 +101,8 @@ allprojects {
                 cglib             : "cglib:cglib:3.2.2",
                 hikari            : "com.zaxxer:HikariCP:2.4.7",
                 hessian           : "com.caucho:hessian:$hessianVersion",
-                burlap            : "com.caucho:burlap:$burlapVersion"
+                burlap            : "com.caucho:burlap:$burlapVersion",
+                mq                : "org.apache.activemq:activemq-all:$mqVersion"
         ]
 
         hibernate = [
@@ -117,6 +119,7 @@ allprojects {
                 webmvc         : "org.springframework:spring-webmvc:$springVersion",
                 aop            : "org.springframework:spring-aop:$springVersion",
                 jdbc           : "org.springframework:spring-jdbc:$springVersion",
+                jms            : "org.springframework:spring-jms:$springVersion",
                 orm            : "org.springframework:spring-orm:$springVersion",
                 mvcPortlet     : "org.springframework:spring-webmvc-portlet:$springVersion",
                 contextSupport : "org.springframework:spring-context-support:$springVersion",
