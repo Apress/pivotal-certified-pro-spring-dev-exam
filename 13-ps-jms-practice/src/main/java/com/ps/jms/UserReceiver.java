@@ -32,7 +32,7 @@ public class UserReceiver implements MessageListener {
             logger.info("Received user: " + receivedUser);
             confirmationSender.sendMessage(new Confirmation(id.incrementAndGet(), "User " + receivedUser.getEmail() + " received."));
         } catch (JMSException e) {
-
+            logger.error("Something went wrong ...", e);
         }
 
     }

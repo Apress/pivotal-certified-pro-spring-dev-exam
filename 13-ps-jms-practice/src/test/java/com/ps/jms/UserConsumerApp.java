@@ -19,6 +19,9 @@ public class UserConsumerApp {
 
     public static void main(String[] args) throws IOException {
         AbstractApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/jms-config-two.xml");
+
+        UserReceiver userReceiver = context.getBean(UserReceiver.class);
+        assertNotNull(userReceiver);
         logger.info("Waiting for user ...");
         System.in.read();
         context.close();

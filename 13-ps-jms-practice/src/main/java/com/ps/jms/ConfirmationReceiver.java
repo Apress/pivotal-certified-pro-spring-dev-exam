@@ -25,7 +25,7 @@ public class ConfirmationReceiver implements MessageListener {
             Confirmation receivedConf = (Confirmation) messageConverter.fromMessage(message);
             logger.info("Received confirmation: " + receivedConf);
         } catch (JMSException e) {
-
+            logger.error("Something went wrong ...", e);
         }
 
     }
