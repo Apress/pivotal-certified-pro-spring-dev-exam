@@ -18,7 +18,9 @@ public class UserConsumerApp {
     private static final Logger logger = LoggerFactory.getLogger(UserConsumerApp.class);
 
     public static void main(String[] args) throws IOException {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/jms-config-two.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext(
+                "classpath:spring/jms-common-config.xml",
+                "classpath:spring/jms-consumer-config.xml");
 
         UserReceiver userReceiver = context.getBean(UserReceiver.class);
         assertNotNull(userReceiver);

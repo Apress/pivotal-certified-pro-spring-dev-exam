@@ -8,8 +8,10 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by iuliana.cosmina on 10/11/16.
@@ -18,13 +20,20 @@ public class UserProducerApp {
     private static final Logger logger = LoggerFactory.getLogger(UserProducerApp.class);
 
     public static void main(String[] args) throws IOException {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring/app-config.xml", "classpath:spring/jms-config-one.xml");
+        AbstractApplicationContext context = new ClassPathXmlApplicationContext(
+                "classpath:spring/app-config.xml",
+                "classpath:spring/jms-common-config.xml",
+                "classpath:spring/jms-producer-config.xml");
         UserService userService = context.getBean(UserService.class);
         UserSender userSender = context.getBean(UserSender.class);
 
-        User user = userService.findByEmail("john.cusack@pet.com");
-        assertNotNull(user);
-        userSender.sendMessage(user);
+        List<User> users = userService.findAll();
+
+        assertTrue(users.size() >0);
+        for (User user: users) {
+            userSender.sendMessage(user);
+        }
+
         logger.info("User message sent. Wait for confirmation...");
 
         System.in.read();
