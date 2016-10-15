@@ -29,7 +29,7 @@ public class UserReceiver implements MessageListener {
     public void onMessage(Message message) {
         try {
             User receivedUser = (User) messageConverter.fromMessage(message);
-            logger.info("Received user: " + receivedUser);
+            logger.info(" >> Received user: " + receivedUser);
             confirmationSender.sendMessage(new Confirmation(id.incrementAndGet(), "User " + receivedUser.getEmail() + " received."));
         } catch (JMSException e) {
             logger.error("Something went wrong ...", e);

@@ -1,9 +1,14 @@
 package com.ps.jms;
 
+import com.ps.config.ServiceConfig;
 import com.ps.ents.User;
+import com.ps.jms.config.JmsCommonConfig;
+import com.ps.jms.config.JmsConsumerConfig;
+import com.ps.jms.config.JmsProducerConfig;
 import com.ps.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -20,10 +25,8 @@ public class UserProducerApp {
     private static final Logger logger = LoggerFactory.getLogger(UserProducerApp.class);
 
     public static void main(String[] args) throws IOException {
-        AbstractApplicationContext context = new ClassPathXmlApplicationContext(
-                "classpath:spring/app-config.xml",
-                "classpath:spring/jms-common-config.xml",
-                "classpath:spring/jms-producer-config.xml");
+        AbstractApplicationContext context= new AnnotationConfigApplicationContext(
+                ServiceConfig.class, JmsCommonConfig.class, JmsProducerConfig.class);
         UserService userService = context.getBean(UserService.class);
         UserSender userSender = context.getBean(UserSender.class);
 

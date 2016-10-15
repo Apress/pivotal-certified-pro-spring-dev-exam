@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.support.converter.MessageConverter;
+import org.springframework.stereotype.Component;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -23,7 +24,7 @@ public class ConfirmationReceiver implements MessageListener {
     public void onMessage(Message message) {
         try {
             Confirmation receivedConf = (Confirmation) messageConverter.fromMessage(message);
-            logger.info("Received confirmation: " + receivedConf);
+            logger.info(" >>  Received confirmation: " + receivedConf);
         } catch (JMSException e) {
             logger.error("Something went wrong ...", e);
         }
