@@ -56,17 +56,17 @@ public class DBInitializer {
         mary.setUserType(UserType.SITTER);
         users.add(mary);
 
-        User victoria = buildUser("victoria.jones@pet.com");
-        victoria.setPassword("test");
-        victoria.setUserType(UserType.BOTH);
-        users.add(victoria);
+        User jessica = buildUser("jessica.jones@pet.com");
+        jessica.setPassword("test");
+        jessica.setUserType(UserType.BOTH);
+        users.add(jessica);
 
         Pet kiki = new Pet();
         kiki.setName("Kiki");
         kiki.setAge(3);
         kiki.setPetType(PetType.BIRD);
         kiki.setRfid("1100221144");
-        victoria.addPet(kiki);
+        jessica.addPet(kiki);
 
         User johnny = buildUser("johnny.big@pet.com");
         johnny.setPassword("test");

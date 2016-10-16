@@ -16,6 +16,6 @@ public class ConfirmationSender {
     JmsTemplate jmsTemplate;
 
     public void sendMessage(final Confirmation confirmation) {
-        jmsTemplate.send((Session session) -> session.createObjectMessage(confirmation));
+        jmsTemplate.convertAndSend("confirmationQueue", confirmation);
     }
 }

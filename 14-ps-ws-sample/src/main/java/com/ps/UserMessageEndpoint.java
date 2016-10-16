@@ -1,5 +1,7 @@
-package com.ps.ws;
+package com.ps;
 
+import com.ps.ws.GetUserRequest;
+import com.ps.ws.GetUserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -30,5 +32,4 @@ public class UserMessageEndpoint {
         response.setUserType(userMessageRepository.findUserType(request.getEmail()));
         return response;
     }
-
 }

@@ -1,4 +1,4 @@
-package com.ps.start;
+package com.ps;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,14 +19,9 @@ import java.util.concurrent.TimeUnit;
  * Created by iuliana.cosmina on 8/22/16.
  */
 @SpringBootApplication(scanBasePackages = {"com.ps"})
-public class Application extends SpringBootServletInitializer {
+public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(Application.class);
-    }
 
     public static void main(String... args) throws IOException {
         ConfigurableApplicationContext context = SpringApplication.run(Application.class, args);
@@ -35,15 +30,4 @@ public class Application extends SpringBootServletInitializer {
         context.close();
     }
 
-    @Autowired
-    private AppSettings appSettings;
-
-    @Bean
-    public EmbeddedServletContainerFactory servletContainer() {
-        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-        factory.setPort(appSettings.getPort());
-        factory.setSessionTimeout(appSettings.getSessionTimeout(), TimeUnit.MINUTES);
-        factory.setContextPath(appSettings.getContext());
-        return factory;
-    }
 }

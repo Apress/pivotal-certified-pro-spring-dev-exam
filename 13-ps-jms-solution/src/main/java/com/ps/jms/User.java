@@ -1,4 +1,4 @@
-package com.ps.ents;
+package com.ps.jms;
 
 /**
  * Created by iuliana.cosmina on 10/15/16.
@@ -8,6 +8,9 @@ public class User {
     private String email;
     private Double rating;
     private boolean active;
+
+    public User() {
+    }
 
     public User(String email, Double rating, boolean active) {
         this.email = email;

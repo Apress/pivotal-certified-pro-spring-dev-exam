@@ -1,4 +1,0 @@
-app:
-  port: 8080
-  context: /ws-boot
-  sessionTimeout: 10

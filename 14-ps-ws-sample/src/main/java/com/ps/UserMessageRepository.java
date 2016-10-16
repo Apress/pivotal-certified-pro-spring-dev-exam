@@ -1,4 +1,4 @@
-package com.ps.ws;
+package com.ps;
 
 import com.ps.ws.UserMessage;
 import com.ps.ws.UserType;

@@ -1,6 +1,6 @@
 package com.ps.ws;
 
-import com.ps.start.Application;
+import com.ps.Application;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -43,7 +43,7 @@ public class ApplicationTest {
         GetUserRequest request = new GetUserRequest();
         request.setEmail("John.Cusack@pet.com");
 
-        Object responseObject = ws.marshalSendAndReceive("http://localhost:" + port + "/ws-boot/ws", request);
+        Object responseObject = ws.marshalSendAndReceive("http://localhost:" + port + "/ws", request);
         assertThat(responseObject).isNotNull();
         assertThat(responseObject instanceof GetUserResponse).isTrue();
 

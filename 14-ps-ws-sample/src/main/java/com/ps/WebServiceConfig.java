@@ -1,4 +1,4 @@
-package com.ps.ws;
+package com.ps;
 
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +18,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 @EnableWs
 public class WebServiceConfig extends WsConfigurerAdapter {
+
     @Bean
     public ServletRegistrationBean messageDispatcherServlet(ApplicationContext applicationContext) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
@@ -27,17 +28,17 @@ public class WebServiceConfig extends WsConfigurerAdapter {
     }
 
     @Bean(name = "userMessages")
-    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema countriesSchema) {
+    public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema userMessageSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UsersPort");
         wsdl11Definition.setLocationUri("/ws");
         wsdl11Definition.setTargetNamespace(UserMessageEndpoint.NAMESPACE_URI);
-        wsdl11Definition.setSchema(countriesSchema);
+        wsdl11Definition.setSchema(userMessageSchema);
         return wsdl11Definition;
     }
 
     @Bean
-    public XsdSchema countriesSchema() {
+    public XsdSchema userMessageSchema() {
         return new SimpleXsdSchema(new ClassPathResource("sample/userMessage.xsd"));
     }
 

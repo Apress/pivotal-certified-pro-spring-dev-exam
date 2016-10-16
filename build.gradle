@@ -45,7 +45,7 @@ allprojects {
 
         //report generating libs
         poiVersion = '3.13'
-        jacksonVersion = '2.7.1'
+        jacksonVersion = '2.8.3'
 
         //aop libs
         aspectjVersion = '1.8.0'
@@ -60,8 +60,10 @@ allprojects {
                 starterTest     : "org.springframework.boot:spring-boot-starter-test:$springBootVersion",
                 starterTomcat   : "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion",
                 actuator        : "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion",
+                starterWs              : "org.springframework.boot:spring-boot-starter-ws:$springBootVersion",
                 yaml            : "org.yaml:snakeyaml:$yamlVersion",
-                devtools        : "org.springframework.boot:spring-boot-devtools:$springBootVersion"
+                devtools        : "org.springframework.boot:spring-boot-devtools:$springBootVersion",
+                mq              : "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
         ]
 
         tests = [
@@ -102,7 +104,10 @@ allprojects {
                 hikari            : "com.zaxxer:HikariCP:2.4.7",
                 hessian           : "com.caucho:hessian:$hessianVersion",
                 burlap            : "com.caucho:burlap:$burlapVersion",
-                mq                : "org.apache.activemq:activemq-spring:$mqVersion"
+                mq                : "org.apache.activemq:activemq-spring:$mqVersion",
+                mqBroker          : "org.apache.activemq:activemq-broker:$mqVersion",
+                wsdl4j            : "wsdl4j:wsdl4j:1.6.1",
+                jaxb              : "com.sun.xml.bind:jaxb-xjc:2.2.4-1"
         ]
 
         hibernate = [

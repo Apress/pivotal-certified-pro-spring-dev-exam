@@ -36,36 +36,43 @@ public class DBInitializer {
         john.setPassword("test");
         john.setUserType(UserType.OWNER);
         users.add(john);
+
         Pet max = new Pet();
         max.setName("Max");
         max.setAge(10);
         max.setPetType(PetType.DOG);
         max.setRfid("1122334455");
         john.addPet(max);
+
         Pet mona = new Pet();
         mona.setName("Mona");
         mona.setAge(2);
         mona.setPetType(PetType.CAT);
         mona.setRfid("1100223344");
         john.addPet(mona);
+
         User mary = buildUser("Mary.Poppins@pet.com");
         mary.setPassword("test");
         mary.setUserType(UserType.SITTER);
         users.add(mary);
-        User victoria = buildUser("victoria.jones@pet.com");
-        victoria.setPassword("test");
-        victoria.setUserType(UserType.BOTH);
-        users.add(victoria);
+
+        User jessica = buildUser("Jessica.Jones@pet.com");
+        jessica.setPassword("test");
+        jessica.setUserType(UserType.BOTH);
+        users.add(jessica);
+
         Pet kiki = new Pet();
         kiki.setName("Kiki");
         kiki.setAge(3);
         kiki.setPetType(PetType.BIRD);
         kiki.setRfid("1100221144");
-        victoria.addPet(kiki);
+        jessica.addPet(kiki);
+
         User johnny = buildUser("johnny.big@pet.com");
         johnny.setPassword("test");
         johnny.setUserType(UserType.SITTER);
         users.add(johnny);
+
         User gigi = buildUser("gigi.pedala@pet.com");
         gigi.setPassword("test");
         gigi.setUserType(UserType.SITTER);

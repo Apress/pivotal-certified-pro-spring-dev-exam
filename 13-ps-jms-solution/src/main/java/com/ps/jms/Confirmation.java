@@ -1,15 +1,18 @@
-package com.ps.ents;
+package com.ps.jms;
 
 import java.io.Serializable;
 
 /**
  * Created by iuliana.cosmina on 10/9/16.
  */
-public class Confirmation implements Serializable {
+public class Confirmation {
 
     private int ackNumber;
 
     private String verificationComment;
+
+    public Confirmation() {
+    }
 
     public Confirmation(int ackNumber, String verificationComment) {
         this.ackNumber = ackNumber;

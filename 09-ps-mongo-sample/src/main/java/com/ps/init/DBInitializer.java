@@ -33,9 +33,9 @@ public class DBInitializer {
         mary.setPassword("test");
         users.add(mary);
 
-        User victoria = buildUser("victoria.jones@pet.com");
-        victoria.setPassword("test");
-        users.add(victoria);
+        User jessica = buildUser("Jessica.Jones@pet.com");
+        jessica.setPassword("test");
+        users.add(jessica);
 
 
         User johnny = buildUser("johnny.big@pet.com");

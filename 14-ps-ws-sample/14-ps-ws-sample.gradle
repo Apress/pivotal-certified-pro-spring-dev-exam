@@ -18,10 +18,6 @@ dependencies {
     testCompile boot.starterTest
 }
 
-war {
-    baseName = 'ws-boot'
-}
-
 bootRun {
     addResources = true
 }

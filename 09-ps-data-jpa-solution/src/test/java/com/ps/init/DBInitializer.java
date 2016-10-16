@@ -52,7 +52,7 @@ public class DBInitializer {
         mary.setPassword("test");
         mary.setUserType(UserType.SITTER);
         users.add(mary);
-        User victoria = buildUser("victoria.jones@pet.com");
+        User victoria = buildUser("Jessica.Jones@pet.com");
         victoria.setPassword("test");
         victoria.setUserType(UserType.BOTH);
         users.add(victoria);

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:um="http://ws-boot.com/schemas/um"
+           elementFormDefault="qualified"
+           targetNamespace="http://ws-boot.com/schemas/um">
+
+
+    <xs:element name="getUserRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="email" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getUserResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="userType" type="um:userType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="userMessage">
+        <xs:sequence>
+            <xs:element name="email">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[^@]+@[^\.]+\..+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="rating" type="xs:double"/>
+            <xs:element name="userType" type="um:userType"/>
+        </xs:sequence>
+        <xs:attribute name="active" type="xs:boolean"/>
+    </xs:complexType>
+
+
+    <xs:simpleType name="userType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OWNER"/>
+            <xs:enumeration value="SITTER"/>
+            <xs:enumeration value="BOTH"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
