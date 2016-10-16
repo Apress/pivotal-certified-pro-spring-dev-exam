@@ -27,7 +27,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean(servlet, "/ws/*");
     }
 
-    @Bean(name = "userMessages")
+    @Bean(name = "userMessage")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema userMessageSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("UsersPort");
