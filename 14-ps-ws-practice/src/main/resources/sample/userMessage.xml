@@ -1,0 +1,8 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Body>
+        <um:userMessage xmlns="http://ws-boot.com/schemas/um" active="true">
+            <um:email>John.Cusack@pet.com</um:email>
+            <um:rating>5.0</um:rating>
+        </um:userMessage>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

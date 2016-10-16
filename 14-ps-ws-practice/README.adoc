@@ -1,0 +1,9 @@
+= Spring WS
+
+Execute
+
+----
+xjc -d src/main/jaxb -p com.ps.ws src/main/resources/sample/userMessage.xsd
+----
+
+right here to generate WS classes.
