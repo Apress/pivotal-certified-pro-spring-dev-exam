@@ -1,4 +1,4 @@
-package com.ps.ws;
+package com.ps.start;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

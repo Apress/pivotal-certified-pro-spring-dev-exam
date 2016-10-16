@@ -1,4 +1,4 @@
-package com.ps.ws;
+package com.ps.start;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by iuliana.cosmina on 8/22/16.
  */
-@SpringBootApplication(scanBasePackages = {"com.ps.ws"})
+@SpringBootApplication(scanBasePackages = {"com.ps"})
 public class Application extends SpringBootServletInitializer {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
