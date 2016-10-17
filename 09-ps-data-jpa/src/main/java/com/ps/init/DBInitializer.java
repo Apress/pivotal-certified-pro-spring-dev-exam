@@ -33,7 +33,7 @@ public class DBInitializer {
         userRepo.deleteAll();
         logger.info("Starting database initialization...");
         Set<User> users = new HashSet<>();
-        User john = buildUser("john.cusack@pet.com");
+        User john = buildUser("John.Cusack@pet.com");
         john.setPassword("test");
         john.setUserType(UserType.OWNER);
         users.add(john);
@@ -69,17 +69,19 @@ public class DBInitializer {
         kiki.setRfid("1100221144");
         jessica.addPet(kiki);
 
-        User johnny = buildUser("johnny.big@pet.com");
+        User johnny = buildUser("Johnny.Big@pet.com");
         johnny.setPassword("test");
         johnny.setUserType(UserType.SITTER);
         users.add(johnny);
 
-        User gigi = buildUser("gigi.pedala@pet.com");
+        User gigi = buildUser("Gigi.Pedala@pet.com");
         gigi.setPassword("test");
         gigi.setUserType(UserType.SITTER);
         users.add(gigi);
 
         userRepo.save(users);
+        //Print them in the log
+        userRepo.findAll().stream().forEach(u -> logger.debug("user" + u.toString()));
         logger.info("Database initialization finished.");
     }
 

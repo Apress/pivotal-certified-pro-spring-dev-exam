@@ -14,9 +14,13 @@ public interface UserService {
 
     User findByEmail(String email);
 
+    User findByUsername(String username);
+
     long countUsers();
 
     void create(String email, String password, UserType userType);
+
+    User create(User user);
 
     void update(User user);
 

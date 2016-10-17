@@ -44,6 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByUsername(String username) {
+        return userRepo.findOneByUsername(username);
+    }
+
+    @Override
     public long countUsers() {
         return userRepo.countUsers();
     }
@@ -71,7 +76,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void create(String email, String password, UserType userType) {
         User user = buildUser(email);
         user.setPassword(password);
@@ -79,12 +84,17 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
     }
 
+    @Override
+    public User create(User user) {
+        userRepo.save(user);
+        return user;
+    }
+
     private void sendEmail(String email) throws MailSendingException {
         if (true) {
             throw new MailSendingException("Configrmation email for password could not be sent. Password was not send.");
         }
     }
-
 
     @Override
     public void update(User user) {

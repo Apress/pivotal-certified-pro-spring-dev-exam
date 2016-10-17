@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.ps.web"})
+@ComponentScan(basePackages = {"com.ps.web", "com.ps.exs"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     //Declare our static resources. I added cache to the java config but it?s not required.

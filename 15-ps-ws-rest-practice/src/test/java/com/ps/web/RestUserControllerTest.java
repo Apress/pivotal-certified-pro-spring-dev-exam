@@ -11,8 +11,6 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
-import java.util.Collection;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -26,11 +24,9 @@ public class RestUserControllerTest {
     /**
      * Rest Services endpoints
      */
-    private static final String GET_ALL_URL = "http://localhost:8080/service/users";
-    private static final String GET_POST_URL = "http://localhost:8080/service/user/{$email}";
-    private static final String PUT_URL = "http://localhost:8080/manager/service/update/{$email}";
-    private static final String GET_BY_TYPE_URL = "http://localhost:8080/service/types/{$type}";
-    private static final String GET_IDS_BY_TYPE_URL = "http://localhost:8080/service/types/emails/{$type}";
+    private static final String GET_POST_URL = "http://localhost:8080/users";
+    private static final String GET_PUT_DEL_URL = "http://localhost:8080/users/{$username}";
+    private static final String GET_EMAILS_BY_TYPE_URL = "http://localhost:8080/emails/{$type}";
 
     private RestTemplate restTemplate = null;
 
@@ -41,86 +37,45 @@ public class RestUserControllerTest {
     }
 
 
+    //Test GET all
     @Test
     public void getAll() {
-        User[] users = restTemplate.getForObject(GET_ALL_URL, User[].class, "all");
+        User[] users = restTemplate.getForObject(GET_POST_URL, User[].class);
 
         assertTrue(users.length > 0);
         for (User user : users) {
-            logger.info(user.getId() + ", " + user.getEmail());
+            logger.info(user.getId() + ", " + user.getEmail() + ", " + user.getUsername());
         }
     }
 
+    //Test GET by username
     @Test
-    public void getByEmail() {
-        User user = restTemplate.getForObject(GET_POST_URL, User.class, "john.cusack@pet.com");
+    public void findByUsername() {
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "JohnCusack");
 
         assertNotNull(user);
+        assertEquals("John.Cusack@pet.com", user.getEmail());
         assertEquals(UserType.OWNER, user.getUserType());
     }
 
-    /**
-     * negative test - search for non existent user
-     *
-     * @throws Exception
-     */
     @Test(expected = HttpClientErrorException.class)
-    public void tryByEmail() throws Exception {
-        restTemplate.getForObject(GET_POST_URL, User.class, "john.cusack@pet.com");
-    }
-
-
-    @Test
-    public void getByType() {
-        User[] users = restTemplate.getForObject(GET_BY_TYPE_URL, User[].class, "BOTH");
-
-        assertNotNull(users);
-        assertEquals(2, users.length);
-    }
-
-    /**
-     * negative test - search for non existent type
-     */
-    @Test(expected = HttpClientErrorException.class)
-    public void tryByType() {
-        restTemplate.getForObject(GET_BY_TYPE_URL, User[].class, "SITTER");
-    }
-
-
-    @Test
-    public void getEmailsByType() {
-        String[] users = restTemplate.getForObject(GET_IDS_BY_TYPE_URL, String[].class, "OWNER");
-
-        assertNotNull(users);
-        assertEquals(2, users.length);
-    }
-
-
-    /**
-     * Test PUT
-     */
-    @Test
-    public void editUser() {
-        //TODO Fix this
-        User user = mockUser("doctor.who@tardis.com", UserType.ADMIN, "what");
-        user.setId(2L);
-
-        final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        final HttpEntity<User> trRequest = new HttpEntity<>(user, headers);
-        ResponseEntity<User> responseEntity = restTemplate.exchange(PUT_URL, HttpMethod.PUT, trRequest, User.class, "Jessica.Jones@pet.com");
-
-        User editedTr = responseEntity.getBody();
-        assertNotNull(editedTr);
-        //assertTrue(111D == editedTr.getAmount());
-        //assertEquals("test", editedTr.getType());
+    public void findByUsernameNonExistent() {
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "IulianaCosmina");
+        assertNotNull(user);
     }
 
     //Test POST
     @Test
     public void createUser() {
-        User user = mockUser("doctor.who@tardis.com", UserType.ADMIN, "what");
+        User user = new User();
+        user.setEmail("Doctor.Who@tardis.com");
+        user.setUsername("DoctorWho");
+        user.setLastName("Doctor");
+        user.setFirstName("Who");
+        user.setRating(0d);
+        user.setActive(true);
+        user.setPassword("what");
+        user.setUserType(UserType.ADMIN);
 
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -130,19 +85,53 @@ public class RestUserControllerTest {
         logger.info(">> Location for new user: " + uri);
 
         // test insertion
-        User[] users = restTemplate.getForObject(GET_BY_TYPE_URL, User[].class, "ADMIN");
+        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
 
-        assertNotNull(users);
-        assertTrue(users.length > 0);
+        assertNotNull(newUser);
+        assertNotNull(newUser.getId());
 
     }
 
-    private User mockUser(String  email, UserType type, String password){
+    // Test PUT
+    @Test
+    public void editUser() {
         User user = new User();
-        user.setEmail(email);
-        user.setUserType(type);
-        user.setPassword(password);
-        return user;
+        user.setEmail("MissJones@pet.com");
+        user.setUsername("JessicaJones");
+        user.setRating(5d);
+        user.setLastName("Jessica");
+        user.setFirstName("Jones");
+        user.setPassword("what");
+        user.setUserType(UserType.ADMIN);
+
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        final HttpEntity<User> userRequest = new HttpEntity<>(user, headers);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(GET_PUT_DEL_URL, HttpMethod.PUT, userRequest, User.class,
+                "JessicaJones");
+
+        User editedUser = responseEntity.getBody();
+        assertNotNull(editedUser);
+        assertEquals("MissJones@pet.com", editedUser.getEmail());
+    }
+
+    // Test DELETE
+    @Test
+    public void deleteUser() {
+        restTemplate.delete(GET_PUT_DEL_URL, "DoctorWho");
+        // test insertion
+        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
+        assertNull(newUser);
+    }
+
+
+    @Test
+    public void getEmailsByType() {
+        String[] users = restTemplate.getForObject(GET_EMAILS_BY_TYPE_URL, String[].class, "OWNER");
+
+        assertNotNull(users);
+        assertEquals(2, users.length);
     }
 
 }

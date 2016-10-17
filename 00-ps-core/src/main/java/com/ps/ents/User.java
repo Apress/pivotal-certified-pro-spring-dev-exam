@@ -27,8 +27,6 @@ public class User extends AbstractEntity {
     public static final String FIND_BY_USERNAME_LIKE = "findByUsernameLike";
 
 
-    private String code;
-
     /**
      * username = email
      */
