@@ -1,5 +1,6 @@
 package com.ps.repos;
 
+import com.ps.base.UserType;
 import com.ps.ents.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +17,12 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     @Query("select u from User u where u.username like %?1%")
     List<User> findAllByUserName(String username);
+
+    @Query("select u from User u where u.userType= :userType")
+    List<User> findByType(UserType usertype);
+
+    @Query("select u.email from User u where u.userType= :userType")
+    List<String> getEmailsByType(UserType userType);
 
     @Query("select u from User u where u.username= :un")
     User findOneByUsername(@Param("un") String username);

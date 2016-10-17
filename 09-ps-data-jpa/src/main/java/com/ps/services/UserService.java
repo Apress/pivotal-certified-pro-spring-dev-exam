@@ -18,8 +18,16 @@ public interface UserService {
 
     void create(String email, String password, UserType userType);
 
+    void update(User user);
+
     List<User> findAll();
 
+    List<User> findByType(UserType userType);
+
     void deleteById(Long id);
+
+    void deleteByEmail(String email);
+
+    List<String> getEmailsByType(UserType userType);
 
 }

@@ -54,6 +54,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> findByType(UserType userType) {
+        return userRepo.findByType(userType);
+    }
+
+    @Override
+    public List<String> getEmailsByType(UserType userType) {
+        return userRepo.getEmailsByType(userType);
+    }
+
+    @Override
     @PreAuthorize("hasRole('ADMIN')")
     public void deleteById(Long id) {
         logger.info("Sensitive operation -> Deleting user with id:" + id);
@@ -73,5 +83,17 @@ public class UserServiceImpl implements UserService {
         if (true) {
             throw new MailSendingException("Configrmation email for password could not be sent. Password was not send.");
         }
+    }
+
+
+    @Override
+    public void update(User user) {
+        userRepo.saveAndFlush(user);
+    }
+
+    @Override
+    public void deleteByEmail(String email) {
+        User user = userRepo.findByEmail(email);
+        userRepo.delete(user);
     }
 }
