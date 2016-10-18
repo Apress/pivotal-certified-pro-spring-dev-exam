@@ -37,6 +37,7 @@ include '13-ps-jms-solution'
 include '14-ps-ws-sample'
 include '15-ps-ws-rest-practice'
 include '15-ps-ws-rest-solution'
+include '15-ps-rest-boot-sample'
 include '16-ps-jmx-practice'
 include '16-ps-jmx-solution'
 include '17-ps-micro-sample'
@@ -49,4 +50,5 @@ rootProject.children.each { project ->
     assert project.buildFile.exists()
     assert project.buildFile.isFile()
 }
+
 

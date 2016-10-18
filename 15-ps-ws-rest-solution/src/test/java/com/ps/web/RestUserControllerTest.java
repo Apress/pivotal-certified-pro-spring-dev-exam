@@ -51,8 +51,7 @@ public class RestUserControllerTest {
     //Test GET by username
     @Test
     public void findByUsername() {
-        User user = null;
-        //TODO 58. Use the proper RestTemplate method to retrieve a user resource with username="JohnCusack"
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "JohnCusack");
 
         assertNotNull(user);
         assertEquals("John.Cusack@pet.com", user.getEmail());
@@ -77,7 +76,13 @@ public class RestUserControllerTest {
         user.setActive(true);
         user.setPassword("what");
         user.setUserType(UserType.ADMIN);
-       //TODO 59. Use the proper RestTemplate method to save the user resource created previously
+
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        final HttpEntity<User> crRequest = new HttpEntity<>(user, headers);
+        URI uri = this.restTemplate.postForLocation(GET_POST_URL, crRequest, User.class);
+        logger.info(">> Location for new user: " + uri);
 
         // test insertion
         User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
@@ -99,17 +104,22 @@ public class RestUserControllerTest {
         user.setPassword("what");
         user.setUserType(UserType.ADMIN);
 
-        User editedUser = null;
-       //TODO 60. Use the proper RestTemplate method to update the user resource with username= "JessicaJones"
-        // and retrieve the result in the userEdit object
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        final HttpEntity<User> userRequest = new HttpEntity<>(user, headers);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(GET_PUT_DEL_URL, HttpMethod.PUT, userRequest, User.class,
+                "JessicaJones");
+
+        User editedUser = responseEntity.getBody();
         assertNotNull(editedUser);
         assertEquals("MissJones@pet.com", editedUser.getEmail());
     }
 
     // Test DELETE
-    @Test(expected = HttpClientErrorException.class)
+    @Test
     public void deleteUser() {
-        //TODO 61. Use the proper RestTemplate method to delete the user resource with username= "DoctorWho"
+        restTemplate.delete(GET_PUT_DEL_URL, "DoctorWho");
         // test insertion
         User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
         assertNull(newUser);

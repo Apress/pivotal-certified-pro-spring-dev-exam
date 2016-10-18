@@ -6,7 +6,6 @@ import com.ps.exs.UserException;
 import com.ps.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +19,7 @@ import java.util.List;
 /**
  * Created by iuliana.cosmina on 10/16/16.
  */
-//TODO 55. Place proper annotation here, to make this class handle REST requests
+@RestController
 public class RestUserController {
 
     @Autowired
@@ -31,7 +30,8 @@ public class RestUserController {
         return userService.findAll();
     }
 
-   //TODO 56. Place proper annotations to handle a REST POST request
+    @ResponseStatus(HttpStatus.CREATED)
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
     public void create(@RequestBody @Valid User newUser, @Value("#{request.requestURL}")
             StringBuffer originalUrl, HttpServletResponse response) throws UserException {
         if (newUser.getId() != null) {
@@ -61,9 +61,7 @@ public class RestUserController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/users/{$username}"/*, method = TODO 57. Choose the proper HTTP method type to
-        resolve a HTTP REST PUT request  */
-            , produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users/{$username}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     public User update(@PathVariable("$username") String username, @RequestBody User newUser) throws UserException {
         User user = userService.findByUsername(username);
         if (user == null) {

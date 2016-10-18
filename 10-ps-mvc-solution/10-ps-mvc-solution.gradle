@@ -19,9 +19,9 @@ test {
 
 gretty {
     port = 8080
-    contextPath = '/mvc-basic'
+    contextPath = '/mvc-solution'
 }
 
 war {
-    archiveName = 'mvc-basic.war'
+    archiveName = 'mvc-solution.war'
 }
