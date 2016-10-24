@@ -60,10 +60,11 @@ allprojects {
                 starterTest     : "org.springframework.boot:spring-boot-starter-test:$springBootVersion",
                 starterTomcat   : "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion",
                 actuator        : "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion",
-                starterWs              : "org.springframework.boot:spring-boot-starter-ws:$springBootVersion",
+                starterWs       : "org.springframework.boot:spring-boot-starter-ws:$springBootVersion",
                 yaml            : "org.yaml:snakeyaml:$yamlVersion",
                 devtools        : "org.springframework.boot:spring-boot-devtools:$springBootVersion",
-                mq              : "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion"
+                mq              : "org.springframework.boot:spring-boot-starter-activemq:$springBootVersion",
+                mongo           : "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
         ]
 
         tests = [

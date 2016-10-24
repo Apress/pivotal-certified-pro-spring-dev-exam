@@ -1,0 +1,29 @@
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+buildscript {
+    dependencies {
+        classpath boot.springBootPlugin
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url "http://repo.spring.io/snapshot/" }
+        maven { url "http://repo.spring.io/milestone" }
+    }
+
+}
+
+dependencies {
+    compile boot.starterWeb, boot.devtools
+    testCompile boot.starterTest
+    //providedRuntime boot.starterTomcat
+}
+
+war {
+    baseName = 'rest-boot'
+}
+
+bootRun {
+    addResources = true
+}

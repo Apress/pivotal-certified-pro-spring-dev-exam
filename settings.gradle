@@ -38,9 +38,8 @@ include '14-ps-ws-sample'
 include '15-ps-ws-rest-practice'
 include '15-ps-ws-rest-solution'
 include '15-ps-rest-boot-sample'
-include '16-ps-jmx-practice'
-include '16-ps-jmx-solution'
-include '17-ps-micro-sample'
+include '16-ps-jmx-sample'
+//include '17-ps-micro-sample'
 
 //we check if the modules have gradle configuration files
 println(' This project is an asset management POC application')
