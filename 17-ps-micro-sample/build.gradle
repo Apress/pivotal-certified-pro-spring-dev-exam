@@ -1,0 +1,40 @@
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+
+buildscript {
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:" + springBootVersion)
+	}
+
+	repositories {
+		mavenCentral()
+	}
+}
+
+jar {
+	baseName = 'ps-micro'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+
+	compile 'com.h2database:h2:' + h2Version,
+			'org.springframework.boot:spring-boot-starter:' + springBootVersion,
+			'org.springframework.boot:spring-boot-starter-web:' + springBootVersion,
+			'org.springframework.boot:spring-boot-starter-thymeleaf:' + springBootVersion,
+			'org.springframework.boot:spring-boot-starter-test:' + springBootVersion,
+			'org.springframework.boot:spring-boot-starter-data-jpa:' + springBootVersion,
+			'org.springframework.data:spring-data-commons:' + springDataCommonsVersion,
+			'org.springframework.cloud:spring-cloud-starter:' + springCloudStarterVersion,
+			'org.springframework.cloud:spring-cloud-starter-eureka-server:' + springCloudStarterEurekaServerVersion
+
+	testCompile 'org.springframework.boot:spring-boot-starter-test:' + springBootVersion
+}
+
+springBoot {
+	mainClass = "com.ps.Application"
+}

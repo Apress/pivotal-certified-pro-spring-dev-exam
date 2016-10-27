@@ -1,0 +1,22 @@
+# Spring properties
+spring:
+  application:
+     name: pets-service  # Service registers under this name
+
+# HTTP Server
+server:
+  port: 4000   # HTTP (Tomcat) port
+
+# Discovery Server Access
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:3000/eureka/
+
+
+  instance:
+    leaseRenewalIntervalInSeconds: 0
+    preferIpAddress: false
+

@@ -1,0 +1,11 @@
+# Configure this Discovery Server
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false # do not auto-register as client
+    fetchRegistry: false
+
+server:
+  port: 3000   # where this discovery server is accessible
+  waitTimeInMsWhenSyncEmpty: 0

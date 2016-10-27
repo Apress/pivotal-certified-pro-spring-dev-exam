@@ -1,0 +1,42 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>Pet Sitter Microservices Demo - All data page</head>
+
+<body>
+<h1>Pet owners with their pets</h1>
+<div th:if="not ${owner}">
+    No owner found!
+</div>
+
+<div th:if="not ${owner.pets}">
+    No pets found!
+</div>
+
+<div th:if="${owner.pets}">
+    <p>
+        Pets for <span th:text="${owner.username}"></span> are:
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Pet Name</th>
+            <th>Pet Type</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="pet : ${owner.pets}">
+            <td th:text="${pet.name}">gigi</td>
+            <td th:text="${pet.type}">type</td>
+            <td th:text="${pet.age}">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
