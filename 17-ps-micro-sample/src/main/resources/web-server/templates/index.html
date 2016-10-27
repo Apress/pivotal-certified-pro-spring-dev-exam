@@ -1,17 +1,31 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 
-<head>Pet Sitter Microservices Demo</head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>
+        Pet Sitter Microservices Demo
+    </title>
+    <link type="text/css" rel="stylesheet" href="/general.css"/>
+</head>
 
 <body>
+<div class="page">
+    <div class="banner"></div>
+    <h1>Pet Sitter Microservices Demo - Web service that accesses both microservices</h1>
+    <h3>Overview</h3>
+    <ul>
+        <li>This is a simple web application that accesses two microservices to extract data</li>
+        <li>All the information is fetched using a RESTful interfaces to microservices.</li>
+        <li><a th:href="@{/all/1}">Test: Owner with pets</a> </li>
+        <li><a th:href="@{/all/2}">Test: Owner without pets</a> </li>
+        <li><a th:href="@{/all/6}">Test: Owner does not exist</a> </li>
+    </ul>
 
-	<h1>Pet Sitter Microservices Demo - Web service that accesses both microservices</h1>
-	<h3>Overview</h3>
-	<ul>
-		<li>This is a simple web application that accesses two microservices to extract data</li>
-		<li>All the information is fetched using a RESTful interfaces to microservices.</li>
-	</ul>
-
+    <div class="footer">
+        <p>Copyright © 2016 by Iuliana Cosmina and Apress. All rights reserved.</p>
+    </div>
+</div>
 </body>
 </html>

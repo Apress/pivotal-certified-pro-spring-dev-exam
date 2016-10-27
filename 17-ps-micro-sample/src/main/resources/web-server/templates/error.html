@@ -1,0 +1,28 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>
+        Pet Sitter Microservices Demo -- Error page
+    </title>
+    <link type="text/css" rel="stylesheet" href="/general.css"/>
+</head>
+
+<body>
+<div class="page">
+    <div class="banner"></div>
+    <div class="error">
+        <p th:if="${status}">
+            <b>Response Status:</b> <span th:text="${status}">status-code</span> <span
+                th:if="${error}" th:text="'('+${error}+')'">error ...</span>
+        </p>
+
+    </div>
+    <div class="footer">
+        <p>Copyright © 2016 by Iuliana Cosmina and Apress. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
