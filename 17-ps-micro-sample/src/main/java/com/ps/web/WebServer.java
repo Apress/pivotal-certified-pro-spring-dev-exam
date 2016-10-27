@@ -19,7 +19,8 @@ import java.io.IOException;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(useDefaultFilters = false) // Disable component scanner, needed because of the microservices we need access to
+@ComponentScan(useDefaultFilters = false) // Disable component scanner,
+// needed because of the microservices we need access to
 public class WebServer {
 
 	private static Logger logger = LoggerFactory.getLogger(WebServer.class);

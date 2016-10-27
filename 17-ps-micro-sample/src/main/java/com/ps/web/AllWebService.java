@@ -27,6 +27,11 @@ public class AllWebService {
 	private String petsServiceUrl;
 	private String usersServiceUrl;
 
+	public AllWebService(String usersServiceUrl, String petsServiceUrl) {
+		this.usersServiceUrl = usersServiceUrl;
+		this.petsServiceUrl = petsServiceUrl;
+	}
+
 	public UserSkeleton findUserById(Long id) {
 		logger.info("findUserById(" + id + " ) called");
 		User user = null;
@@ -59,8 +64,4 @@ public class AllWebService {
 		return petsList;
 	}
 
-	public AllWebService(String usersServiceUrl, String petsServiceUrl) {
-		this.usersServiceUrl = usersServiceUrl;
-		this.petsServiceUrl = petsServiceUrl;
-	}
 }

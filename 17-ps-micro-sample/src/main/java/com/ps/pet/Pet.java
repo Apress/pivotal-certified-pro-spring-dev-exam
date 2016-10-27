@@ -1,6 +1,5 @@
 package com.ps.pet;
 
-import com.ps.PetType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;

@@ -17,6 +17,6 @@ eureka:
 
 
   instance:
-    leaseRenewalIntervalInSeconds: 0
+    leaseRenewalIntervalInSeconds: 5
     preferIpAddress: false
 
