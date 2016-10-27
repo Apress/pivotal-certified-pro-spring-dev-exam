@@ -44,19 +44,9 @@ public class PetController {
 
 	@RequestMapping("/type/{type}")
 	public List<Pet> byPetType(@PathVariable("type") String type) {
-		PetType petType  = null;
-		try {
-			petType= PetType.valueOf(type);
-		} catch (Exception e) {
-			throw new PetNotFoundException("Invalid type:" + type.toString());
-		}
-		List<Pet> pets = petRepository.findAllByType(petType);
-		logger.info("Pets found for type" + type + ", " + pets);
-		if (pets.isEmpty())
-			throw new PetNotFoundException(type.toString());
-		else {
-			return pets;
-		}
+		/*TODO 62. Complete the method body such as, when the \http://localhost:4000/pets/type/DOG
+		 request is send to the microservice, all dogs information in the system will be returned */
+		return null;
 	}
 
 	@RequestMapping("/owner/{id}")

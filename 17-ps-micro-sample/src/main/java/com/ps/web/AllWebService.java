@@ -67,16 +67,8 @@ public class AllWebService {
 	public List<PetSkeleton> findByType(String type) {
 		logger.info("findBytype(" + type + " ) called");
 		Pet[] pets = null;
-		try {
-			pets = restTemplate.getForObject(petsServiceUrl + "/pets/type/{type}",
-					com.ps.pet.Pet[].class, type);
-		} catch (HttpClientErrorException e) {
-			// no pets
-		}
-
-		if(pets == null || pets.length ==0) {
-			return null;
-		}
+		/*TODO 63. Complete the implementation of this method so that when accessing http://localhost:4002/pets/DOG
+		 a page with all docs in the system will be displayed. */
 		List<PetSkeleton> petsList = new ArrayList<>();
 		for (Pet pet : pets) {
 			petsList.add(new PetSkeleton(pet.getName(), pet.getAge(), pet.getPetType().toString()));
