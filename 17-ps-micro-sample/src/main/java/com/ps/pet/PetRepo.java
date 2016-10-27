@@ -15,6 +15,9 @@ public interface PetRepo
 	@Query("select p from Pet p where p.ownerId= :owner")
 	List<Pet> findAllByOwner(@Param("owner") Long owner);
 
+	@Query("select p from Pet p where p.petType= :type")
+	List<Pet> findAllByType(@Param("type") PetType petType);
+
 	@Query("select p from Pet p where p.rfid= :rfid")
 	Pet findByRfId(@Param("rfid") String rfid);
 

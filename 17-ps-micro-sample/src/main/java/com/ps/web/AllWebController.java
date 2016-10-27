@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * Created by iuliana.cosmina on 10/27/16.
  */
@@ -33,4 +35,14 @@ public class AllWebController {
 		model.addAttribute("owner", owner);
 		return "all";
 	}
+
+	@RequestMapping("/pets/{type}")
+	public String byOwner(Model model,
+			@PathVariable("type") String type) {
+		List<PetSkeleton> pets = allWebService.findByType(type);
+		model.addAttribute("pets", pets);
+		model.addAttribute("type", type);
+		return "pets";
+	}
+
 }

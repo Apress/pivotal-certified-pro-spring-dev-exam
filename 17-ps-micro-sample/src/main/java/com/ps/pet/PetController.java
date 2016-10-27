@@ -42,6 +42,23 @@ public class PetController {
 		}
 	}
 
+	@RequestMapping("/type/{type}")
+	public List<Pet> byPetType(@PathVariable("type") String type) {
+		PetType petType  = null;
+		try {
+			petType= PetType.valueOf(type);
+		} catch (Exception e) {
+			throw new PetNotFoundException("Invalid type:" + type.toString());
+		}
+		List<Pet> pets = petRepository.findAllByType(petType);
+		logger.info("Pets found for type" + type + ", " + pets);
+		if (pets.isEmpty())
+			throw new PetNotFoundException(type.toString());
+		else {
+			return pets;
+		}
+	}
+
 	@RequestMapping("/owner/{id}")
 	public List<Pet> byOwner(@PathVariable("id") Long ownerId) {
 		List<Pet> pets = petRepository

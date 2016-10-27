@@ -1,0 +1,50 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>
+        Pet Sitter Microservices Demo - All data page
+    </title>
+    <link type="text/css" rel="stylesheet" href="/general.css"/>
+</head>
+
+
+<body>
+<div class="page">
+    <div class="banner"></div>
+
+    <div th:if="not ${pets}">
+        No pets found!
+    </div>
+
+    <div th:if="${pets}">
+        <p>
+            All pets with type: <span th:text="${type}">aaa</span>
+        </p>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Pet Name</th>
+                <th>Pet Type</th>
+                <th>Age</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="pet : ${pets}">
+                <td th:text="${pet.name}">gigi</td>
+                <td th:text="${pet.type}">type</td>
+                <td th:text="${pet.age}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer">
+        <p>Copyright © 2016 by Iuliana Cosmina and Apress. All rights reserved.</p>
+    </div>
+</div>
+</body>
+</html>
