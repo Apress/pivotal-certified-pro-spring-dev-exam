@@ -6,28 +6,24 @@
 			http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          version="2.4">
 
-    <!-- Beans in these files will makeup the configuration of the root web application context -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/spring/app-config.xml</param-value>
-    </context-param>
-
-    <!-- Bootstraps the root web application context before servlet initialization -->
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-    <!-- Deploys the 'invoker' dispatcher servlet whose configuration resides in /WEB-INF/remoting-servlet-config.xml -->
     <servlet>
         <servlet-name>invoker</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/spring/remoting-config.xml</param-value>
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
         </init-param>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                com.ps.config.WebConfig
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
-    <!-- Maps all / URLs to the 'invoker' servlet -->
     <servlet-mapping>
         <servlet-name>invoker</servlet-name>
         <url-pattern>/invoker/*</url-pattern>

@@ -1,7 +1,6 @@
 package com.ps.invoker;
 
 import com.ps.ents.User;
-import com.ps.hessian.config.HessianClientConfig;
 import com.ps.invoker.config.HttpInvokerClientConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;

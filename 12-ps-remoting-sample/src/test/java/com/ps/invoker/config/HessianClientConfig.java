@@ -1,4 +1,4 @@
-package com.ps.hessian.config;
+package com.ps.invoker.config;
 
 import com.ps.services.UserService;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +12,10 @@ import org.springframework.remoting.caucho.HessianProxyFactoryBean;
 public class HessianClientConfig {
 
     @Bean
-    public UserService userService() {
+    public UserService userServiceHessian() {
         HessianProxyFactoryBean factoryBean = new HessianProxyFactoryBean();
         factoryBean.setServiceInterface(UserService.class);
-        factoryBean.setServiceUrl("http://localhost:8080/invoker/hessianInvoker/userService");
+        factoryBean.setServiceUrl("http://localhost:8080/hessian/hessianInvoker/userService");
         factoryBean.afterPropertiesSet();
         return (UserService) factoryBean.getObject();
     }

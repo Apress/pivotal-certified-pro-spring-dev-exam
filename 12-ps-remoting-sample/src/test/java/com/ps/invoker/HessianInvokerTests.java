@@ -1,7 +1,7 @@
-package com.ps.hessian;
+package com.ps.invoker;
 
 import com.ps.ents.User;
-import com.ps.hessian.config.HessianClientConfig;
+import com.ps.invoker.config.HessianClientConfig;
 import com.ps.services.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ import static org.junit.Assert.assertNotNull;
 
 @ContextConfiguration(classes = {HessianClientConfig.class})
 @RunWith(SpringJUnit4ClassRunner.class)
-public class HessianTests {
+public class HessianInvokerTests {
 
 	@Autowired
 	@Qualifier("userServiceHessian")
