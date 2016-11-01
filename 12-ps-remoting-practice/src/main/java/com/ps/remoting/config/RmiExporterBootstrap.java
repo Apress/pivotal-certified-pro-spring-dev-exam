@@ -1,9 +1,7 @@
 package com.ps.remoting.config;
 
 import com.ps.config.ServiceConfig;
-import com.ps.remoting.config.RmiServerConfig;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class RmiExporterBootstrap {
 
