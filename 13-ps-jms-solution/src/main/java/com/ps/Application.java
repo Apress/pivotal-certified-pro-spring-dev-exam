@@ -1,10 +1,8 @@
 package com.ps;
 
 import com.ps.jms.User;
-import com.ps.jms.UserReceiver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
@@ -53,11 +51,24 @@ public class Application {
 
     @Bean
     public JmsListenerContainerFactory<?> connectionFactory(ConnectionFactory connectionFactory,
-                                                    DefaultJmsListenerContainerFactoryConfigurer configurer) {
+                                                            DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory factory = new DefaultJmsListenerContainerFactory();
         // This provides all boot's default to this factory, including the message converter
         configurer.configure(factory, connectionFactory);
         // You could still override some of Boot's default if necessary.
         return factory;
     }
+
+
+  /*  @Bean ConnectionFactory connectionFactory(){
+        ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory();
+        connectionFactory.setBrokerURL("tcp://localhost:60006");
+        return connectionFactory;
+    }
+
+  @Bean
+    Queue userQueue(){
+      return new ActiveMQQueue("queues.users");
+  }
+  */
 }
