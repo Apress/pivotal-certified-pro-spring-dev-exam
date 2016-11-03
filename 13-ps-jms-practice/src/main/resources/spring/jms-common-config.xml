@@ -11,6 +11,11 @@
     <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
         <property name="brokerURL" value="tcp://localhost:61616"/>
         <property name="trustAllPackages" value="true"/>
+        <!--<property name="trustedPackages">
+            <list>
+                <value>com.ps</value>
+            </list>
+        </property>-->
     </bean>
 
     <!-- receiver receives user messages in here -->
@@ -22,8 +27,6 @@
     <bean id="confirmationQueue" class="org.apache.activemq.command.ActiveMQQueue">
         <constructor-arg value="com.queue.confirmation"/>
     </bean>
-
-    <bean id="converter" class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
 
     <context:component-scan base-package="com.ps.jms"/>
 

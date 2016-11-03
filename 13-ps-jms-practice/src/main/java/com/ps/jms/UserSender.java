@@ -20,6 +20,8 @@ public class UserSender {
 
     public void sendMessage(final User user) {
 
+        jmsTemplate.setPubSubNoLocal(true);
+
         jmsTemplate.send(new MessageCreator() {
             @Override
             public Message createMessage(Session session) throws JMSException {

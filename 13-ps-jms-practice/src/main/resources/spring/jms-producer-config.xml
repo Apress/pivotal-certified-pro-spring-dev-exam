@@ -9,8 +9,6 @@
         <property name="defaultDestination" ref="userQueue"/>
     </bean>
 
-    <bean id="converter" class="org.springframework.jms.support.converter.SimpleMessageConverter"/>
-
     <bean id="containerListener" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="destination" ref="confirmationQueue"/>

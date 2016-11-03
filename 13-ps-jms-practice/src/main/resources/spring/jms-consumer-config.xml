@@ -10,12 +10,14 @@
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="defaultDestination" ref="confirmationQueue"/>
+        <property name="pubSubNoLocal" value="true"/>
     </bean>
 
     <bean id="containerListener" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="destination" ref="userQueue"/>
         <property name="messageListener" ref="userReceiver"/>
+        <property name="concurrency" value="5-10"/>
     </bean>
 
     <bean id="userReceiver" class="com.ps.jms.UserReceiver"/>
