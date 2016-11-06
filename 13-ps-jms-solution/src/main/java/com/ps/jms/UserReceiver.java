@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
+import javax.jms.Session;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -26,7 +27,8 @@ public class UserReceiver{
 
 
     @JmsListener(destination = "userQueue", containerFactory = "connectionFactory")
-    public void receiveMessage(User receivedUser) {
+    public void receiveMessage(User receivedUser, Message message) {
+        logger.info(" >> Original received message: " + message);
         logger.info(" >> Received user: " + receivedUser);
         confirmationSender.sendMessage(new Confirmation(id.incrementAndGet(), "User "
                 + receivedUser.getEmail() + " received."));

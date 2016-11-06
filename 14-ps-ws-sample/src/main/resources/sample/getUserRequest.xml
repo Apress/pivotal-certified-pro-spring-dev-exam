@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:um="http://ws-boot.com/schemas/um">
+<soapenv:Header/>
+<soapenv:Body>
+    <um:getUserRequest>
+        <um:email>John.Cusack@pet.com</um:email>
+    </um:getUserRequest>
+</soapenv:Body>
+</soapenv:Envelope>

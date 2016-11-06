@@ -28,7 +28,6 @@ public class CtxController {
 
         sb.append(INTRO);
 
-
         sb.append("}");
         return sb.toString();
     }
