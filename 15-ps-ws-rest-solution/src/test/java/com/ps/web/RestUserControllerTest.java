@@ -11,6 +11,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import static org.junit.Assert.*;
 
@@ -51,7 +52,7 @@ public class RestUserControllerTest {
     //Test GET by username
     @Test
     public void findByUsername() {
-        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "JohnCusack");
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "johncusack");
 
         assertNotNull(user);
         assertEquals("John.Cusack@pet.com", user.getEmail());
@@ -60,7 +61,7 @@ public class RestUserControllerTest {
 
     @Test(expected = HttpClientErrorException.class)
     public void findByUsernameNonExistent() {
-        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "IulianaCosmina");
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "iulianacosmina");
         assertNotNull(user);
     }
 
@@ -69,7 +70,7 @@ public class RestUserControllerTest {
     public void createUser() {
         User user = new User();
         user.setEmail("Doctor.Who@tardis.com");
-        user.setUsername("DoctorWho");
+        user.setUsername("doctorwho");
         user.setLastName("Doctor");
         user.setFirstName("Who");
         user.setRating(0d);
@@ -78,14 +79,16 @@ public class RestUserControllerTest {
         user.setUserType(UserType.ADMIN);
 
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         final HttpEntity<User> crRequest = new HttpEntity<>(user, headers);
         URI uri = this.restTemplate.postForLocation(GET_POST_URL, crRequest, User.class);
         logger.info(">> Location for new user: " + uri);
+        assertNotNull(uri);
+        assertTrue(uri.toString().contains("doctorwho"));
 
         // test insertion
-        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
+        User newUser = restTemplate.getForObject(uri, User.class);
 
         assertNotNull(newUser);
         assertNotNull(newUser.getId());
@@ -94,10 +97,10 @@ public class RestUserControllerTest {
 
     // Test PUT
     @Test
-    public void editUser() {
+    public void editUser() throws URISyntaxException {
         User user = new User();
         user.setEmail("MissJones@pet.com");
-        user.setUsername("JessicaJones");
+        user.setUsername("jessicajones");
         user.setRating(5d);
         user.setLastName("Jessica");
         user.setFirstName("Jones");
@@ -105,11 +108,11 @@ public class RestUserControllerTest {
         user.setUserType(UserType.ADMIN);
 
         final HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
         final HttpEntity<User> userRequest = new HttpEntity<>(user, headers);
         ResponseEntity<User> responseEntity = restTemplate.exchange(GET_PUT_DEL_URL, HttpMethod.PUT, userRequest, User.class,
-                "JessicaJones");
+                "jessicajones");
 
         User editedUser = responseEntity.getBody();
         assertNotNull(editedUser);
@@ -119,9 +122,9 @@ public class RestUserControllerTest {
     // Test DELETE
     @Test
     public void deleteUser() {
-        restTemplate.delete(GET_PUT_DEL_URL, "DoctorWho");
+        restTemplate.delete(GET_PUT_DEL_URL, "doctorwho");
         // test insertion
-        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
+        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
         assertNull(newUser);
     }
 

@@ -49,7 +49,7 @@ public class RestUserControllerTest {
     //Test GET by username
     @Test
     public void findByUsername() {
-        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "JohnCusack");
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "johncusack");
 
         assertNotNull(user);
         assertEquals("John.Cusack@pet.com", user.getEmail());
@@ -57,7 +57,7 @@ public class RestUserControllerTest {
 
     @Test(expected = HttpClientErrorException.class)
     public void findByUsernameNonExistent() {
-        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "IulianaCosmina");
+        User user = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "iulianacosmina");
         assertNotNull(user);
     }
 
@@ -66,7 +66,7 @@ public class RestUserControllerTest {
     public void createUser() {
         User user = new User();
         user.setEmail("Doctor.Who@tardis.com");
-        user.setUsername("DoctorWho");
+        user.setUsername("doctorwho");
         user.setRating(0d);
         user.setActive(true);
 
@@ -78,7 +78,7 @@ public class RestUserControllerTest {
         logger.info(">> Location for new user: " + uri);
 
         // test insertion
-        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
+        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
 
         assertNotNull(newUser);
         assertNotNull(newUser.getUsername());
@@ -90,7 +90,7 @@ public class RestUserControllerTest {
     public void editUser() {
         User user = new User();
         user.setEmail("MissJones@pet.com");
-        user.setUsername("JessicaJones");
+        user.setUsername("jessicajones");
         user.setRating(5d);
 
         final HttpHeaders headers = new HttpHeaders();
@@ -98,7 +98,7 @@ public class RestUserControllerTest {
 
         final HttpEntity<User> userRequest = new HttpEntity<>(user, headers);
         ResponseEntity<User> responseEntity = restTemplate.exchange(GET_PUT_DEL_URL, HttpMethod.PUT, userRequest, User.class,
-                "JessicaJones");
+                "jessicajones");
 
         User editedUser = responseEntity.getBody();
         assertNotNull(editedUser);
@@ -108,9 +108,9 @@ public class RestUserControllerTest {
     // Test DELETE
     @Test
     public void deleteUser() {
-        restTemplate.delete(GET_PUT_DEL_URL, "DoctorWho");
+        restTemplate.delete(GET_PUT_DEL_URL, "doctorwho");
         // test insertion
-        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "DoctorWho");
+        User newUser = restTemplate.getForObject(GET_PUT_DEL_URL, User.class, "doctorwho");
         assertNull(newUser);
     }
 

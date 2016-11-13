@@ -42,7 +42,7 @@ public class RestUserController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @RequestMapping(value = "/users/{$username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/users/{$username}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public User getByUsername(@PathVariable("$username") String username) throws UserException {
         User user = userService.findByUsername(username);
         if (user == null) {

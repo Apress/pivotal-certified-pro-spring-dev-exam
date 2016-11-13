@@ -16,7 +16,7 @@ public class RecordBuilder {
         User user = new User();
         user.setEmail(email);
         String[] namePieces = email.split("@");
-        user.setUsername(namePieces[0].replace(".",""));
+        user.setUsername(namePieces[0].replace(".","").toLowerCase());
         if (namePieces[0].contains(".")) {
             // fn and ln can be inferred
             String[] names = namePieces[0].split("\\.");

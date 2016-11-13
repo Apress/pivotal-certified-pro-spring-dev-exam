@@ -17,12 +17,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.client.ExpectedCount;
 import org.springframework.test.web.client.MockRestServiceServer;
-import org.springframework.test.web.client.response.MockRestResponseCreators;
+
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.Assert.*;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
+import static org.springframework.test.web.client.ExpectedCount.once;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 /**
  * Created by iuliana.cosmina on 11/9/16.
@@ -54,8 +56,8 @@ public class StandaloneRestUserControllerTest {
     //Test GET all
     @Test
     public void getAll() {
-        server.expect(ExpectedCount.once(), requestTo("/users")).andExpect(method(HttpMethod.GET))
-                .andRespond(MockRestResponseCreators.withSuccess("[ {\n" +
+        server.expect(once(), requestTo("/users")).andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("[ {\n" +
                         "  \"id\" : 1571,\n" +
                         "  \"username\" : \"johnnybig\",\n" +
                         "  \"firstName\" : \"Johnny\",\n" +
@@ -75,8 +77,9 @@ public class StandaloneRestUserControllerTest {
     //Test GET by username
     @Test
     public void findByUsername() {
-        server.expect(ExpectedCount.once(), requestTo("/users/johncusack")).andExpect(method(HttpMethod.GET))
-                .andRespond(MockRestResponseCreators.withSuccess("{\n" +
+        server.expect(once(), requestTo("/users/johncusack"))
+                .andExpect(method(HttpMethod.GET))
+                .andRespond(withSuccess("{\n" +
                         "  \"id\" : 1575,\n" +
                         "  \"username\" : \"johncusack\",\n" +
                         "  \"firstName\" : \"John\",\n" +

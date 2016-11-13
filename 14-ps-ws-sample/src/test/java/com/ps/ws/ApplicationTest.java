@@ -2,6 +2,7 @@ package com.ps.ws;
 
 import com.ps.Application;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -26,20 +27,20 @@ public class ApplicationTest {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+    private static final Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
+    private static final WebServiceTemplate ws = new WebServiceTemplate(marshaller);
 
     @LocalServerPort
-    private int port = 0;
+    private int port;
 
-    @Before
-    public void init() throws Exception {
+    @BeforeClass
+    public static void init() throws Exception {
         marshaller.setPackagesToScan(ClassUtils.getPackageName(GetUserRequest.class));
         marshaller.afterPropertiesSet();
     }
 
     @Test
     public void testSendAndReceive() {
-        WebServiceTemplate ws = new WebServiceTemplate(marshaller);
         GetUserRequest request = new GetUserRequest();
         request.setEmail("John.Cusack@pet.com");
 

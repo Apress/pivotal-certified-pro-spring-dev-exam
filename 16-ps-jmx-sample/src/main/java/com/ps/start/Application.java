@@ -49,17 +49,17 @@ public class Application {
         return rmiRegistryFactoryBean;
     }*/
 
-    @Bean
+    /*@Bean
     MBeanServerFactoryBean mbeanServer() {
         return new MBeanServerFactoryBean();
     }
-
-    @Bean
+*/
+   /* @Bean
     MBeanExporter exporter() {
         MBeanExporter exporter = new MBeanExporter();
         exporter.setAutodetect(true);
         return exporter;
-    }
+    }*/
 
     public static void main(String[] args) throws IOException {
         ConfigurableApplicationContext ctx = SpringApplication.run(Application.class, args);

@@ -16,6 +16,7 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractEntity implements Serializable {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false)

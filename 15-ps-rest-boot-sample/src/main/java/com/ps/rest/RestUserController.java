@@ -24,9 +24,9 @@ public class RestUserController {
 
     @PostConstruct
     public void init() {
-        User user = new User("JohnCusack", "John.Cusack@pet.com", 5d, true);
+        User user = new User("johncusack", "John.Cusack@pet.com", 5d, true);
         userService.put(user.getUsername(), user);
-        user = new User("JessicaJones","Jessica.Jones@pet.com", 4d, true);
+        user = new User("jessicajones","Jessica.Jones@pet.com", 4d, true);
         userService.put(user.getUsername(), user);
     }
 
