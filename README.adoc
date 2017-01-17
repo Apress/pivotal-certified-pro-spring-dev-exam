@@ -2,8 +2,12 @@
 
 This project is a collection of Spring sources used to depict certain aspects of the framework.
 
-These code samples are designed to be used together with http://future.link[*Pivotal Certified Spring Core Developer Exam*] study guide.
+These code samples are designed to be used together with http://www.apress.com/us/book/9781484208120 study guide.
 Detailed instructions on how to use them can be found in the book.
+
+This is the raw version of the sources that can be found on the official Apress Github account: https://github.com/Apress/pivotal-certified-pro-spring-dev-exam.
+These sources will be maintained and upgraded periodically.
+
 Please buy the book, it will mean a lot to me. Also, feedback is welcome!
 
 == Building and Deploying
@@ -22,5 +26,6 @@ To build the project and ignore failed tests so you can get your full build stat
 ----
 gradle build -Dscan --continue
 ----
+Just keep in mind, the project is quite big and when displaying the results, you browser might be slow.
 
 German unicode characters here: http://javawiki.sowas.com/doku.php?id=java:unicode

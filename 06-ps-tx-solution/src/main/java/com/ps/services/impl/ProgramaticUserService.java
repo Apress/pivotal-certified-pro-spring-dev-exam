@@ -29,17 +29,14 @@ public class ProgramaticUserService implements UserService {
 
     @Override
     public User findById(Long id) {
-        return txTemplate.execute(new TransactionCallback<User>() {
-            @Override
-            public User doInTransaction(TransactionStatus status) {
-                User user = null;
-                try {
-                    user = userRepo.findById(id);
-                } catch (Exception e) {
-                    status.setRollbackOnly();
-                }
-                return user;
+        return txTemplate.execute(status -> {
+            User user = null;
+            try {
+                user = userRepo.findById(id);
+            } catch (Exception e) {
+                status.setRollbackOnly();
             }
+            return user;
         });
     }
 
@@ -56,19 +53,16 @@ public class ProgramaticUserService implements UserService {
 
     @Override
     public int updatePassword(Long userId, String newPass) throws MailSendingException {
-        return txTemplate.execute(new TransactionCallback<Integer>() {
-            @Override
-            public Integer doInTransaction(TransactionStatus status) {
-                try {
-                    User user = userRepo.findById(userId);
-                    String email = user.getEmail();
-                    sendEmail(email);
-                    return userRepo.updatePassword(userId, newPass);
-                } catch (MailSendingException e) {
-                    status.setRollbackOnly();
-                }
-                return 0;
+        return txTemplate.execute(status -> {
+            try {
+                User user = userRepo.findById(userId);
+                String email = user.getEmail();
+                sendEmail(email);
+                return userRepo.updatePassword(userId, newPass);
+            } catch (MailSendingException e) {
+                status.setRollbackOnly();
             }
+            return 0;
         });
     }
 

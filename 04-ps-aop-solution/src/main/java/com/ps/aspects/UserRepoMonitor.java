@@ -73,8 +73,8 @@ public class UserRepoMonitor {
 
     private static long findByIdCount = 0;
 
-    @After("execution(public * com.ps.repos.*.JdbcTemplateUserRepo+.updateUsername(..))")
-    public void afterFindById(JoinPoint joinPoint) throws Throwable {
+    @After("execution(public * com.ps.repos.*.JdbcUserRepo+.updateUsername(..))")
+    public void afterUpdateUsername(JoinPoint joinPoint) throws Throwable {
         ++findByIdCount;
         String methodName = joinPoint.getSignature().getName();
         logger.info(" ---> Method " + methodName + " was called " + findByIdCount + " times.");

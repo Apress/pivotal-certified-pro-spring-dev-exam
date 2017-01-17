@@ -53,6 +53,13 @@ public class TestJdbcUserRepo {
     }
 
     @Test
+    public void testUpdateUsername() {
+        userRepo.updateUsername(1L, "new_name");
+        User user = userRepo.findById(1L);
+        assertEquals("new_name", user.getUsername());
+    }
+
+    @Test
     public void testMore() {
         Set<User> result = userRepo.findAllByUserName("John", false);
         assertEquals(2, result.size());

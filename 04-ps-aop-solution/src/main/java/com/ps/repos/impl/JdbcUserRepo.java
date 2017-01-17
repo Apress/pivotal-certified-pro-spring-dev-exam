@@ -189,8 +189,38 @@ public class JdbcUserRepo implements UserRepo {
 
     @Override
     public int updateUsername(Long userId, String username) {
-        //not needed yet
-        return 0;
+        String sql = "update P_USER set username=? where ID = ?";
+        Connection conn = null;
+        PreparedStatement ps = null;
+        try {
+            conn = dataSource.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setLong(2, userId);
+            ps.executeUpdate();
+            conn.commit();
+            if(true) {
+                throw new RuntimeException("Bubu baba..");
+            }
+            return 1;
+        } catch (SQLException e) {
+            throw new RuntimeException("User could not be updated", e);
+        } finally {
+            if (ps != null) {
+                try {
+                    // Close to prevent database cursor exhaustion
+                    ps.close();
+                } catch (SQLException ex) {
+                }
+            }
+            if (conn != null) {
+                try {
+                    // Close to prevent database connection exhaustion
+                    conn.close();
+                } catch (SQLException ex) {
+                }
+            }
+        }
     }
 
 
