@@ -17,7 +17,6 @@ test {
 }
 
 gretty {
-    port = 8080
     contextPath = '/'
 }
 

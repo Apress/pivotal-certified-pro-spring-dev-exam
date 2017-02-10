@@ -17,8 +17,7 @@ test {
     exclude '**/*TestBase*'
 }
 
-gretty {
-    port = 8080
+gretty {git
     contextPath = '/'
 }
 
