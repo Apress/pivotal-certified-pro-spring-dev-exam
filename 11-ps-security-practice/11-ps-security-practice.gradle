@@ -17,6 +17,7 @@ test {
 }
 
 gretty {
+    httpPort = 8080
     contextPath = '/mvc-security'
 }
 
