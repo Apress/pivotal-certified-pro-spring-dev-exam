@@ -4,6 +4,8 @@ import com.ps.base.RequestStatus;
 import com.ps.ents.Request;
 import com.ps.ents.User;
 import com.ps.repos.RequestRepo;
+
+import com.ps.MyDsCfg;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,9 @@ import java.util.Set;
 /**
  * Created by iuliana.cosmina on 3/21/16.
  */
-@Repository("requestRepo")
+
+@MyDsCfg(timeout = 2400)
+@Repository
 @Description("This is not the bean you are looking for")
 public class JdbcRequestRepo extends JdbcAbstractRepo<Request> implements RequestRepo {
     private Logger logger = LoggerFactory.getLogger(JdbcRequestRepo.class);
