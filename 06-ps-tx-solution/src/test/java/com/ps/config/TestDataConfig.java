@@ -15,6 +15,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
 import javax.sql.DataSource;
 import java.sql.Driver;
+import com.ps.CleanUp;
 
 /**
  * Created by iuliana.cosmina on 7/5/16.
@@ -61,14 +62,6 @@ public class TestDataConfig {
     @Value("classpath:db/test-data.sql")
     private Resource dataScript;
 
-    @Bean
-    public DataSourceInitializer dataSourceInitializer(final DataSource dataSource) {
-        final DataSourceInitializer initializer = new DataSourceInitializer();
-        initializer.setDataSource(dataSource);
-        initializer.setDatabasePopulator(databasePopulator());
-        return initializer;
-    }
-
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
         populator.addScript(schemaScript);
@@ -85,4 +78,9 @@ public class TestDataConfig {
     public DataSourceTransactionManager transactionManager(){
         return new DataSourceTransactionManager(dataSource());
     }
+    @Bean(destroyMethod = "destroy")
+    public CleanUp cleanUp() {
+        return new CleanUp(userJdbcTemplate());
+    }
+
 }
