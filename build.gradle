@@ -96,7 +96,7 @@ allprojects {
                 servlet           : "javax.servlet:javax.servlet-api:3.1.0",
                 liferayService    : "com.liferay.portal:portal-services:6.2.2",
                 commons           : "org.apache.commons:commons-lang3:3.4",
-                ojdbc             : "com.oracle:ojdbc7:12.1.0.2",
+                ojdbc             : "com.github.noraui:ojdbc7:12.1.0.2",
                 javax_inject      : "javax.inject:javax.inject:1",
                 aspectjweaver     : "org.aspectj:aspectjweaver:$aspectjVersion",
                 aspectjrt         : "org.aspectj:aspectjrt:$aspectjVersion",

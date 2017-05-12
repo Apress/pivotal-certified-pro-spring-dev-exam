@@ -42,8 +42,8 @@ ojdbc             : "com.oracle:ojdbc7:12.1.0.2",
 ----
 with  this line:
 ----
-ojdbc             : "cn.easyproject:ojdbc7:12.1.0.2.0"
+ojdbc             : "com.github.noraui:ojdbc7:12.1.0.2.0"
 ----
 
-I'm not sure how long the artifact will be available there (https://mvnrepository.com/artifact/cn.easyproject/ojdbc7/12.1.0.2.0),
+I'm not sure how long the artifact will be available there (https://mvnrepository.com/artifact/com.github.noraui/ojdbc7/12.1.0.2),
 because Oracle licensing might prevent people from sharing their artifacts on public servers, so for long term use, the first solution is recommended.
