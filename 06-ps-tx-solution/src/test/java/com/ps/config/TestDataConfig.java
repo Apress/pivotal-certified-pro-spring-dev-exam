@@ -78,6 +78,7 @@ public class TestDataConfig {
     public DataSourceTransactionManager transactionManager(){
         return new DataSourceTransactionManager(dataSource());
     }
+
     @Bean(destroyMethod = "destroy")
     public CleanUp cleanUp() {
         return new CleanUp(userJdbcTemplate());

@@ -26,6 +26,7 @@ public class JpaUserRepo implements UserRepo {
     void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
     @Override
     public List<User> findAll() {
         return entityManager.createQuery("select u from User u").getResultList();

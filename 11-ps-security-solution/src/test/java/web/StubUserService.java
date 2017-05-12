@@ -32,6 +32,16 @@ public class StubUserService implements UserService {
     }
 
     @Override
+    public User findByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return null;
+    }
+
+    @Override
     public long countUsers() {
         return users.size();
     }
@@ -42,12 +52,37 @@ public class StubUserService implements UserService {
     }
 
     @Override
+    public User create(User user) {
+        return null;
+    }
+
+    @Override
+    public void update(User user) {
+
+    }
+
+    @Override
     public List<User> findAll() {
         return users;
     }
 
     @Override
+    public List<User> findByType(UserType userType) {
+        return null;
+    }
+
+    @Override
     public void deleteById(Long id) {
         throw new NotImplementedException("[DELETE] Not to be used at the moment.");
+    }
+
+    @Override
+    public void deleteByEmail(String email) {
+
+    }
+
+    @Override
+    public List<String> getEmailsByType(UserType userType) {
+        return null;
     }
 }

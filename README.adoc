@@ -29,3 +29,21 @@ gradle build -Dscan --continue
 Just keep in mind, the project is quite big and when displaying the results, you browser might be slow.
 
 German unicode characters here: http://javawiki.sowas.com/doku.php?id=java:unicode
+
+== Observation
+
+The ojdbc artifact is not available in Maven public repository.
+There are two possible solutions:
+
+* download it from the Official Oracle site and store it in the ~/.m2/repository/.. where Gradle is expecting to find it.
+* in build.gradle replace this line:
+----
+ojdbc             : "com.oracle:ojdbc7:12.1.0.2",
+----
+with  this line:
+----
+ojdbc             : "cn.easyproject:ojdbc7:12.1.0.2.0"
+----
+
+I'm not sure how long the artifact will be available there (https://mvnrepository.com/artifact/cn.easyproject/ojdbc7/12.1.0.2.0),
+because Oracle licensing might prevent people from sharing their artifacts on public servers, so for long term use, the first solution is recommended.
