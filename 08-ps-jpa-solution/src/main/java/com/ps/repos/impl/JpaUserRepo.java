@@ -17,8 +17,11 @@ import static com.ps.ents.User.*;
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
+@SuppressWarnings("unchecked")
 @Repository("userJpaRepo")
 public class JpaUserRepo implements UserRepo {
+
+    private static String BY_ID = "from User u where u.id= :id";
 
     private EntityManager entityManager;
 
@@ -29,7 +32,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public List<User> findAll() {
-        return entityManager.createQuery("select u from User u").getResultList();
+        return (List<User>) entityManager.createQuery("select u from User u").getResultList();
     }
 
     @Override
@@ -45,10 +48,10 @@ public class JpaUserRepo implements UserRepo {
     @Override
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
-            return entityManager.createNamedQuery(FIND_BY_USERNAME_EXACT)
+            return (List<User>) entityManager.createNamedQuery(FIND_BY_USERNAME_EXACT)
                     .setParameter("un", username).getResultList();
         } else {
-            return entityManager.createNamedQuery(FIND_BY_USERNAME_LIKE)
+            return (List<User>) entityManager.createNamedQuery(FIND_BY_USERNAME_LIKE)
                     .setParameter("un", "%" + username + "%").getResultList();
         }
     }
@@ -71,12 +74,12 @@ public class JpaUserRepo implements UserRepo {
         Query query = entityManager.createNativeQuery(
                 "select first_name from P_USER"
         );
-       return query.getResultList();
+       return (List<String>) query.getResultList();
     }
 
     @Override
     public String findUsernameById(Long id) {
-        return (String) entityManager.createQuery("select u.username from User u where u.id= :id").
+        return (String) entityManager.createQuery("select u.username " + BY_ID).
                 setParameter("id", id).getSingleResult();
     }
 
@@ -87,7 +90,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void updatePassword(Long userId, String newPass) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         user.setPassword(newPass);
         entityManager.merge(user);
@@ -95,7 +98,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void updateUsername(Long userId, String username) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         user.setUsername(username);
         entityManager.merge(user);
@@ -103,7 +106,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void deleteById(Long userId) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         entityManager.remove(user);
     }

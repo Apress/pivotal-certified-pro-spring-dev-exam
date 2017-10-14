@@ -13,8 +13,11 @@ import java.util.Set;
 /**
  * Created by iuliana.cosmina on 6/4/16.
  */
+@SuppressWarnings("unchecked")
 @Repository("userJpaRepo")
 public class JpaUserRepo implements UserRepo {
+
+    private static String BY_ID = "from User u where u.id= :id";
 
     private EntityManager entityManager;
 
@@ -50,7 +53,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public String findUsernameById(Long id) {
-        return (String) entityManager.createQuery("select u.username from User u where u.id= :id").
+        return (String) entityManager.createQuery("select u.username from " + BY_ID).
                 setParameter("id", id).getSingleResult();
     }
 
@@ -61,7 +64,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void updatePassword(Long userId, String newPass) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         user.setPassword(newPass);
         entityManager.merge(user);
@@ -69,7 +72,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void updateUsername(Long userId, String username) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         user.setUsername(username);
         entityManager.merge(user);
@@ -77,7 +80,7 @@ public class JpaUserRepo implements UserRepo {
 
     @Override
     public void deleteById(Long userId) {
-        User user = (User) entityManager.createQuery("from User u where u.id= :id").
+        User user = (User) entityManager.createQuery(BY_ID).
                 setParameter("id", userId).getSingleResult();
         entityManager.remove(user);
     }
