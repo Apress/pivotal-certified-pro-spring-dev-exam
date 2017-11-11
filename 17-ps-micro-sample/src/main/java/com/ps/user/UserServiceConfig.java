@@ -3,7 +3,6 @@ package com.ps.user;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.web.client.RestTemplate;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -41,7 +39,7 @@ public class UserServiceConfig {
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		List<Map<String, Object>> users = jdbcTemplate.queryForList("SELECT id FROM P_USER");
 
-		logger.info("System has " + users.size() + " users");
+		logger.info("System has {} users", users.size());
 		return dataSource;
 	}
 

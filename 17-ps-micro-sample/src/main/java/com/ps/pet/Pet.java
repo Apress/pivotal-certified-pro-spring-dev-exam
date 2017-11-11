@@ -40,7 +40,7 @@ public class Pet {
 		this.name = name;
 		this.age = age;
 		this.rfid = rfid;
-		this.petType = petType;
+		this.petType = type;
 	}
 
 	public Long getOwnerId() {

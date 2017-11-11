@@ -76,7 +76,6 @@ public class JdbcUserRepo implements UserRepo {
         } else {
             sql += "u.USERNAME like '%' || ? || '%'";
         }
-        User user = null;
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -114,7 +113,6 @@ public class JdbcUserRepo implements UserRepo {
     @Override
     public User findById(Long id) {
         String sql = "select u.ID as ID, u.USERNAME as USERNAME, u.EMAIL as EMAIL, u.PASSWORD as PASSWORD from P_USER u where u.ID = ?";
-        User user = null;
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;

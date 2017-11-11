@@ -5,8 +5,6 @@ import com.ps.base.UserType;
 import com.ps.ents.Pet;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +19,6 @@ import static com.ps.util.RecordBuilder.buildUser;
  */
 @Service
 public class DBInitializer {
-    private Logger logger = LoggerFactory.getLogger(DBInitializer.class);
 
     @Autowired
     UserRepo userRepo;

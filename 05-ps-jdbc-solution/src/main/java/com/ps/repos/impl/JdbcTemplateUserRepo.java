@@ -7,7 +7,6 @@ import com.ps.repos.UserRepo;
 import com.ps.repos.util.UserRowMapper;
 import com.ps.util.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -154,7 +153,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     private class UserWithPetsExtractor implements ResultSetExtractor<User> {
         @Override
-        public User extractData(ResultSet rs) throws SQLException, DataAccessException {
+        public User extractData(ResultSet rs) throws SQLException {
             User user = null;
             while (rs.next()) {
                 if (user == null) {
@@ -184,7 +183,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     private class PairResultExtractor implements ResultSetExtractor<Pair> {
         @Override
-        public Pair extractData(ResultSet rs) throws SQLException, DataAccessException {
+        public Pair extractData(ResultSet rs) throws SQLException {
             List<User> users = new ArrayList<>();
             User user = null;
             while (rs.next()) {

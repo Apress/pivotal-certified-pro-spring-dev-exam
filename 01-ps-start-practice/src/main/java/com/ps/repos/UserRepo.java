@@ -1,7 +1,5 @@
 package com.ps.repos;
 
-import com.ps.base.UserType;
-import com.ps.ents.Request;
 import com.ps.ents.User;
 
 import java.util.Set;

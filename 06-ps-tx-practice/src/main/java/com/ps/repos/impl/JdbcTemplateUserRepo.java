@@ -146,7 +146,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     private class PairResultExtractor implements ResultSetExtractor<Pair> {
         @Override
-        public Pair extractData(ResultSet rs) throws SQLException, DataAccessException {
+        public Pair extractData(ResultSet rs) throws SQLException {
             List<User> users = new ArrayList<>();
             User user = null;
             while (rs.next()) {

@@ -1,7 +1,6 @@
 package com.ps.repos;
 
 import com.ps.base.ResponseStatus;
-import com.ps.ents.Request;
 import com.ps.ents.Response;
 import com.ps.ents.User;
 

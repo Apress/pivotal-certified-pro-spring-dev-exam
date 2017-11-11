@@ -33,7 +33,7 @@ public class AllWebService {
 	}
 
 	public UserSkeleton findUserById(Long id) {
-		logger.info("findUserById(" + id + " ) called");
+		logger.info("findUserById({}) called", id);
 		User user = null;
 		try {
 			 user = restTemplate.getForObject(usersServiceUrl + "/users/id/{id}", User.class, id);
@@ -45,7 +45,7 @@ public class AllWebService {
 	}
 
 	public List<PetSkeleton> findByOwnerId(Long ownerId) {
-		logger.info("findByOwnerId(" + ownerId + " ) called");
+		logger.info("findByOwnerId({}) called", ownerId);
 		Pet[] pets = null;
 		try {
 			pets = restTemplate.getForObject(petsServiceUrl + "/pets/owner/{id}",
@@ -65,7 +65,7 @@ public class AllWebService {
 	}
 
 	public List<PetSkeleton> findByType(String type) {
-		logger.info("findBytype(" + type + " ) called");
+		logger.info("findBytype({}) called", type);
 		Pet[] pets = null;
 		/*TODO 63. Complete the implementation of this method so that when accessing http://localhost:4002/pets/DOG
 		 a page with all docs in the system will be displayed. */

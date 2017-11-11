@@ -29,6 +29,7 @@ public class JdbcRequestRepo extends JdbcAbstractRepo<Request> implements Reques
     private void init(){
         logger.info(" ... initializing requestRepo ...");
     }
+
     private void destroy(){
         logger.info(" ... destroying requestRepo ...");
     }

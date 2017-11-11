@@ -3,7 +3,6 @@ package com.ps.services.impl;
 import com.ps.ents.User;
 import com.ps.exceptions.MailSendingException;
 import com.ps.repos.UserRepo;
-import com.ps.repos.impl.JdbcTemplateUserRepo;
 import com.ps.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

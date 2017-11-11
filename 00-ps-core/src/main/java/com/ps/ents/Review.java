@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by iuliana.cosmina on 2/7/16.
@@ -91,7 +90,6 @@ public class Review extends AbstractEntity {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return String.format("Review[request_id='%,.2f', response_id='%,.2f', grade='%s', details='%s']",
                 request.getId(), response.getId(), grade.toString(), details);
     }

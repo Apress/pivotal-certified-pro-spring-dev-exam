@@ -1,6 +1,5 @@
 package com.ps.repos;
 
-import com.ps.base.ReviewGrade;
 import com.ps.ents.Request;
 import com.ps.ents.Response;
 import com.ps.ents.Review;

@@ -1,9 +1,5 @@
 package com.ps.services;
 
-import com.ps.base.AbstractEntity;
-import com.ps.repos.AbstractRepo;
-import com.ps.repos.PetRepo;
-
 /**
  * Created by iuliana.cosmina on 3/8/16.
  */

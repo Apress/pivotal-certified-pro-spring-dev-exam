@@ -1,7 +1,5 @@
 package com.ps.jms;
 
-import java.io.Serializable;
-
 /**
  * Created by iuliana.cosmina on 10/9/16.
  */

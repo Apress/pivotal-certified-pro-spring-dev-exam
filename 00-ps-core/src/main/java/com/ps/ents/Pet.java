@@ -7,13 +7,12 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by iuliana.cosmina on 2/7/16.
  */
 @Entity
-@Table(name="P_PET")
+@Table(name = "P_PET")
 public class Pet extends AbstractEntity {
 
     @ManyToOne
@@ -50,6 +49,8 @@ public class Pet extends AbstractEntity {
     //required by JPA
     public Pet() {
         super();
+        this.petType = PetType.OTHER;
+        this.age = 0;
     }
 
     public User getOwner() {
@@ -129,7 +130,6 @@ public class Pet extends AbstractEntity {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return String.format("Pet[id='%,.2f', owner='%s', pet type='%s', pet name='%s', age='%,.2f']", id, owner == null ? ""
                 : owner.getId(), petType.toString(), name, age);
     }

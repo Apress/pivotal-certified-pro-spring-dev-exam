@@ -5,8 +5,6 @@ import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.ManagedBean;
-
 /**
  * Created by iuliana.cosmina on 10/18/16.
  */

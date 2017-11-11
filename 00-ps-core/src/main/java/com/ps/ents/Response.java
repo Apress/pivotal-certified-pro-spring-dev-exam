@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.text.SimpleDateFormat;
 
 /**
  * Created by iuliana.cosmina on 2/7/16.
@@ -94,7 +93,6 @@ public class Response extends AbstractEntity {
 
     @Override
     public String toString() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         return String.format("Request[id='%,.2f', user='%s', request='%s', responseStatus='%s']",
                 id, user == null ? "" : user.getId(), request == null ? "" : request.getId(), responseStatus);
     }

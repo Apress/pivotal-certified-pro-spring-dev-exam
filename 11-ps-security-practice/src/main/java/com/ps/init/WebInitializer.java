@@ -1,6 +1,5 @@
 package com.ps.init;
 
-import com.ps.config.SecurityConfig;
 import com.ps.config.ServiceConfig;
 import com.ps.config.WebConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;

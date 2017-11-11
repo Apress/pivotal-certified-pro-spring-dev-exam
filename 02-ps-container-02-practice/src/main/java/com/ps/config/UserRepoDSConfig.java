@@ -36,7 +36,7 @@ public class UserRepoDSConfig {
 
 
     @Bean
-    public DataSource dataSource() throws SQLException {
+    public DataSource dataSource() {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(driverClassName);
         ds.setUrl(url);

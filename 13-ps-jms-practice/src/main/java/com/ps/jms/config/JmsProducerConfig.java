@@ -1,7 +1,6 @@
 package com.ps.jms.config;
 
 import com.ps.jms.ConfirmationReceiver;
-import com.ps.jms.UserReceiver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

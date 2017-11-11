@@ -6,7 +6,8 @@ package com.ps.base;
 public enum PetType {
     CAT(1),
     DOG(2),
-    BIRD(3);
+    BIRD(3),
+    OTHER(4);
 
     private int code;
 

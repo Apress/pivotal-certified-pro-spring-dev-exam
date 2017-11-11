@@ -3,8 +3,6 @@ package com.ps.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import javax.sql.DataSource;
@@ -32,7 +30,7 @@ public class DataSourceConfig1 {
     public DataSource dataSource(@Value("#{dbProps.driverClassName}")String driverClassName,
                                  @Value("#{dbProps.url}")String url,
                                  @Value("#{dbProps.username}")String username,
-                                 @Value("#{dbProps.password}")String password) throws SQLException {
+                                 @Value("#{dbProps.password}")String password)  {
         DriverManagerDataSource ds = new DriverManagerDataSource();
         ds.setDriverClassName(driverClassName);
         ds.setUrl(url);

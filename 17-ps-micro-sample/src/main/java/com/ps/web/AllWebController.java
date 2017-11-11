@@ -32,6 +32,7 @@ public class AllWebController {
 		if (owner != null) {
 			owner.setPets(allWebService.findByOwnerId(ownerId));
 		}
+		logger.debug("Added owner {} to model.", owner);
 		model.addAttribute("owner", owner);
 		return "all";
 	}
@@ -42,6 +43,8 @@ public class AllWebController {
 		List<PetSkeleton> pets = allWebService.findByType(type);
 		model.addAttribute("pets", pets);
 		model.addAttribute("type", type);
+		logger.debug("Added pets {} to model.", pets);
+		logger.debug("Added type {} to model.", type);
 		return "pets";
 	}
 

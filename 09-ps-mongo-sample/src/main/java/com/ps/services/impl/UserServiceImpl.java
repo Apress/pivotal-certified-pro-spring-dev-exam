@@ -7,8 +7,6 @@ import com.ps.repos.UserRepo;
 import com.ps.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import static com.ps.util.RecordBuilder.buildUser;
 
@@ -38,9 +36,4 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
     }
 
-    private void sendEmail(String email) throws MailSendingException {
-        if (true) {
-            throw new MailSendingException("Configrmation email for password could not be sent. Password was not send.");
-        }
-    }
 }

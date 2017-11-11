@@ -51,9 +51,4 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
     }
 
-    private void sendEmail(String email) throws MailSendingException {
-        if (true) {
-            throw new MailSendingException("Configrmation email for password could not be sent. Password was not send.");
-        }
-    }
 }

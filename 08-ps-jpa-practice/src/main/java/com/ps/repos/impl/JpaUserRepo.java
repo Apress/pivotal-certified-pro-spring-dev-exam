@@ -3,10 +3,8 @@ package com.ps.repos.impl;
 import com.ps.ents.User;
 import com.ps.repos.UserRepo;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Set;
 

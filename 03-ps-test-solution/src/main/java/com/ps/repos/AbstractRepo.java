@@ -1,7 +1,6 @@
 package com.ps.repos;
 
 import com.ps.base.AbstractEntity;
-import com.ps.ents.Request;
 
 /**
  * Created by iuliana.cosmina on 3/1/16.

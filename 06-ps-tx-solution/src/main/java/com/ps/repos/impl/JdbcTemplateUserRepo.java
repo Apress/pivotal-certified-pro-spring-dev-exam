@@ -14,8 +14,6 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.PrintStream;
 import java.sql.ResultSet;
@@ -156,7 +154,7 @@ public class JdbcTemplateUserRepo implements UserRepo {
 
     private class PairResultExtractor implements ResultSetExtractor<Pair> {
         @Override
-        public Pair extractData(ResultSet rs) throws SQLException, DataAccessException {
+        public Pair extractData(ResultSet rs) throws SQLException {
             List<User> users = new ArrayList<>();
             User user = null;
             while (rs.next()) {

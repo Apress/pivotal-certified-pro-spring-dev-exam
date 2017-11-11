@@ -1,12 +1,7 @@
 package com.ps.services.impl;
 
-import com.ps.base.ResponseStatus;
-import com.ps.ents.Request;
 import com.ps.ents.Response;
-import com.ps.ents.User;
-import com.ps.repos.RequestRepo;
 import com.ps.repos.ResponseRepo;
-import com.ps.repos.UserRepo;
 import com.ps.services.ResponseService;
 import org.springframework.stereotype.Service;
 
