@@ -16,4 +16,5 @@ public class CleanUp {
     private void destroy() {
         jdbcTemplate.execute("DROP ALL OBJECTS DELETE FILES;");
     }
+
 }

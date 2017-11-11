@@ -52,8 +52,9 @@ public class UserServiceImpl implements UserService {
     public int updatePassword(Long userId, String newPass) throws MailSendingException {
         User u = userRepo.findById(userId);
         String email = u.getEmail();
+        int result = userRepo.updatePassword(userId, newPass);
         sendEmail(email);
-        return userRepo.updatePassword(userId, newPass);
+        return result;
     }
 
     private void sendEmail(String email) throws MailSendingException {
