@@ -57,10 +57,10 @@ public class HibernateUserRepo implements UserRepo {
     @Override
     public List<User> findAllByUserName(String username, boolean exactMatch) {
         if (exactMatch) {
-            return session().createNamedQuery(FIND_BY_USERNAME_EXACT)
+            return session().createQuery("from User u where username= ?")
                     .setParameter(0, username).list();
         } else {
-            return session().createQuery(FIND_BY_USERNAME_LIKE)
+            return session().createQuery("from User u where username like ?")
                     .setParameter(0, "%" + username + "%").list();
         }
     }

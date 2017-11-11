@@ -45,8 +45,8 @@ public class TestJpaUserRepo {
     }
 
     @Test
-    public void testFindById() {
-        List<User> johns = userRepo.findAllByUserName("john.cusack", true);
+    public void testFindAllByUserName() {
+        List<User> johns = userRepo.findAllByUserName("johncusack", true);
         assertTrue(johns.size() == 1);
     }
 

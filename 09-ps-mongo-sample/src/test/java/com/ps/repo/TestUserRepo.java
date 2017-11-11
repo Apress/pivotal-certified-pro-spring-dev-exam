@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
+import static com.ps.util.RecordBuilder.buildUser;
 import static org.junit.Assert.*;
 
 /**
@@ -41,7 +42,7 @@ public class TestUserRepo {
     }
 
     @Test
-    public void testFindById() {
+    public void testFindAllByUserName() {
         List<User> johns = userRepo.findAllByUserName("john");
         assertTrue(johns.size() == 2);
         logger.info(johns.toString());
@@ -61,7 +62,7 @@ public class TestUserRepo {
 
     @Test
     public void testCreate() {
-        User diana = DBInitializer.buildUser("diana.ross@pet.com");
+        User diana = buildUser("diana.ross@pet.com");
         diana.setPassword("test");
         diana = userRepo.save(diana);
         assertNotNull(diana.getId());
