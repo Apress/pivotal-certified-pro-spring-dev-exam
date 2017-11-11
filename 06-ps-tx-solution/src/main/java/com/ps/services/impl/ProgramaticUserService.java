@@ -7,8 +7,6 @@ import com.ps.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 
 /**
@@ -55,10 +53,11 @@ public class ProgramaticUserService implements UserService {
     public int updatePassword(Long userId, String newPass) throws MailSendingException {
         return txTemplate.execute(status -> {
             try {
+                int result = userRepo.updatePassword(userId, newPass);
                 User user = userRepo.findById(userId);
                 String email = user.getEmail();
                 sendEmail(email);
-                return userRepo.updatePassword(userId, newPass);
+                return result;
             } catch (MailSendingException e) {
                 status.setRollbackOnly();
             }
@@ -68,7 +67,7 @@ public class ProgramaticUserService implements UserService {
 
     private void sendEmail(String email) throws MailSendingException {
         if (true) {
-            throw new MailSendingException("Configrmation email for password could not be sent. Password was not send.");
+            throw new MailSendingException("Confirmation email for password could not be sent. Password was not send.");
         }
     }
 }
