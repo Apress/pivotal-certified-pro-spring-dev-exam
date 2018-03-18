@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 /**
@@ -62,5 +63,13 @@ public class BeanNamingTest {
             logger.info ("Alias for sb04 -> " + name);
         }
         assertNotNull(sb01);
+    }
+
+    @Test
+    public void bookTestPage63(){
+        for (String name : ctx.getAliases("sb02/sb03") ){
+            logger.info ("Alias for sb02/sb03 -> " + name);
+            assertEquals("mumu", name);
+        }
     }
 }
