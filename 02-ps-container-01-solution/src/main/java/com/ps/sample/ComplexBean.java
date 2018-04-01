@@ -4,6 +4,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Required;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Created by iuliana.cosmina on 3/28/16.
  * Sample class used to make bean creation staged understanding easy.
@@ -31,6 +33,15 @@ public class ComplexBean {
      * The initialization method.
      * Just for fun: it instantiates the simpleBean2 only if the current time is even.
      */
+    private void initMethod2() {
+        logger.info(" --> Stage 4: Calling the initMethod2.");
+        long ct = System.currentTimeMillis();
+        if (ct % 2 == 0) {
+            simpleBean2 = new SimpleBean();
+        }
+    }
+
+    @PostConstruct
     private void initMethod() {
         logger.info(" --> Stage 3: Calling the initMethod.");
         long ct = System.currentTimeMillis();
@@ -38,6 +49,7 @@ public class ComplexBean {
             simpleBean2 = new SimpleBean();
         }
     }
+
     /**
      * Destroy method
      */

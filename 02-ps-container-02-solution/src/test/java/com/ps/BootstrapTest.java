@@ -69,7 +69,7 @@ public class BootstrapTest {
 
     @Test
     public void testStart5() {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(DataSourceConfig.class, RequestRepoConfig.class);
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(RequestRepoConfig.class);
 
         DataSource dataSource = ctx.getBean("dataSource", DataSource.class);
         assertNotNull(dataSource);

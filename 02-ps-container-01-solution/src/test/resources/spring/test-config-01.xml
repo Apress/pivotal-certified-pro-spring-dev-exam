@@ -15,7 +15,9 @@
     <bean id="complexBean" class="com.ps.sample.ComplexBean"
           c:_0-ref="simpleBean1"
           p:simpleBean2-ref="simpleBean2"
-          init-method="initMethod"
+          init-method="initMethod2"
           destroy-method="destroyMethod"/>
+
+    <context:component-scan base-package="com.ps.sample"/>
 
 </beans>
