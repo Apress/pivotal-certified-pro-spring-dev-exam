@@ -49,4 +49,3 @@ rootProject.children.each { project ->
     assert project.buildFile.isFile()
 }
 
-

@@ -15,13 +15,13 @@ import java.sql.SQLException;
 @PropertySource("classpath:db/datasource.properties")
 @Profile("prod")
 public class ProdDataConfig {
-    @Value("${driverClassName}")
+    @Value("${db.driverClassName}")
     private String driverClassName;
-    @Value("${url}")
+    @Value("${db.url}")
     private String url;
-    @Value("${username}")
+    @Value("${db.username}")
     private String username;
-    @Value("${password}")
+    @Value("${db.password}")
     private String password;
 
     @Bean

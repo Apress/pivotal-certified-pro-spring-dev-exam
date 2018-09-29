@@ -27,13 +27,13 @@ import java.util.Properties;
 @Configuration
 public class TestDataConfig {
 
-    @Value("${driverClassName}")
+    @Value("${db.driverClassName}")
     private String driverClassName;
-    @Value("${url}")
+    @Value("${db.url}")
     private String url;
-    @Value("${username}")
+    @Value("${db.username}")
     private String username;
-    @Value("${password}")
+    @Value("${db.password}")
     private String password;
 
     @Bean
