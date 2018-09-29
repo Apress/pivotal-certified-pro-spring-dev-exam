@@ -1,14 +1,8 @@
-= Pet Sitter
+= Apress Source Code - Pet Sitter Project
 
-This project is a collection of Spring sources used to depict certain aspects of the framework.
+This repository accompanies https://www.apress.com/us/book/9781484208120[Pivotal Certified Professional Spring Developer Exam] by Iuliana Cosmina (Apress, 2017).
 
-These code samples are designed to be used together with http://www.apress.com/us/book/9781484208120 study guide.
-Detailed instructions on how to use them can be found in the book.
-
-This is the raw version of the sources that can be found on the official Apress Github account: https://github.com/Apress/pivotal-certified-pro-spring-dev-exam.
-These sources will be maintained and upgraded periodically.
-
-Please buy the book, it will mean a lot to me. Also, feedback is welcome!
+image::9781484208120.jpg[Cover image]
 
 == Building and Deploying
 This is a Gradle multi-module project. The *-practice projects, have tests and pieces left unimplemented so building the full project using:
@@ -47,3 +41,11 @@ ojdbc             : "com.github.noraui:ojdbc7:12.1.0.2.0"
 
 I'm not sure how long the artifact will be available there (https://mvnrepository.com/artifact/com.github.noraui/ojdbc7/12.1.0.2),
 because Oracle licensing might prevent people from sharing their artifacts on public servers, so for long term use, the first solution is recommended.
+
+== Releases
+
+Release v1.0 corresponds to the code in the published book, without corrections or updates.
+
+== Contributions
+
+See the file Contributing.md for more information on how you can contribute to this repository.

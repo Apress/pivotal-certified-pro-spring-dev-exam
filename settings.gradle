@@ -1,4 +1,4 @@
-rootProject.name = 'pet-sitter'
+rootProject.name = 'pivotal-certified-pro-spring-dev-exam'
 
 include '00-ps-core'
 include '01-ps-start-practice'
