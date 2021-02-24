@@ -1,13 +1,12 @@
-plugins {
-    id 'com.gradle.build-scan' version '1.9'
-}
-
-buildScan {
-    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
-    licenseAgree = 'yes'
-}
-
 //gradle build -Dreceipt
+
+gradleEnterprise {
+    buildScan {
+        termsOfServiceUrl = "https://gradle.com/terms-of-service"
+        termsOfServiceAgree = "yes"
+        uploadInBackground = false
+    }
+}
 
 allprojects {
     version = '1.1-SNAPSHOT'
@@ -28,7 +27,7 @@ allprojects {
 
         //testing libs
         mockitoVersion = '2.0.2-beta'
-        junitVersion = '4.13-SNAPSHOT'
+        junitVersion = '4.13.2'
 
         //date library
         jodaVersion = '2.9.2'
@@ -169,19 +168,19 @@ task allCompile {
         subprojects.each { p ->
             p.getTasksByName("clean", true).each { t ->
                 println "-> $p.name [CLEAN]"
-                t.execute();
+                t.execute()
             }
             p.getTasksByName("compileJava", true).each { t ->
                 println "-> $p.name [COMPILE]"
-                t.execute();
+                t.execute()
             }
             p.getTasksByName("classes", true).each { t ->
                 println "-> $p.name [CLASSES]"
-                t.execute();
+                t.execute()
             }
             p.getTasksByName("jar", true).each { t ->
                 println "-> $p.name [JAR]"
-                t.execute();
+                t.execute()
             }
         }
     }
@@ -206,7 +205,6 @@ task allDeps {
     }
 }
 
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.4.1'
+wrapper {
+    gradleVersion = '6.8.2'
 }

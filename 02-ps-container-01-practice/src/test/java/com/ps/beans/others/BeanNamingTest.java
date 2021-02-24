@@ -1,6 +1,7 @@
 package com.ps.beans.others;
 
 import com.ps.beans.SimpleBean;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -25,7 +26,7 @@ public class BeanNamingTest {
     public void setUp() {
         ctx = new ClassPathXmlApplicationContext("classpath:spring/others/sample-config-03.xml");
         assertNotNull(ctx);
-        logger.info(" --- All beans in context --- ");
+        logger.info(StringUtils.center("All beans in context", 80, '-'));
         for (String beanName : ctx.getBeanDefinitionNames()) {
             /*Object o = ctx.getBean(beanName);
             if(o instanceof SimpleBean) {
@@ -34,6 +35,7 @@ public class BeanNamingTest {
             }*/
             logger.info("Bean " + beanName + " of type " + ctx.getBean(beanName).getClass().getSimpleName());
         }
+        logger.info("--" + " -".repeat(39));
     }
 
     @Test

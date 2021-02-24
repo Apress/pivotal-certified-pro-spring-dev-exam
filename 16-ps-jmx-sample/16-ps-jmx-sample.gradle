@@ -24,6 +24,10 @@ war {
     baseName = 'rest-boot'
 }
 
+springBoot {
+    mainClass = "com.ps.start.Application"
+}
+
 bootRun {
     addResources = true
 }

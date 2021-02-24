@@ -18,6 +18,10 @@ dependencies {
     testCompile boot.starterTest
 }
 
+springBoot {
+    mainClass = "com.ps.Application"
+}
+
 bootRun {
     addResources = true
 }
