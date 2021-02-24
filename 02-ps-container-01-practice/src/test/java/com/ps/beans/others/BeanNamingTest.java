@@ -35,7 +35,6 @@ public class BeanNamingTest {
             }*/
             logger.info("Bean " + beanName + " of type " + ctx.getBean(beanName).getClass().getSimpleName());
         }
-        logger.info("--" + " -".repeat(39));
     }
 
     @Test
