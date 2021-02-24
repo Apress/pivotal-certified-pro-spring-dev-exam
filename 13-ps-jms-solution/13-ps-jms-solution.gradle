@@ -17,3 +17,7 @@ buildscript {
 dependencies {
     compile boot.mq, misc.mqBroker, misc.jacksonDatabind
 }
+
+springBoot {
+    mainClass = "com.ps.jms.Application"
+}

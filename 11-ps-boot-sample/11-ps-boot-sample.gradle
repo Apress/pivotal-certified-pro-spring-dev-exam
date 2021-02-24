@@ -28,6 +28,11 @@ war {
     baseName = 'ps-boot'
 }
 
+springBoot {
+    mainClass = "com.ps.start.Application"
+}
+
 bootRun {
     addResources = true
 }
+
