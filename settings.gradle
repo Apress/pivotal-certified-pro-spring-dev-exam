@@ -1,3 +1,7 @@
+plugins {
+    id "com.gradle.enterprise" version "3.5.2"
+}
+
 rootProject.name = 'pivotal-certified-pro-spring-dev-exam'
 
 include '00-ps-core'
